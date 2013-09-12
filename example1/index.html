@@ -12,8 +12,8 @@
 		
 		<script>
 			var appConsts = {
-				"productname": "Hello Outliner",
-				"productnameForDisplay": "Hello",
+				"productname": "Hello",
+				"productnameForDisplay": "Hello Outliner",
 				"domain": "hello.blorkmark.com", 
 				"version": "0.40"
 				}
@@ -141,6 +141,7 @@
 				opSetFont (appPrefs.outlineFont, appPrefs.outlineFontSize, appPrefs.outlineLineHeight); 
 				opXmlToOutline (localStorage.savedOpmltext);
 				
+				$("#idMenuProductName").text (appConsts.productnameForDisplay);
 				$("#idProductName").text (appConsts.productnameForDisplay);
 				$("#idVersionNumber").text ("v" + appConsts.version);
 				
@@ -151,17 +152,29 @@
 			body {
 				background-color: whitesmoke;
 				}
+			.divProductName {
+				margin-top: 75px;
+				margin-bottom: 25px;
+				}
+			.divProductName h1 {
+				font-size: 48px;
+				}
 			.divOutlinerContainer { 
-				width: 75%;
-				margin-top: 90px;
+				width: 65%;
 				margin-left: auto;
 				margin-right: auto;
 				border:1px solid gainsboro;
 				min-height: 550px;
 				max-height: 800px;
-				padding: 6px;
 				overflow: auto;
+				padding: 6px;
 				background-color: white;
+				}
+			.divSubtext {
+				width: 65%;
+				margin-top: 3px;
+				margin-left: auto;
+				margin-right: auto;
 				}
 			.btn {
 				width: 80px;
@@ -213,14 +226,107 @@
 				color: gainsboro;
 				font-size: .8em;
 				}
+			/* menubar */
+				.divMenubar .container { 
+					margin-left: auto;
+					margin-right: auto;
+					width: 940px;
+					}
+				.divMenubar .navbar .nav > li > a { 
+					font-size: 15px;
+					padding-top: 12px;
+					padding-left: 8px; padding-right: 8px; //6/3/13 by DW
+					outline: none !important;
+					}
+				.dropdown-menu > li > a {
+					cursor: pointer;
+					}
+				.navbar-inner { 
+					-moz-border-radius: 0;
+					-moz-border-radius: none; 
+					-moz-box-shadow: none; 
+					background-image: none; 
+					border-radius: 0;  
+					}
+				.divMenubar .brand { 
+					margin-top: 0;
+					}
+				.divMenubar .nav li {
+					font-family: Arial;
+					font-size: 14px;
+					font-weight: bold;
+					}
+				.menuKeystroke {
+					float: right;
+					margin-left: 25px;
+					}
+				.menuKeystroke:before {
+					content: "";
+					}
+				 #idMenuProductName {
+					font-size: 22px;
+					font-style: italic;
+					font-weight: bold;
+					}
 			</style>
 		</head>
 	<body>
-		<p><span id="idProductName"></span>&nbsp;<span id="idVersionNumber"></span></p>
-		
+		<div class="divForkMe">
+			<a href="https://github.com/scripting/concord"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+			</div>
+		<div class="divMenubar">
+			<div class="topbar-wrapper" style="z-index: 5;">
+				<div class="navbar navbar-fixed-top" data-dropdown="dropdown">
+					<div class="navbar-inner">
+						<div class="container">
+							<a class="brand" href="/"><span id="idMenuProductName"></span></a>
+							<ul class="nav" id="idMainMenuList">
+								<li class="dropdown" id="idOutlinerMenu"> 
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Outliner&nbsp;<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a onclick="opExpand ();">Expand</a></li>
+										<li><a onclick="opExpandAllLevels ();">Expand All Subs</a></li>
+										<li><a onclick="opExpandEverything ();">Expand Everything</a></li>
+										
+										<li class="divider"></li>
+										<li><a onclick="opCollapse ();">Collapse</a></li>
+										<li><a onclick="opCollapseEverything ();">Collapse Everything</a></li>
+										
+										<li class="divider"></li>
+										<li><a onclick="opReorg (up, 1);">Move Up</a></li>
+										<li><a onclick="opReorg (down, 1);">Move Down</a></li>
+										<li><a onclick="opReorg (left, 1);">Move Left</a></li>
+										<li><a onclick="opReorg (right, 1);">Move Right</a></li>
+										
+										<li class="divider"></li>
+										<li><a onclick="opPromote ();">Promote</a></li>
+										<li><a onclick="opDemote ();">Demote</a></li>
+										
+										<li class="divider"></li>
+										<li><a onclick="runSelection ();">Run Selection</a></li>
+										<li><a onclick="toggleComment ();">Toggle Comment</a></li>
+										
+										<li class="divider"></li>
+										<li><a onclick="toggleRenderMode ();">Toggle Render Mode</a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<div class="divProductName">
+			<center>
+				<h1><span id="idProductName"></span>&nbsp;<span id="idVersionNumber"></span></h1>
+				</center>
+			</div>
 		<div class="divOutlinerContainer">
 			<div id="outliner">
 				</div>
+			</div>
+		<div class="divSubtext">
+			<p>This is the outliner at the core of <a href="http://fargo.io/">Fargo</a>. All the outline operations work. The outline is saved as you work in HTML 5 localStorage. The full source and docs are on <a href="https://github.com/scripting/concord">GitHub</a>.</p>
 			</div>
 		<script>
 			$(document).ready (function () {
