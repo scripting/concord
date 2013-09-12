@@ -110,8 +110,6 @@ var concordEnvironment = {
 	"version" : concord.version
 	};
 var concordClipboard = undefined;
-document.write('<link rel="stylesheet" href="http://static.smallpicture.com/concord-assets/fontawesome/3.2.1/css/font-awesome.min.css"/>');
-document.write('<link rel="stylesheet" href="http://outliner.smallpicture.com/concord.css"/>');
 jQuery.fn.reverse = [].reverse;
 //Constants
 	var nil = null;
