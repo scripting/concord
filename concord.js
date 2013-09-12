@@ -20,7 +20,7 @@ if (!Array.prototype.indexOf) {
 		}
 	}
 var concord = {
-	version: "2.47",
+	version: "2.48",
 	mobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),
 	ready: false,
 	handleEvents: true,
@@ -494,7 +494,12 @@ function ConcordEditor(root, concordInstance) {
 			});
 		root.find(".selection-toolbar").remove();
 		};
-	this.opml = function(_root) {
+	this.opml = function(_root, flsubsonly) {
+		
+		if (flsubsonly == undefined) { //8/5/13 by DW
+			flsubsonly = false;
+			}
+		
 		if(_root) {
 			root = _root;
 			}
@@ -514,7 +519,7 @@ function ConcordEditor(root, concordInstance) {
 		opml += '</head>\n';
 		opml += '<body>\n';
 		if(root.hasClass("concord-cursor")) {
-			opml += this.opmlLine(root);
+			opml += this.opmlLine(root, 0, flsubsonly);
 			} else {
 				var editor = this;
 				root.children(".concord-node").each(function() {
@@ -525,10 +530,15 @@ function ConcordEditor(root, concordInstance) {
 		opml += '</opml>\n';
 		return opml;
 		};
-	this.opmlLine = function(node, indent) {
+	this.opmlLine = function(node, indent, flsubsonly) {
 		if(indent==undefined){
 			indent=0;
 			}
+		
+		if (flsubsonly == undefined) { //8/5/13 by DW
+			flsubsonly = false;
+			}
+		
 		var text = this.unescape(node.children(".concord-wrapper:first").children(".concord-text:first").html());
 		var textMatches = text.match(/^(.+)<br>\s*$/);
 		if(textMatches){
@@ -538,33 +548,45 @@ function ConcordEditor(root, concordInstance) {
 		for(var i=0; i < indent;i++){
 			opml += '\t';
 			}
-		opml += '<outline text="' + ConcordUtil.escapeXml(text) + '"';
-		var attributes = node.data("attributes");
-		if(attributes===undefined){
-			attributes={};
-			}
-		for(var name in attributes){
-			if((name!==undefined) && (name!="") && (name != "text")) {
-				if(attributes[name]!==undefined){
-					opml += ' ' + name + '="' + ConcordUtil.escapeXml(attributes[name]) + '"';
+		
+		var subheads; 
+		if (!flsubsonly) { //8/5/13 by DW
+			opml += '<outline text="' + ConcordUtil.escapeXml(text) + '"';
+			var attributes = node.data("attributes");
+			if(attributes===undefined){
+				attributes={};
+				}
+			for(var name in attributes){
+				if((name!==undefined) && (name!="") && (name != "text")) {
+					if(attributes[name]!==undefined){
+						opml += ' ' + name + '="' + ConcordUtil.escapeXml(attributes[name]) + '"';
+						}
 					}
 				}
+			subheads = node.children("ol").children(".concord-node");
+			if(subheads.length==0){
+				opml+="/>\n";
+				return opml;
+				}
+			opml += ">\n";
 			}
-		var subheads = node.children("ol").children(".concord-node");
-		if(subheads.length==0){
-			opml+="/>\n";
-			return opml;
+		else {
+			subheads = node.children("ol").children(".concord-node");
 			}
-		opml += ">\n";
+		
 		var editor = this;
 		indent++;
 		subheads.each(function() {
 			opml += editor.opmlLine($(this), indent);
 			});
-		for(var i=0; i < indent;i++){
-			opml += '\t';
+		
+		if (!flsubsonly) { //8/5/13 by DW
+			for(var i=0; i < indent;i++){
+				opml += '\t';
+				}
+			opml += '</outline>\n';
 			}
-		opml += '</outline>\n';
+		
 		return opml;
 		};
 	this.textLine = function(node, indent){
@@ -1429,6 +1451,15 @@ function ConcordOp(root, concordInstance, _cursor) {
 	this.cursorToXml = function(){
 		return concordInstance.editor.opml(this.getCursor());
 		};
+	
+	
+	
+	this.cursorToXmlSubsOnly = function(){ //8/5/13 by DW
+		return concordInstance.editor.opml(this.getCursor(), true);
+		};
+	
+	
+	
 	this.cut = function(){
 		if(!this.inTextMode()){
 			this.copy();
