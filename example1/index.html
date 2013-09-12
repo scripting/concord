@@ -2,6 +2,7 @@
 	<head>
 		<title>Hello outliner</title>
 		<meta name="copyright" content="Copyright 2013, Small Picture, Inc.">
+		<link href="http://outliner.smallpicture.com/ranchoFont.css" rel="stylesheet" type="text/css">
 		<script src="http://rawgithub.com/scripting/concord/master/libraries/jquery-1.9.1.min.js"></script>
 		<link href="http://rawgithub.com/scripting/concord/master/libraries/bootstrap.css" rel="stylesheet">
 		<script src="http://rawgithub.com/scripting/concord/master/libraries/bootstrap.min.js"></script>
@@ -15,7 +16,7 @@
 				"productname": "Hello",
 				"productnameForDisplay": "Hello Outliner",
 				"domain": "hello.blorkmark.com", 
-				"version": "0.40"
+				"version": "0.41"
 				}
 			var appPrefs = {
 				"outlineFont": "Georgia", "outlineFontSize": 18, "outlineLineHeight": 27,
@@ -23,6 +24,7 @@
 				};
 			var whenLastKeystroke = new Date (), whenLastAutoSave = new Date ();  
 			var flReadOnly = false, flRenderMode = false;
+			var cmdKeyPrefix = "Ctrl+"; 
 			
 			function secondsSince (when) {
 				var now = new Date ();
@@ -137,13 +139,22 @@
 				}
 			function startup () {
 				initLocalStorage ();
+				//init menu keystrokes
+					if (navigator.platform.toLowerCase ().substr (0, 3) == "mac") {
+						cmdKeyPrefix = "&#8984;";
+						}
+					$("#idMenubar .dropdown-menu li").each (function () {
+						var li = $(this);
+						var liContent = li.html ();
+						liContent = liContent.replace ("Cmd-", cmdKeyPrefix);
+						li.html (liContent);
+						});
 				setOutlinerPrefs ("#outliner", false, false);
 				opSetFont (appPrefs.outlineFont, appPrefs.outlineFontSize, appPrefs.outlineLineHeight); 
 				opXmlToOutline (localStorage.savedOpmltext);
 				
-				$("#idMenuProductName").text (appConsts.productnameForDisplay);
-				$("#idProductName").text (appConsts.productnameForDisplay);
-				$("#idVersionNumber").text ("v" + appConsts.version);
+				$("#idMenuProductName").text (appConsts.productname);
+				$("#idProductVersion").text ("v" + appConsts.version);
 				
 				self.setInterval (function () {backgroundProcess ()}, 1000); //call every second
 				}
@@ -152,15 +163,9 @@
 			body {
 				background-color: whitesmoke;
 				}
-			.divProductName {
-				margin-top: 75px;
-				margin-bottom: 25px;
-				}
-			.divProductName h1 {
-				font-size: 48px;
-				}
 			.divOutlinerContainer { 
 				width: 65%;
+				margin-top: 75px;
 				margin-left: auto;
 				margin-right: auto;
 				border:1px solid gainsboro;
@@ -175,56 +180,6 @@
 				margin-top: 3px;
 				margin-left: auto;
 				margin-right: auto;
-				}
-			.btn {
-				width: 80px;
-				}
-			/* icon chain */
-				.divIconChain {
-					float: right;
-					padding: 3px;
-					margin-right: 5px;
-					}
-				.divIcon i {
-					font-size: 20px;
-					font-weight: bold;
-					color: gray; //silver;
-					padding-bottom: 35px;
-					}
-			/* four arrows */
-				.divFourArrows {
-					padding-left: 10px;
-					padding-right: 10px;
-					}
-				.divFourArrows i {
-					font-size: 36px;
-					color: gray; //silver;
-					cursor: pointer;
-					}
-				.divFourArrows a:hover {
-					text-decoration: none;
-					}
-			.divArrowPad {
-				right: 4%;
-				top: 5%;
-				z-index: 1002;
-				color: #fff;
-				position: fixed;
-				text-align: center;
-				font-family: arial,sans-serif;
-				font-size: 16px;
-				line-height: 130%;
-				background: #222 none repeat scroll 0;
-				overflow: hidden;
-				opacity: .85;
-				padding: 5px;
-				}
-			.divCloseIcon {
-				margin-top: -5px;
-				float: left;
-				cursor: pointer;
-				color: gainsboro;
-				font-size: .8em;
 				}
 			/* menubar */
 				.divMenubar .container { 
@@ -264,9 +219,8 @@
 					content: "";
 					}
 				 #idMenuProductName {
-					font-size: 22px;
-					font-style: italic;
-					font-weight: bold;
+					font-family: "Rancho";
+					font-size: 32px;
 					}
 			</style>
 		</head>
@@ -274,7 +228,7 @@
 		<div class="divForkMe">
 			<a href="https://github.com/scripting/concord"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 			</div>
-		<div class="divMenubar">
+		<div class="divMenubar" id="idMenubar">
 			<div class="topbar-wrapper" style="z-index: 5;">
 				<div class="navbar navbar-fixed-top" data-dropdown="dropdown">
 					<div class="navbar-inner">
@@ -284,42 +238,42 @@
 								<li class="dropdown" id="idOutlinerMenu"> 
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Outliner&nbsp;<b class="caret"></b></a>
 									<ul class="dropdown-menu">
-										<li><a onclick="opExpand ();">Expand</a></li>
+										<li><a onclick="opExpand ();"><span class="menuKeystroke">Cmd-,</span>Expand</a></li>
 										<li><a onclick="opExpandAllLevels ();">Expand All Subs</a></li>
 										<li><a onclick="opExpandEverything ();">Expand Everything</a></li>
 										
 										<li class="divider"></li>
-										<li><a onclick="opCollapse ();">Collapse</a></li>
+										<li><a onclick="opCollapse ();"><span class="menuKeystroke">Cmd-.</span>Collapse</a></li>
 										<li><a onclick="opCollapseEverything ();">Collapse Everything</a></li>
 										
 										<li class="divider"></li>
-										<li><a onclick="opReorg (up, 1);">Move Up</a></li>
-										<li><a onclick="opReorg (down, 1);">Move Down</a></li>
-										<li><a onclick="opReorg (left, 1);">Move Left</a></li>
-										<li><a onclick="opReorg (right, 1);">Move Right</a></li>
+										<li><a onclick="opReorg (up, 1);"><span class="menuKeystroke">Cmd-U</span>Move Up</a></li>
+										<li><a onclick="opReorg (down, 1);"><span class="menuKeystroke">Cmd-D</span>Move Down</a></li>
+										<li><a onclick="opReorg (left, 1);"><span class="menuKeystroke">Cmd-L</span>Move Left</a></li>
+										<li><a onclick="opReorg (right, 1);"><span class="menuKeystroke">Cmd-R</span>Move Right</a></li>
 										
 										<li class="divider"></li>
 										<li><a onclick="opPromote ();">Promote</a></li>
 										<li><a onclick="opDemote ();">Demote</a></li>
 										
 										<li class="divider"></li>
-										<li><a onclick="runSelection ();">Run Selection</a></li>
-										<li><a onclick="toggleComment ();">Toggle Comment</a></li>
+										<li><a onclick="runSelection ();"><span class="menuKeystroke">Cmd-/</span>Run Selection</a></li>
+										<li><a onclick="toggleComment ();"><span class="menuKeystroke">Cmd-\</span>Toggle Comment</a></li>
 										
 										<li class="divider"></li>
-										<li><a onclick="toggleRenderMode ();">Toggle Render Mode</a></li>
+										<li><a onclick="toggleRenderMode ();"><span class="menuKeystroke">Cmd-`</span>Toggle Render Mode</a></li>
 										</ul>
+									</li>
+								</ul>
+							<ul class="nav pull-right">
+								<li>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="idProductVersion"></span></a>
 									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		<div class="divProductName">
-			<center>
-				<h1><span id="idProductName"></span>&nbsp;<span id="idVersionNumber"></span></h1>
-				</center>
 			</div>
 		<div class="divOutlinerContainer">
 			<div id="outliner">
