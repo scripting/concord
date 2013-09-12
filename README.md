@@ -1,7 +1,42 @@
-This is the readme for Concord.
-
-I am editing it on the desktop.
-
-My goal is to have this synch up with the Github server.
-
-Dave
+<html>	<head>		<title>Concord docs</title>		<link rel="alternate" type="application/rss+xml" title="RSS" href="&lt;%rssUrl%&gt;" />		<meta name="sourceOutlineUrl" content="http://static.smallpicture.com/tacoma/wo/admin/2013/09/11/archive048.opml">		<meta name="pathIntoOutline" content="/concordDocs">		
+	
+		<link href="http://static.scripting.com/github/bootstrap2/css/bootstrap.css" rel="stylesheet">
+		<link href="http://static.scripting.com/github/bootstrap2/css/prettify.css" rel="stylesheet">
+		
+		<script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/prettify.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-alert.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-dropdown.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-scrollspy.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-tab.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-tooltip.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-popover.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-button.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-collapse.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-carousel.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-typeahead.js"></script>
+		<script src="http://static.scripting.com/github/bootstrap2/js/application.js"></script>
+		
+		<script src="http://static.opml.org/scripts.js"></script>
+		<link href="http://static.opml.org/styles.css" rel="stylesheet">
+		<script src="http://outliner.smallpicture.com/strings.js"></script>		<script src="http://outliner.smallpicture.com/utils.js"></script>		<style>			body {				background-color: whitesmoke;				}			.divSidebarImage {				margin-top: 50px;				}			.divBlogpostx {				font-family: Georgia;				position: relative;				max-width: 660px;				padding-left: 20px;				padding-right: 20px;				margin-left: auto;				margin-right: auto;				margin-top: 50px;				}			.divBlogpost {				font-family: Georgia;				position: relative;				max-width: 660px;				padding-left: 20px;				padding-right: 20px;				margin-left: auto;				margin-right: auto;				}			.divBlogpostHeaderx {				margin-top: 30px;				}			.divBlogpostHeader {				margin-top: 0;				}			.divBlogpostHeader h1 {				font-size: 42px;				font-weight: 600;				text-align: center;				line-height: 110%;				margin: 0;				}			.divBlogpost hr {				background: none repeat scroll 0 0 #A2A2A2;				height: 1px;				margin: 15px auto;				width: 300px;				}			.divBlogpostBody {				margin-top: 40px;				}			.divBlogpostBody p {				font-size: 20px;				font-weight: 400;				line-height: 31px;				}			.divBlogpostBody h2 {				font-size: 28px;				text-align: center;				}			.divBlogpostFooter {				margin-top: 50px;				margin-bottom: 50px;				text-align: center;				}			.divBlogpostFooter hr {				margin-bottom: 30px;				}			.divComments {				padding-left: 0;				}			.dsq-comment-text p {				font-family: Arial;				font-size: 16px;				line-spacing: 130%;				}			.formComment {				padding-top: 30px;				}			.divComment p {				font-family: Georgia;				font-size: 18px;				}			.spanExpandableText {				color: black;				}			.divOpmlNavigation {				padding-top: 0;				padding-bottom: 55px;				}			</style>		<script>			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');						ga('create', 'UA-39531990-1', 'smallpicture.com');			ga('send', 'pageview');						</script>		</head>	<body>						<div id="idSmallPicturePage" class="bs-docs-grid">			<div class="row-fluid show-grid" style="margin-top: 70px;">				<div class="span2">					&nbsp;					<center>						</center>					</div>				<div class="span8">					<div class="divOpmlNavigation">						<div class="divPrevNextLinks"><img src="http://static.scripting.com/glyphicons/glyphicons_216_circle_arrow_left.png" class="woGlyphiconImage" width="26" height="26">&nbsp;<a href="/helloWorldOutliner"><img src="http://static.scripting.com/glyphicons/glyphicons_217_circle_arrow_right.png" class="woGlyphiconImage" width="26" height="26"></a></div>						</div>					<div class="divBlogpost">						<div class="divBlogpostHeader">							<h1>Concord docs</h1>							<hr>							</div>						<div class="divBlogpostBody">							<div class="divOutlineBody">
+	<div class="divOutlineList" style="padding-bottom: 0; padding-left: 0;">
+		<p class="divOutlineItem" style="padding-bottom: 8px; padding-top: 10px;;" id="i30136"><a href="javascript:ec('whatIsConcord17474','show','http://i.opml.org/bw.gif','http://i.opml.org/bw.gif');"><img class="expandIcon" id="img_whatIsConcord17474" src="http://i.opml.org/bw.gif" border="0"></a><a onclick="javascript:ec('whatIsConcord17474','show','http://i.opml.org/bw.gif','http://i.opml.org/bw.gif');"><span class="spanOutlineText spanExpandableText" style="font-family: Georgia; font-size: 18px; font-weight: bold; line-height: 31px;">What is Concord?</span></a></p>
+		<div class="show" id="whatIsConcord17474" name="whatIsConcord17474">
+			<div class="divOutlineList" style="padding-bottom: 10px;; padding-left: 0;">
+				<p class="divOutlineItem" style="padding-bottom: 8px;" id="i30138"><img class="expandIcon" src="http://i.opml.org/bw.gif" border="0"><span class="spanOutlineText" style="font-family: Georgia; font-size: 18px; font-weight: 400; line-height: 31px;">Concord is the outline editor engine that's at the core of Small Picture's Fargo outliner. </span></p>
+				<p class="divOutlineItem" style="padding-bottom: 8px;" id="i30137"><img class="expandIcon" src="http://i.opml.org/bw.gif" border="0"><span class="spanOutlineText" style="font-family: Georgia; font-size: 18px; font-weight: 400; line-height: 31px;">It's a jQuery plug-in that implements a full-featured outliner that you can drop into other applications with a minimum of work. </span></p>
+				<p class="divOutlineItem" style="padding-bottom: 8px;" id="i30139"><img class="expandIcon" src="http://i.opml.org/bw.gif" border="0"><span class="spanOutlineText" style="font-family: Georgia; font-size: 18px; font-weight: 400; line-height: 31px;">It's licensed under the GPL because we want outliners are an incredibly useful way to edit structured information, and we want Concord to fill every conceivable niche that an outliner can help. </span></p>
+				</div>
+			</div>
+		<p class="divOutlineItem" style="padding-bottom: 8px; padding-top: 10px;;" id="i30140"><a href="javascript:ec('helloWorldOutliner14258','show','http://i.opml.org/bw.gif','http://i.opml.org/bw.gif');"><img class="expandIcon" id="img_helloWorldOutliner14258" src="http://i.opml.org/bw.gif" border="0"></a><a onclick="javascript:ec('helloWorldOutliner14258','show','http://i.opml.org/bw.gif','http://i.opml.org/bw.gif');"><span class="spanOutlineText spanExpandableText" style="font-family: Georgia; font-size: 18px; font-weight: bold; line-height: 31px;">Hello World outliner</span></a></p>
+		<div class="show" id="helloWorldOutliner14258" name="helloWorldOutliner14258">
+			<div class="divOutlineList" style="padding-bottom: 10px;; padding-left: 0;">
+				<p class="divOutlineItem" style="padding-bottom: 8px;" id="i30141"><img class="expandIcon" src="http://i.opml.org/bw.gif" border="0"><span class="spanOutlineText" style="font-family: Georgia; font-size: 18px; font-weight: 400; line-height: 31px;"><b></b></span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+							<div class="divComments">																</div>							</div>						<div class="divBlogpostFooter">							<hr>							Posted on Wednesday, September 11, 2013 at 7:41 PM by <a href="">admin</a>.							</div>						</div>					</div>				<div class="span2">					&nbsp;					</div>				</div>			</div>						<script>			$(document).ready (function () {				addSmallPictureBanner ("idSmallPicturePage"); 				});			</script>		<script>			var imageUrl = "http://counters.scripting.com/counters/count.gif";			var imageTag = "<img src=\"" + imageUrl + "?group=fargoDocs&referer=" + escape (document.referrer) + "\" height=\"1\" width=\"1\">";			document.write (imageTag);			</script>		</body>	</html>
