@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="http://rawgithub.com/scripting/concord/master/concord.css"/>
 		<script src="http://rawgithub.com/scripting/concord/master/concord.js"></script>
 		<script src="http://rawgithub.com/scripting/concord/master/concordUtils.js"></script>
-		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 		
 		<script>
 			var appConsts = {
@@ -24,12 +24,18 @@
 			var whenLastKeystroke = new Date (), whenLastAutoSave = new Date ();  
 			var flReadOnly = false, flRenderMode = false;
 			var cmdKeyPrefix = "Ctrl+"; 
+			var urlHelloOutliner = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/12/archive049.opml";
 			
 			
 			
 			function setInclude () {
 				opSetOneAtt ("type", "include");
 				opSetOneAtt ("url", "http://smallpicture.com/states.opml");
+				}
+			function editSource (url) {
+				readText (url, function (opmltext, op) {
+					opXmlToOutline (opmltext);
+					}, undefined, true);
 				}
 			
 			function secondsSince (when) {
@@ -270,6 +276,12 @@
 										
 										<li class="divider"></li>
 										<li><a onclick="toggleRenderMode ();"><span class="menuKeystroke">Cmd-`</span>Toggle Render Mode</a></li>
+										</ul>
+									</li>
+								<li class="dropdown" id="idSourceMenu"> 
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Source&nbsp;<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a onclick="editSource (urlHelloOutliner);">Hello Outliner</a></li>
 										</ul>
 									</li>
 								</ul>
