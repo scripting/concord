@@ -189,3 +189,24 @@ var defaultUtilsOutliner = "#outliner";
 	function opRedraw () { //3/9/13 by DW
 		return ($(defaultUtilsOutliner).concord ().op.redraw ());
 		}
+//readText
+	var readHttpUrl = "http://trex.smallpicture.com/ajax/httpReadUrl";
+	
+	function readText (url, callback, op, flAcceptOpml) {
+		var headerval = {};
+		if ((flAcceptOpml != undefined) && flAcceptOpml) { //5/14/13 by DW
+			headerval = {"Accept": "text/x-opml"};
+			}
+		var jxhr = $.ajax ({ 
+			url: readHttpUrl + "?url=" + encodeURIComponent (url) + "&type=" + encodeURIComponent ("text/plain"),
+			dataType: "text", 
+			headers: headerval,
+			timeout: 30000 
+			}) 
+		.success (function (data, status) { 
+			callback (data, op);
+			}) 
+		.error (function (status) { 
+			httpReadStatus = status;
+			});
+		}

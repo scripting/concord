@@ -25,25 +25,29 @@
 			var flReadOnly = false, flRenderMode = false;
 			var cmdKeyPrefix = "Ctrl+"; 
 			
+			
+			
+			function setInclude () {
+				opSetOneAtt ("type", "include");
+				opSetOneAtt ("url", "http://smallpicture.com/states.opml");
+				}
+			
 			function secondsSince (when) {
 				var now = new Date ();
 				return ((now - when) / 1000);
 				}
 			function initLocalStorage () {
-				if (localStorage.ctOpmlSaves == undefined) {
-					localStorage.ctOpmlSaves = 0;
-					}
 				if (localStorage.savedOpmltext == undefined) {
 					localStorage.savedOpmltext = initialOpmltext;
+					}
+				if (localStorage.ctOpmlSaves == undefined) {
+					localStorage.ctOpmlSaves = 0;
 					}
 				if (localStorage.whenLastSave == undefined) {
 					localStorage.whenLastSave = new Date ().toString ();
 					}
 				if (localStorage.flTextMode == undefined) {
 					localStorage.flTextMode = "true";
-					}
-				if (localStorage.flReorgMode == undefined) {
-					localStorage.flReorgMode = "false";
 					}
 				}
 			function opExpandCallback (op) {
@@ -53,7 +57,7 @@
 						window.open (url);
 						return;
 						}
-				//rss nodes -- 3/25/13 by DW
+				//rss nodes
 					if ((type == "rss") && (xmlUrl != undefined)) {
 						window.open (xmlUrl);
 						return;
@@ -62,7 +66,10 @@
 					if ((type == "include") && (url != undefined)) {
 						op.deleteSubs ();
 						op.clearChanged ();
-						readText (url, insertIncludedOpml, op, true);
+						readText (url, function (opmltext, op) {
+							op.insertXml (opmltext, right); 
+							op.clearChanged ();
+							}, op, true);
 						}
 				}
 			function opInsertCallback (op) { 
@@ -254,8 +261,8 @@
 										<li><a onclick="opReorg (right, 1);"><span class="menuKeystroke">Cmd-R</span>Move Right</a></li>
 										
 										<li class="divider"></li>
-										<li><a onclick="opPromote ();">Promote</a></li>
-										<li><a onclick="opDemote ();">Demote</a></li>
+										<li><a onclick="opPromote ();"><span class="menuKeystroke">Cmd-[</span>Promote</a></li>
+										<li><a onclick="opDemote ();"><span class="menuKeystroke">Cmd-]</span>Demote</a></li>
 										
 										<li class="divider"></li>
 										<li><a onclick="runSelection ();"><span class="menuKeystroke">Cmd-/</span>Run Selection</a></li>
