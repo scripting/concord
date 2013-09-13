@@ -72,7 +72,6 @@ var defaultUtilsOutliner = "#outliner";
 	function opInTextMode () {
 		return ($(defaultUtilsOutliner).concord ().op.inTextMode ());
 		}
-	
 	function opGetAtts () {
 		return $(defaultUtilsOutliner).concord().op.attributes.getAll();
 		}
@@ -91,11 +90,9 @@ var defaultUtilsOutliner = "#outliner";
 	function opAddAtts (atts) { //2/1/13 by DW
 		return $(defaultUtilsOutliner).concord().op.attributes.addGroup(atts);
 		}
-	
 	function opSetStyle (css) {
 		return $(defaultUtilsOutliner).concord ().op.setStyle (css);
 		}
-	
 	function opGetLineText () {
 		return ($(defaultUtilsOutliner).concord().op.getLineText());
 		}
@@ -188,6 +185,10 @@ var defaultUtilsOutliner = "#outliner";
 		}
 	function opRedraw () { //3/9/13 by DW
 		return ($(defaultUtilsOutliner).concord ().op.redraw ());
+		}
+	
+	function opVisitAll (callback) { //9/13/13 by DW
+		return ($(defaultUtilsOutliner).concord ().op.visitAll (callback));
 		}
 //readText
 	var readHttpUrl = "http://trex.smallpicture.com/ajax/httpReadUrl";

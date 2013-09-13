@@ -18,7 +18,7 @@
 				"version": "0.42"
 				}
 			var appPrefs = {
-				"outlineFont": "Georgia", "outlineFontSize": 18, "outlineLineHeight": 27,
+				"outlineFont": "Courier", "outlineFontSize": 14, "outlineLineHeight": 22,
 				"authorName": "", "authorEmail": ""
 				};
 			var whenLastKeystroke = new Date (), whenLastAutoSave = new Date ();  
@@ -26,7 +26,16 @@
 			var cmdKeyPrefix = "Ctrl+"; 
 			var urlHelloOutliner = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/12/archive049.opml";
 			
-			
+			function opVisitAll (callback) {
+				return ($(defaultUtilsOutliner).concord ().op.visitAll (callback));
+				}
+			function filledString (s, ct) {
+				var theString = "";
+				for (var i = 0; i < ct; i++) {
+					theString += s;
+					}
+				return (theString);
+				}
 			
 			function setInclude () {
 				opSetOneAtt ("type", "include");
@@ -36,6 +45,27 @@
 				readText (url, function (opmltext, op) {
 					opXmlToOutline (opmltext);
 					}, undefined, true);
+				}
+			function nukeDom () {
+				var summit, htmltext = "", indentlevel = 0;
+				$(defaultUtilsOutliner).concord ().op.visitToSummit (function (headline) {
+					summit = headline;
+					return (true);
+					});
+				var visitSub = function (sub) {
+					if (sub.attributes.getOne ("isComment") != "true") { 
+						htmltext += filledString ("\t", indentlevel) + sub.getLineText () + "\r\n"
+						if (sub.countSubs () > 0) {
+							indentlevel++;
+							sub.visitLevel (visitSub); 
+							indentlevel--;
+							}
+						}
+					};
+				summit.visitLevel (visitSub);
+				document.open ();
+				document.write (htmltext);
+				document.close ();
 				}
 			
 			function secondsSince (when) {
@@ -176,7 +206,7 @@
 				background-color: whitesmoke;
 				}
 			.divOutlinerContainer { 
-				width: 65%;
+				width: 85%;
 				margin-top: 75px;
 				margin-left: auto;
 				margin-right: auto;
@@ -282,6 +312,8 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Source&nbsp;<b class="caret"></b></a>
 									<ul class="dropdown-menu">
 										<li><a onclick="editSource (urlHelloOutliner);">Hello Outliner</a></li>
+										<li class="divider"></li>
+										<li><a onclick="nukeDom ();">Nuke the DOM</a></li>
 										</ul>
 									</li>
 								</ul>
@@ -298,9 +330,6 @@
 		<div class="divOutlinerContainer">
 			<div id="outliner">
 				</div>
-			</div>
-		<div class="divSubtext">
-			<p>This is the outliner at the core of <a href="http://fargo.io/">Fargo</a>. All the outline operations work. The outline is saved as you work in HTML 5 localStorage. The full source and docs are on <a href="https://github.com/scripting/concord">GitHub</a>.</p>
 			</div>
 		<script>
 			$(document).ready (function () {
