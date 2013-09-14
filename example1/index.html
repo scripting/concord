@@ -39,6 +39,7 @@
 				opXmlToOutline (initialOpmltext); //empty the outline display
 				readText (url, function (opmltext, op) {
 					opXmlToOutline (opmltext);
+					saveOutlineNow ();
 					}, undefined, true);
 				}
 			function nukeDom () {

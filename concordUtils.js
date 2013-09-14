@@ -186,9 +186,11 @@ var defaultUtilsOutliner = "#outliner";
 	function opRedraw () { //3/9/13 by DW
 		return ($(defaultUtilsOutliner).concord ().op.redraw ());
 		}
-	
 	function opVisitAll (callback) { //9/13/13 by DW
 		return ($(defaultUtilsOutliner).concord ().op.visitAll (callback));
+		}
+	function opWipe () { //9/14/13 by DW
+		return ($(defaultUtilsOutliner).concord ().op.wipe ());
 		}
 //readText
 	var readHttpUrl = "http://trex.smallpicture.com/ajax/httpReadUrl";
