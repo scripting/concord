@@ -108,6 +108,7 @@
 			function initLocalStorage () {
 				if (localStorage.savedOpmltext == undefined) {
 					localStorage.savedOpmltext = initialOpmltext;
+					editSource (urlConcordDocs); //9/14/13 by DW
 					}
 				if (localStorage.ctOpmlSaves == undefined) {
 					localStorage.ctOpmlSaves = 0;
