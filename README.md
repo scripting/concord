@@ -17,7 +17,7 @@ Concord is the outlining engine in Fargo.
 GPL-licensed
 --------------
 
-[Concord[ (https://github.com/scripting/concord) is licensed under the GPL because outliners are an incredibly useful way to edit structured information, and we want Concord to be able to fill every conceivable niche that an outliner can help. 
+[Concord] (https://github.com/scripting/concord) is licensed under the GPL because outliners are an incredibly useful way to edit structured information, and we want Concord to be able to fill every conceivable niche that an outliner can help. 
 
 Example 1: Hello Outliner
 --------------
