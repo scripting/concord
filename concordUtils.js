@@ -1,16 +1,8 @@
 // Copyright 2013, Small Picture, Inc.
 var appTypeIcons = {
 	"blogpost": "file-text-alt",
-	"essay": "file-text-alt", //2/11/13 by DW
 	"code": "laptop",
-	"directory": "folder-open-alt",
-	"discusstree": "comments",
-	"home": "home",
 	"html": "file-text-alt",
-	"icon-comment": "comment-alt", //2/16/13 by DW
-	"icon-star": "star-empty", //2/16/13 by DW
-	"icon-time": "time", //2/16/13 by DW
-	"icon-user": "user", //2/16/13 by DW
 	"include": "share-alt", //5/19/13 by DW
 	"index": "file-text-alt",
 	"link": "bookmark-empty",
