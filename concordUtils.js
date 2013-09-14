@@ -211,3 +211,38 @@ var defaultUtilsOutliner = "#outliner";
 			httpReadStatus = status;
 			});
 		}
+//string routines
+	function filledString (s, ct) {
+		var theString = "";
+		for (var i = 0; i < ct; i++) {
+			theString += s;
+			}
+		return (theString);
+		}
+	function multipleReplaceAll  (s, adrTable, flCaseSensitive, startCharacters, endCharacters) {
+		if(flCaseSensitive===undefined){
+			flCaseSensitive = false;
+			}
+		if(startCharacters===undefined){
+			startCharacters="";
+			}
+		if(endCharacters===undefined){
+			endCharacters="";
+			}
+		for( var item in adrTable){
+			var replacementValue = adrTable[item];
+			var regularExpressionModifier = "g";
+			if(!flCaseSensitive){
+				regularExpressionModifier = "gi";
+				}
+			var regularExpressionString = (startCharacters+item+endCharacters).replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1"); 
+			var regularExpression = new RegExp(regularExpressionString, regularExpressionModifier);
+			s = s.replace(regularExpression, replacementValue);
+			}
+		return s;
+		};
+//misc
+	function secondsSince (when) {
+		var now = new Date ();
+		return ((now - when) / 1000);
+		}

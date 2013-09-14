@@ -15,7 +15,7 @@
 				"productname": "Hello",
 				"productnameForDisplay": "Hello Outliner",
 				"domain": "hello.blorkmark.com", 
-				"version": "0.45"
+				"version": "0.46"
 				}
 			var appPrefs = {
 				"outlineFont": "Arial", "outlineFontSize": 16, "outlineLineHeight": 24,
@@ -25,51 +25,18 @@
 			var flReadOnly = false, flRenderMode = false;
 			var cmdKeyPrefix = "Ctrl+"; 
 			
-			
-			var urlConcordSource = "https://raw.github.com/scripting/concord/master/opml/concord.opml";
-			var urlConcordCssSource = "https://raw.github.com/scripting/concord/master/opml/concordCss.opml";
-			var urlConcordDocs = "https://raw.github.com/scripting/concord/master/opml/concordDocs.opml";
-			var urlConcordUtilsSource = "https://raw.github.com/scripting/concord/master/opml/concordUtils.opml";
-			var urlHelloOutliner = "https://github.com/scripting/concord/blob/master/example1/source.opml";
-			
-			function opVisitAll (callback) {
-				return ($(defaultUtilsOutliner).concord ().op.visitAll (callback));
-				}
-			function filledString (s, ct) {
-				var theString = "";
-				for (var i = 0; i < ct; i++) {
-					theString += s;
-					}
-				return (theString);
-				}
-			function multipleReplaceAll  (s, adrTable, flCaseSensitive, startCharacters, endCharacters) {
-				if(flCaseSensitive===undefined){
-					flCaseSensitive = false;
-					}
-				if(startCharacters===undefined){
-					startCharacters="";
-					}
-				if(endCharacters===undefined){
-					endCharacters="";
-					}
-				for( var item in adrTable){
-					var replacementValue = adrTable[item];
-					var regularExpressionModifier = "g";
-					if(!flCaseSensitive){
-						regularExpressionModifier = "gi";
-						}
-					var regularExpressionString = (startCharacters+item+endCharacters).replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1"); 
-					var regularExpression = new RegExp(regularExpressionString, regularExpressionModifier);
-					s = s.replace(regularExpression, replacementValue);
-					}
-				return s;
-				};
+			var urlConcordSource = "http://raw.github.com/scripting/concord/master/opml/concord.opml";
+			var urlConcordCssSource = "http://raw.github.com/scripting/concord/master/opml/concordCss.opml";
+			var urlConcordDocs = "http://raw.github.com/scripting/concord/master/opml/concordDocs.opml";
+			var urlConcordUtilsSource = "http://raw.github.com/scripting/concord/master/opml/concordUtils.opml";
+			var urlHelloOutliner = "https://raw.github.com/scripting/concord/master/example1/source.opml";
 			
 			function setInclude () {
 				opSetOneAtt ("type", "include");
 				opSetOneAtt ("url", "http://smallpicture.com/states.opml");
 				}
 			function editSource (url) {
+				opXmlToOutline (initialOpmltext); //empty the outline display
 				readText (url, function (opmltext, op) {
 					opXmlToOutline (opmltext);
 					}, undefined, true);
@@ -101,10 +68,6 @@
 				document.close ();
 				}
 			
-			function secondsSince (when) {
-				var now = new Date ();
-				return ((now - when) / 1000);
-				}
 			function initLocalStorage () {
 				if (localStorage.savedOpmltext == undefined) {
 					localStorage.savedOpmltext = initialOpmltext;
