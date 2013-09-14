@@ -15,7 +15,7 @@
 				"productname": "Hello",
 				"productnameForDisplay": "Hello Outliner",
 				"domain": "hello.blorkmark.com", 
-				"version": "0.46"
+				"version": "0.47"
 				}
 			var appPrefs = {
 				"outlineFont": "Arial", "outlineFontSize": 16, "outlineLineHeight": 24,
@@ -84,8 +84,8 @@
 					localStorage.flTextMode = "true";
 					}
 				}
-			function opExpandCallback (op) {
-				var type = op.attributes.getOne ("type"), url = op.attributes.getOne ("url"), xmlUrl = op.attributes.getOne ("xmlUrl");
+			function opExpandCallback (parent) {
+				var type = parent.attributes.getOne ("type"), url = parent.attributes.getOne ("url"), xmlUrl = parent.attributes.getOne ("xmlUrl");
 				//link nodes
 					if ((type == "link") && (url != undefined)) {
 						window.open (url);
@@ -106,21 +106,17 @@
 							}, op, true);
 						}
 				}
-			function opInsertCallback (op) { 
-				var atts = {};
-				atts.created = new Date ().toUTCString (); //1/18/13 by DW
-				op.attributes.addGroup (atts);
+			function opInsertCallback (headline) { 
+				headline.attributes.setOne ("created", new Date ().toUTCString ());
 				}
-			function opCollapseCallback (op) {
-				var type = op.attributes.getOne ("type");
-				if (type == "include") {
-					op.deleteSubs ();
-					op.clearChanged ();
+			function opCollapseCallback (parent) {
+				if (parent.attributes.getOne ("type") == "include") {
+					parent.deleteSubs ();
+					parent.clearChanged ();
 					}
-				console.log ("Collapse");
 				}
-			function opHoverCallback (op) { 
-				var atts = op.attributes.getAll (), s = "";
+			function opHoverCallback (headline) { 
+				var atts = headline.attributes.getAll (), s = "";
 				//set cursor to pointer if there's a url attribute -- 3/24/13  by DW
 					if ((atts.url != undefined) || (atts.xmlUrl != undefined)) {
 						document.body.style.cursor = "pointer";
@@ -128,16 +124,11 @@
 					else {
 						document.body.style.cursor = "default";
 						}
-				
 				}
-			function opCursorMovedCallback (op) {
+			function opCursorMovedCallback (headline) {
 				}
 			function opKeystrokeCallback (event) { 
-				var now = new Date ();
-				whenLastKeystroke = now; 
-				if ((event.which == 191) && event.metaKey && event.shiftKey) { //cmd-? -- 3/27/13 by DW
-					showCribsheet ();
-					}
+				whenLastKeystroke = new Date (); 
 				}
 			function runSelection () {
 				var value = eval (opGetLineText ());
@@ -168,7 +159,7 @@
 				localStorage.savedOpmltext = opOutlineToXml (appPrefs.authorName, appPrefs.authorEmail);
 				localStorage.ctOpmlSaves++;
 				opClearChanged ();
-				console.log ("saveOutlineNow: saved outline. " + localStorage.savedOpmltext.length + " chars.");
+				console.log ("saveOutlineNow: " + localStorage.savedOpmltext.length + " chars.");
 				}
 			function backgroundProcess () {
 				if (opHasChanged ()) {
@@ -179,6 +170,8 @@
 				}
 			function startup () {
 				initLocalStorage ();
+				$("#idMenuProductName").text (appConsts.productname);
+				$("#idProductVersion").text ("v" + appConsts.version);
 				//init menu keystrokes
 					if (navigator.platform.toLowerCase ().substr (0, 3) == "mac") {
 						cmdKeyPrefix = "&#8984;";
@@ -192,10 +185,6 @@
 				setOutlinerPrefs ("#outliner", false, false);
 				opSetFont (appPrefs.outlineFont, appPrefs.outlineFontSize, appPrefs.outlineLineHeight); 
 				opXmlToOutline (localStorage.savedOpmltext);
-				
-				$("#idMenuProductName").text (appConsts.productname);
-				$("#idProductVersion").text ("v" + appConsts.version);
-				
 				self.setInterval (function () {backgroundProcess ()}, 1000); //call every second
 				}
 			</script>
