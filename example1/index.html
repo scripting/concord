@@ -18,12 +18,17 @@
 				"version": "0.42"
 				}
 			var appPrefs = {
-				"outlineFont": "Courier", "outlineFontSize": 14, "outlineLineHeight": 22,
+				"outlineFont": "Arial", "outlineFontSize": 16, "outlineLineHeight": 24,
 				"authorName": "", "authorEmail": ""
 				};
 			var whenLastKeystroke = new Date (), whenLastAutoSave = new Date ();  
 			var flReadOnly = false, flRenderMode = false;
 			var cmdKeyPrefix = "Ctrl+"; 
+			
+			var urlConcordSource = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/11/archive048.opml";
+			var urlConcordCssSource = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/14/archive052.opml";
+			var urlConcordDocs = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/14/archive050.opml"
+			var urlConcordUtilsSource = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/14/archive051.opml";
 			var urlHelloOutliner = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/12/archive049.opml";
 			
 			function opVisitAll (callback) {
@@ -36,6 +41,28 @@
 					}
 				return (theString);
 				}
+			function multipleReplaceAll  (s, adrTable, flCaseSensitive, startCharacters, endCharacters) {
+				if(flCaseSensitive===undefined){
+					flCaseSensitive = false;
+					}
+				if(startCharacters===undefined){
+					startCharacters="";
+					}
+				if(endCharacters===undefined){
+					endCharacters="";
+					}
+				for( var item in adrTable){
+					var replacementValue = adrTable[item];
+					var regularExpressionModifier = "g";
+					if(!flCaseSensitive){
+						regularExpressionModifier = "gi";
+						}
+					var regularExpressionString = (startCharacters+item+endCharacters).replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1"); 
+					var regularExpression = new RegExp(regularExpressionString, regularExpressionModifier);
+					s = s.replace(regularExpression, replacementValue);
+					}
+				return s;
+				};
 			
 			function setInclude () {
 				opSetOneAtt ("type", "include");
@@ -63,6 +90,11 @@
 						}
 					};
 				summit.visitLevel (visitSub);
+				
+				var t = new Object ();
+				t.text = summit.getLineText ();
+				htmltext = multipleReplaceAll (htmltext, t, false, "<" + "%", "%" + ">");
+				
 				document.open ();
 				document.write (htmltext);
 				document.close ();
@@ -311,7 +343,11 @@
 								<li class="dropdown" id="idSourceMenu"> 
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Source&nbsp;<b class="caret"></b></a>
 									<ul class="dropdown-menu">
+										<li><a onclick="editSource (urlConcordSource);">Concord</a></li>
 										<li><a onclick="editSource (urlHelloOutliner);">Hello Outliner</a></li>
+										<li><a onclick="editSource (urlConcordCssSource);">Concord CSS</a></li>
+										<li><a onclick="editSource (urlConcordUtilsSource);">Concord Utils</a></li>
+										<li><a onclick="editSource (urlConcordDocs);">Concord Docs</a></li>
 										<li class="divider"></li>
 										<li><a onclick="nukeDom ();">Nuke the DOM</a></li>
 										</ul>

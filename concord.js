@@ -1449,15 +1449,9 @@ function ConcordOp(root, concordInstance, _cursor) {
 	this.cursorToXml = function(){
 		return concordInstance.editor.opml(this.getCursor());
 		};
-	
-	
-	
 	this.cursorToXmlSubsOnly = function(){ //8/5/13 by DW
 		return concordInstance.editor.opml(this.getCursor(), true);
 		};
-	
-	
-	
 	this.cut = function(){
 		if(!this.inTextMode()){
 			this.copy();
