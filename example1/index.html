@@ -15,7 +15,7 @@
 				"productname": "Hello",
 				"productnameForDisplay": "Hello Outliner",
 				"domain": "hello.blorkmark.com", 
-				"version": "0.42"
+				"version": "0.44"
 				}
 			var appPrefs = {
 				"outlineFont": "Arial", "outlineFontSize": 16, "outlineLineHeight": 24,
@@ -25,11 +25,12 @@
 			var flReadOnly = false, flRenderMode = false;
 			var cmdKeyPrefix = "Ctrl+"; 
 			
-			var urlConcordSource = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/11/archive048.opml";
-			var urlConcordCssSource = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/14/archive052.opml";
-			var urlConcordDocs = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/14/archive050.opml"
-			var urlConcordUtilsSource = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/14/archive051.opml";
-			var urlHelloOutliner = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/12/archive049.opml";
+			
+			var urlConcordSource = "http://raw.github.com/scripting/concord/dccb0a84f96dd60b1c3b70abdc731698948bbbdc/opml/concord.opml";
+			var urlConcordCssSource = "https://raw.github.com/scripting/concord/dccb0a84f96dd60b1c3b70abdc731698948bbbdc/opml/concordCss.opml";
+			var urlConcordDocs = "http://raw.github.com/scripting/concord/dccb0a84f96dd60b1c3b70abdc731698948bbbdc/opml/concordDocs.opml";
+			var urlConcordUtilsSource = "http://raw.github.com/scripting/concord/dccb0a84f96dd60b1c3b70abdc731698948bbbdc/opml/concordUtils.opml";
+			var urlHelloOutliner = "http://raw.github.com/scripting/concord/dccb0a84f96dd60b1c3b70abdc731698948bbbdc/example1/source.opml";
 			
 			function opVisitAll (callback) {
 				return ($(defaultUtilsOutliner).concord ().op.visitAll (callback));
@@ -343,8 +344,9 @@
 								<li class="dropdown" id="idSourceMenu"> 
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Source&nbsp;<b class="caret"></b></a>
 									<ul class="dropdown-menu">
-										<li><a onclick="editSource (urlConcordSource);">Concord</a></li>
 										<li><a onclick="editSource (urlHelloOutliner);">Hello Outliner</a></li>
+										<li class="divider"></li>
+										<li><a onclick="editSource (urlConcordSource);">Concord</a></li>
 										<li><a onclick="editSource (urlConcordCssSource);">Concord CSS</a></li>
 										<li><a onclick="editSource (urlConcordUtilsSource);">Concord Utils</a></li>
 										<li><a onclick="editSource (urlConcordDocs);">Concord Docs</a></li>
