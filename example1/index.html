@@ -15,7 +15,7 @@
 				"productname": "Hello",
 				"productnameForDisplay": "Hello Outliner",
 				"domain": "hello.blorkmark.com", 
-				"version": "0.48"
+				"version": "0.49"
 				}
 			var appPrefs = {
 				"outlineFont": "Arial", "outlineFontSize": 16, "outlineLineHeight": 24,
@@ -31,7 +31,22 @@
 			var urlConcordUtilsSource = "http://raw.github.com/scripting/concord/master/opml/concordUtils.opml";
 			var urlHelloOutliner = "https://raw.github.com/scripting/concord/master/example1/source.opml";
 			
-			function setInclude () {
+			function initLocalStorage () {
+				if (localStorage.savedOpmltext == undefined) {
+					localStorage.savedOpmltext = initialOpmltext;
+					editSource (urlConcordDocs); //9/14/13 by DW
+					}
+				if (localStorage.ctOpmlSaves == undefined) {
+					localStorage.ctOpmlSaves = 0;
+					}
+				if (localStorage.whenLastSave == undefined) {
+					localStorage.whenLastSave = new Date ().toString ();
+					}
+				if (localStorage.flTextMode == undefined) {
+					localStorage.flTextMode = "true";
+					}
+				}
+			function setInclude () { //used to test includes
 				opSetOneAtt ("type", "include");
 				opSetOneAtt ("url", "http://smallpicture.com/states.opml");
 				}
@@ -67,22 +82,6 @@
 				document.open ();
 				document.write (htmltext);
 				document.close ();
-				}
-			
-			function initLocalStorage () {
-				if (localStorage.savedOpmltext == undefined) {
-					localStorage.savedOpmltext = initialOpmltext;
-					editSource (urlConcordDocs); //9/14/13 by DW
-					}
-				if (localStorage.ctOpmlSaves == undefined) {
-					localStorage.ctOpmlSaves = 0;
-					}
-				if (localStorage.whenLastSave == undefined) {
-					localStorage.whenLastSave = new Date ().toString ();
-					}
-				if (localStorage.flTextMode == undefined) {
-					localStorage.flTextMode = "true";
-					}
 				}
 			function opExpandCallback (parent) {
 				var type = parent.attributes.getOne ("type"), url = parent.attributes.getOne ("url"), xmlUrl = parent.attributes.getOne ("xmlUrl");
@@ -304,8 +303,13 @@
 										<li><a onclick="editSource (urlConcordCssSource);">Concord CSS</a></li>
 										<li><a onclick="editSource (urlConcordUtilsSource);">Concord Utils</a></li>
 										<li><a onclick="editSource (urlConcordDocs);">Concord Docs</a></li>
-										<li class="divider"></li>
-										<li><a onclick="nukeDom ();">Nuke the DOM</a></li>
+										</ul>
+									</li>
+								<li class="dropdown" id="idDocsMenu"> 
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Links&nbsp;<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="http://docs.fargo.io/outlinerHowto" target="_blank">Outliner Howto</a></li>
+										<li><a href="https://github.com/scripting/concord" target="_blank">GitHub Repo</a></li>
 										</ul>
 									</li>
 								</ul>

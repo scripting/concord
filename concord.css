@@ -1,4 +1,4 @@
-.concord{
+.concord {
 	font-family: Geneva, Arial;
 	font-size: 12pt;
 	margin: 0;
@@ -8,18 +8,18 @@
 	list-style-type: none;
 	color: #000;
 	}
-.concord ol{
+.concord ol {
 	list-style-type: none;
 	padding: 0 0 0 16px;
 	margin: 0;
 	clear: both;
 	}
-.concord .concord-node{
+.concord .concord-node {
 	clear:left;
 	display: block;
 	min-height: 20px;
 	}
-.concord .concord-node .concord-wrapper{
+.concord .concord-node .concord-wrapper {
 	display: inline-block;
 	/* background: url('http://static.smallpicture.com/concord-assets/wedge.png') no-repeat 3px 8px; */
 	background-repeat: no-repeat;
@@ -28,7 +28,7 @@
 	/* float: left; */
 	/* margin-bottom: 3px; */
 	}
-.concord .concord-node.concord-comment .node-icon:before{
+.concord .concord-node.concord-comment .node-icon:before {
 	content: "\f100" !important;
 	}
 .concord .concord-node > .concord-wrapper.type-icon .node-icon {
@@ -77,13 +77,13 @@
 .concord .concord-node.drop-child > .concord-wrapper .node-icon:before {
 	content: "\f061" !important;
 	}
-.concord .concord-node.drop-child > .concord-wrapper .node-icon{
+.concord .concord-node.drop-child > .concord-wrapper .node-icon {
 	color: black !important;
 	transform:rotate(45deg);
 	-ms-transform:rotate(45deg); /* IE 9 */
 	-webkit-transform:rotate(45deg); /* Safari and Chrome */
 	}
-.concord .concord-node .concord-wrapper .concord-text{
+.concord .concord-node .concord-wrapper .concord-text {
 	cursor: text;
 	min-height: 20px;
 	line-height: 20px;
@@ -96,35 +96,35 @@
 	min-width: 10px;
 	white-space: pre-wrap;
 	}
-.concord.dragging .concord-node .concord-wrapper .concord-text{
+.concord.dragging .concord-node .concord-wrapper .concord-text {
 	cursor: pointer;
 	}
-.concord.readonly .concord-node .concord-wrapper .concord-text{
+.concord.readonly .concord-node .concord-wrapper .concord-text {
 	cursor: default !important;
 	}
-.concord .concord-node.selected > .concord-wrapper{
+.concord .concord-node.selected > .concord-wrapper {
 	background-color: #000;
 	padding-right: 2px;
 	}
-.concord .concord-node.selected > .concord-wrapper .concord-text{
+.concord .concord-node.selected > .concord-wrapper .concord-text {
 	color: #fff;
 	}
-.concord .concord-node.collapsed > ol{
+.concord .concord-node.collapsed > ol {
 	display: none;
 	}
-.concord.dragging{
+.concord.dragging {
 	cursor: pointer !important;
 	}
- #flip form{
+ #flip form {
 	display: inline;
 	}
-.concord-text a, .concord-text a:visited{
+.concord-text a, .concord-text a:visited {
 	cursor: pointer;
 	}
-.concord-node.selected > .concord-wrapper .concord-text a, .concord-node.selected > .concord-wrapper .concord-text a:visited{
+.concord-node.selected > .concord-wrapper .concord-text a, .concord-node.selected > .concord-wrapper .concord-text a:visited {
 	color: yellow;
 	}
-.ui-loader-default{
+.ui-loader-default {
 	display: none;
 	}
 .icon-wordpress {
