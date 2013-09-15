@@ -79,7 +79,7 @@ var defaultUtilsOutliner = "#outliner";
 	function opSetAtts (atts) {
 		return $(defaultUtilsOutliner).concord().op.attributes.setGroup(atts);
 		}
-	function opAddAtts (atts) { //2/1/13 by DW
+	function opAddAtts (atts) {
 		return $(defaultUtilsOutliner).concord().op.attributes.addGroup(atts);
 		}
 	function opSetStyle (css) {
@@ -135,7 +135,7 @@ var defaultUtilsOutliner = "#outliner";
 	function opCountSubs () {
 		return ($(defaultUtilsOutliner).concord().op.countSubs());
 		}
-	function opHasSubs () { //3/8/13 by DW
+	function opHasSubs () { 
 		return (opCountSubs () > 0);
 		}
 	function opSubsExpanded () {
@@ -151,7 +151,7 @@ var defaultUtilsOutliner = "#outliner";
 	function opXmlToOutline (xmltext) {
 		return ($(defaultUtilsOutliner).concord ().op.xmlToOutline (xmltext));
 		}
-	function opInsertXml (xmltext, dir) { //2/14/13 by DW
+	function opInsertXml (xmltext, dir) { 
 		return ($(defaultUtilsOutliner).concord ().op.insertXml (xmltext, dir));
 		}
 	function opOutlineToXml (ownerName, ownerEmail, ownerId) {
@@ -172,10 +172,10 @@ var defaultUtilsOutliner = "#outliner";
 	function opClearChanged () {
 		return ($(defaultUtilsOutliner).concord ().op.clearChanged ());
 		}
-	function opMarkChanged () { //3/24/13 by DW
+	function opMarkChanged () { 
 		return ($(defaultUtilsOutliner).concord ().op.markChanged ());
 		}
-	function opRedraw () { //3/9/13 by DW
+	function opRedraw () { 
 		return ($(defaultUtilsOutliner).concord ().op.redraw ());
 		}
 	function opVisitAll (callback) { //9/13/13 by DW
