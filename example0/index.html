@@ -8,24 +8,6 @@
 		<script src="http://rawgithub.com/scripting/concord/master/concord.js"></script>
 		<script src="http://rawgithub.com/scripting/concord/master/concordUtils.js"></script>
 		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-		<script>
-			function setOutlinerPrefs (id, flRenderMode, flReadonly) { 
-				$(id).concord ({
-					"prefs": {
-						"outlineFont": "Georgia", 
-						"outlineFontSize": 18, 
-						"outlineLineHeight": 24,
-						"renderMode": flRenderMode,
-						"readonly": flReadonly,
-						"typeIcons": appTypeIcons
-						},
-					});
-				}
-			function startup () {
-				setOutlinerPrefs ("#outliner", false, false);
-				opXmlToOutline (initialOpmltext);
-				}
-			</script>
 		<style>
 			body {
 				background-color: whitesmoke;
@@ -38,7 +20,7 @@
 				border:1px solid gainsboro;
 				min-height: 300px;
 				max-height: 500px;
-				overflow: auto;
+				overflow: auto; 
 				padding: 6px;
 				background-color: white;
 				}
@@ -51,7 +33,17 @@
 			</div>
 		<script>
 			$(document).ready (function () {
-				startup ();
+				$("#outliner").concord ({
+					"prefs": {
+						"outlineFont": "Georgia", 
+						"outlineFontSize": 18, 
+						"outlineLineHeight": 24,
+						"renderMode": false,
+						"readonly": false,
+						"typeIcons": appTypeIcons
+						},
+					});
+				opXmlToOutline (initialOpmltext);
 				});
 			</script>
 		</body>
