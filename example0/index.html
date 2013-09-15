@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Example 0</title>
+		<script src="http://rawgithub.com/scripting/concord/master/libraries/jquery-1.9.1.min.js"></script>
+		<link href="http://rawgithub.com/scripting/concord/master/libraries/bootstrap.css" rel="stylesheet">
+		<script src="http://rawgithub.com/scripting/concord/master/libraries/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="http://rawgithub.com/scripting/concord/master/concord.css"/>
+		<script src="http://rawgithub.com/scripting/concord/master/concord.js"></script>
+		<script src="http://rawgithub.com/scripting/concord/master/concordUtils.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<script>
+			function setOutlinerPrefs (id, flRenderMode, flReadonly) { 
+				$(id).concord ({
+					"prefs": {
+						"outlineFont": "Georgia", 
+						"outlineFontSize": 18, 
+						"outlineLineHeight": 24,
+						"renderMode": flRenderMode,
+						"readonly": flReadonly,
+						"typeIcons": appTypeIcons
+						},
+					});
+				}
+			function startup () {
+				setOutlinerPrefs ("#outliner", false, false);
+				opXmlToOutline (initialOpmltext);
+				}
+			</script>
+		<style>
+			body {
+				background-color: whitesmoke;
+				}
+			.divOutlinerContainer { 
+				width: 50%;
+				margin-top: 75px;
+				margin-left: auto;
+				margin-right: auto;
+				border:1px solid gainsboro;
+				min-height: 300px;
+				max-height: 500px;
+				overflow: auto;
+				padding: 6px;
+				background-color: white;
+				}
+			</style>
+		</head>
+	<body>
+		<div class="divOutlinerContainer">
+			<div id="outliner">
+				</div>
+			</div>
+		<script>
+			$(document).ready (function () {
+				startup ();
+				});
+			</script>
+		</body>
+	</html>
