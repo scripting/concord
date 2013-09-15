@@ -6,7 +6,7 @@ $(function () {
 			})
 		}
 	})
-$(function () {
+$(function () { 
 	if($.fn.popover !== undefined){
 		$("a[rel=popover]").on("mouseenter mouseleave", function(){$(this).popover("toggle")})
 		}

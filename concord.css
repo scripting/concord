@@ -56,16 +56,16 @@
 .concord .concord-node.collapsed > .concord-wrapper{
 	/* background-image: url('http://static.smallpicture.com/concord-assets/wedgeParent.png'); */
 	}
-.concord .concord-node.concord-comment.collapsed > .concord-wrapper{
+.concord .concord-node.concord-comment.collapsed > .concord-wrapper {
 	/* background-image: url('http://static.smallpicture.com/concord-assets/commentParent.png') !important; */
 	}
 .concord .concord-node.selected.collapsed > .concord-wrapper{
 	/* background-image: url('http://static.smallpicture.com/concord-assets/wedgeParentWhite.png'); */
 	}
-.concord .concord-node.concord-comment.selected.collapsed > .concord-wrapper{
+.concord .concord-node.concord-comment.selected.collapsed > .concord-wrapper {
 	/* background-image: url('http://static.smallpicture.com/concord-assets/commentParentWhite.png') !important; */
 	}
-.concord .concord-node.selected.collapsed > .concord-wrapper.type-icon{
+.concord .concord-node.selected.collapsed > .concord-wrapper.type-icon {
 	background-image: none;
 	}
 .concord .concord-node.drop-sibling > .concord-wrapper .node-icon:before {

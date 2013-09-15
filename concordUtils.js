@@ -175,7 +175,7 @@ var defaultUtilsOutliner = "#outliner";
 	function opMarkChanged () { 
 		return ($(defaultUtilsOutliner).concord ().op.markChanged ());
 		}
-	function opRedraw () { 
+	function opRedraw () {
 		return ($(defaultUtilsOutliner).concord ().op.redraw ());
 		}
 	function opVisitAll (callback) { //9/13/13 by DW
