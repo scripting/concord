@@ -23,12 +23,18 @@ Ideas include file systems, mailboxes, chatrooms, databases, documents, presenta
 ### Example 0: The bare minumum
 
 This <a href="https://github.com/scripting/concord/tree/master/example0">example</a> has the bare minimum to add an outliner to an existing app.
-You can try it out here. 
+You can try it out <a href="http://example0.blorkmark.com/">here</a>. 
 
 
 ### Example 1: Hello Outliner
 
 This <a href="https://github.com/scripting/concord/tree/master/example1">example</a> is a functional outliner, with most of the capabilities of the Little Outliner app and the same basic approach. You edit a single outline, saved in local storage, so it's there when you come back to it, but only on that machine.
-You can try it out <a href="http://example0.blorkmark.com/">here</a>. 
+It has a simple menubar, with menus containing Outliner commands, links to OPML documents you can view and edit, and links to docs.
+You can try it out <a href="http://hello.blorkmark.com/">here</a>.
+
+
+### Community
+
+We have a <a href="https://groups.google.com/forum/?fromgroups#!forum/smallpicture-concord">Google Group mail list</a> for technical support.
 
 
