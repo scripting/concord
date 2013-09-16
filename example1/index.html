@@ -15,7 +15,7 @@
 				"productname": "Hello",
 				"productnameForDisplay": "Hello Outliner",
 				"domain": "hello.blorkmark.com", 
-				"version": "0.49"
+				"version": "0.50"
 				}
 			var appPrefs = {
 				"outlineFont": "Arial", "outlineFontSize": 16, "outlineLineHeight": 24,
@@ -30,6 +30,7 @@
 			var urlConcordDocs = "http://raw.github.com/scripting/concord/master/opml/concordDocs.opml";
 			var urlConcordUtilsSource = "http://raw.github.com/scripting/concord/master/opml/concordUtils.opml";
 			var urlHelloOutliner = "http://raw.github.com/scripting/concord/master/example1/source.opml";
+			var urlExample0 = "http://raw.github.com/scripting/concord/master/example0/source.opml";
 			
 			function initLocalStorage () {
 				if (localStorage.savedOpmltext == undefined) {
@@ -297,6 +298,7 @@
 								<li class="dropdown" id="idSourceMenu"> 
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Source&nbsp;<b class="caret"></b></a>
 									<ul class="dropdown-menu">
+										<li><a onclick="editSource (urlExample0);">Example 0</a></li>
 										<li><a onclick="editSource (urlHelloOutliner);">Hello Outliner</a></li>
 										<li class="divider"></li>
 										<li><a onclick="editSource (urlConcordSource);">Concord</a></li>
@@ -310,6 +312,7 @@
 									<ul class="dropdown-menu">
 										<li><a href="http://docs.fargo.io/outlinerHowto" target="_blank">Outliner Howto</a></li>
 										<li><a href="http://github.com/scripting/concord" target="_blank">GitHub Repo</a></li>
+										<li><a href="https://groups.google.com/forum/?fromgroups#!forum/smallpicture-concord" target="_blank">Mail List</a></li>
 										</ul>
 									</li>
 								</ul>
