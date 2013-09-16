@@ -16,7 +16,8 @@ Concord is the outlining engine in Fargo.
 
 ### GPL-licensed
 
-[Concord] (https://github.com/scripting/concord) is licensed under the GPL because outliners are an incredibly useful way to edit structured information, and we want Concord to be able to fill every conceivable niche that an outliner can help. 
+[Concord] (https://github.com/scripting/concord) is licensed under the GPL because outliners are an incredibly useful way to edit structured information. We want Concord to be able to fill every conceivable need for outlining technology. 
+Ideas include file systems, mailboxes, chatrooms, databases, documents, presentations, product plans, code, libraries, laws, systems of laws, contracts, rules, guidelines, principles, docs, manifestos, journals, blogs, etc. 
 
 
 ### Example 0: The bare minumum
@@ -29,10 +30,5 @@ You can try it out here.
 
 This <a href="https://github.com/scripting/concord/tree/master/example1">example</a> is a functional outliner, with most of the capabilities of the Little Outliner app and the same basic approach. You edit a single outline, saved in local storage, so it's there when you come back to it, but only on that machine.
 You can try it out <a href="http://example0.blorkmark.com/">here</a>. 
-
-
-### Ideas for outliners
-
-It would be great to have an outliner embedded in a WordPress editing front-end. One headline for every post in a site, under it, the content of the post.
 
 
