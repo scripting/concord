@@ -19,11 +19,16 @@ Concord is the outlining engine in Fargo.
 [Concord] (https://github.com/scripting/concord) is licensed under the GPL because outliners are an incredibly useful way to edit structured information, and we want Concord to be able to fill every conceivable niche that an outliner can help. 
 
 
+### Example 0: The bare minumum
+
+This <a href="https://github.com/scripting/concord/tree/master/example0">example</a> has the bare minimum to add an outliner to an existing app.
+You can try it out here. 
+
+
 ### Example 1: Hello Outliner
 
-The hello world of outliners.
-A single frame that saves OPML text into local storage. 
-A menu that allows you to open  Concord source code, CSS, sample code, docs. 
+This <a href="https://github.com/scripting/concord/tree/master/example1">example</a> is a functional outliner, with most of the capabilities of the Little Outliner app and the same basic approach. You edit a single outline, saved in local storage, so it's there when you come back to it, but only on that machine.
+You can try it out <a href="http://example0.blorkmark.com/">here</a>. 
 
 
 ### Ideas for outliners
