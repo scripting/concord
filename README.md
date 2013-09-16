@@ -40,7 +40,7 @@ The GPL is the right license for our goals. We want to encourage developers to a
 
 
 
-### Example 0: The bare minumum
+### Example 0: The bare minimum
 
 This <a href="https://github.com/scripting/concord/blob/master/example0/index.html">example</a> has the bare minimum to add an outliner to an existing app.
 
