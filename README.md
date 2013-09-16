@@ -4,7 +4,7 @@ I've long felt that every operating system and web browser should have a great o
 
 If you were going to try to do that today, you'd release it under the GPL written in JavaScript. 
 
-That's exactlly what Concord is. 
+That's exactly what Concord is. 
 
 <i><a href="http://scripting.com/2013/09/16/concordOurGplOutliner">Dave Winer</a>, 9/16/13.</i>
 
