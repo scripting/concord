@@ -1,6 +1,6 @@
 ### Outliners everywhere!
 
-I've long felt that every operating system and web browser should have a great outliner baked-in. If you were going to try to do that today, you'd release it under the GPL written in JavaScript. That's exactlly what Concord is. <i>Dave Winer, 9/16/13.</i>
+I've long felt that every operating system and web browser should have a great outliner baked-in. If you were going to try to do that today, you'd release it under the GPL written in JavaScript. That's exactlly what Concord is. <i><a href="http://scripting.com/2013/09/16/concordOurGplOutliner">Dave Winer</a>, 9/16/13.</i>
 
 
 ### Concord is an outliner
@@ -23,7 +23,7 @@ Concord is the outlining engine in Fargo.
 
 <a href="https://github.com/scripting/concord">Concord</a> is licensed under the GPL because outliners are an incredibly useful way to edit structured information. We want Concord to be able to fill every conceivable need for outlining technology. 
 Ideas include file systems, mailboxes, chatrooms, databases, documents, presentations, product plans, code, libraries, laws, systems of laws, contracts, rules, guidelines, principles, docs, manifestos, journals, blogs, etc. 
-The GPL is the right license for our goals. We want to encourage developers to add features compatibly, so that documents open and can be edited in all environments. If commercial developers want to add private features to the outliner, we will try to work with them, we just want to be sure we can have a conversation about compatibility, and perhaps create revenue to fund development. If a non-commercial project emerges that breaks compatibilty, because the GPL is used, we will have the option of bringing their work into compatibility. 
+The GPL is the right license for our goals. We want to encourage developers to add features compatibly, so that all outlines open, and can be edited in all environments. If commercial developers want to add private features to the outliner, we will try to work with them. We just want to be sure we can have a conversation about compatibility, and perhaps create revenue to fund development. If a non-commercial project emerges that breaks compatibilty, because the GPL is used, we will have the option of bringing their work into compatibility. 
 
 
 ### Example 0: The bare minumum
@@ -41,7 +41,7 @@ You can try it out <a href="http://static.smallpicture.com/concord/example1/inde
 
 ### Inaugural blog post
 
-Here's a <a href="http://4352.mediahackers.org/ourGplOutliner">draft</a> of the post I plan to run on Scripting News when this is publicly announce. It includes a link to a podcast.
+<a href="http://scripting.com/2013/09/16/concordOurGplOutliner">Here's the post</a> I ran on Scripting News when Concord was publicly announced. It includes a link to a podcast.
 
 
 ### Community
