@@ -1,6 +1,6 @@
 ### Concord is an outliner
 
-[An outliner](http://docs.fargo.io/outlinerHowto) is a text editor that organizes information in a hierarchy, allowing users to control the level of detail and to reorganize according to structure. Your notes can have full detail, yet be organized so a casual reader can get a quick overview. Outlining is a great way for teams to organize work. 
+<a href="http://docs.fargo.io/outlinerHowto">An outliner</a> is a text editor that organizes information in a hierarchy, allowing users to control the level of detail and to reorganize according to structure. Your notes can have full detail, yet be organized so a casual reader can get a quick overview. Outlining is a great way for teams to organize work. 
 
 
 
@@ -12,7 +12,7 @@ It's a jQuery plug-in that implements a full-featured outliner that you can drop
 
 ### It's the core of Fargo
 
-[Fargo](http://fargo.io/) is our browser-based outliner that hooks into Dropbox. 
+<a href="http://fargo.io/">Fargo</a> is our browser-based outliner that hooks into Dropbox.  
 
 Concord is the outlining engine in Fargo.
 
@@ -20,9 +20,11 @@ Concord is the outlining engine in Fargo.
 
 ### GPL-licensed
 
-[Concord] (https://github.com/scripting/concord) is licensed under the GPL because outliners are an incredibly useful way to edit structured information. We want Concord to be able to fill every conceivable need for outlining technology. 
+<a href="https://github.com/scripting/concord">Concord</a> is licensed under the GPL because outliners are an incredibly useful way to edit structured information. We want Concord to be able to fill every conceivable need for outlining technology. 
 
 Ideas include file systems, mailboxes, chatrooms, databases, documents, presentations, product plans, code, libraries, laws, systems of laws, contracts, rules, guidelines, principles, docs, manifestos, journals, blogs, etc. 
+
+The GPL is the right license for our goals. We want to encourage developers to add features compatibly, so that documents open and can be edited in all environments. If commercial developers want to add private features to the outliner, we will try to work with them, we just want to be sure we can have a conversation about compatibility, and perhaps create revenue to fund development. If a non-commercial project emerges that breaks compatibilty, because the GPL is used, we will have the option of bringing their work into compatibility. 
 
 
 
@@ -30,7 +32,7 @@ Ideas include file systems, mailboxes, chatrooms, databases, documents, presenta
 
 This <a href="https://github.com/scripting/concord/tree/master/example0">example</a> has the bare minimum to add an outliner to an existing app.
 
-You can try it out <a href="http://example0.blorkmark.com/">here</a>. 
+You can try it out <a href="http://static.smallpicture.com/concord/example0/">here</a>. 
 
 
 
@@ -40,7 +42,13 @@ This <a href="https://github.com/scripting/concord/tree/master/example1">example
 
 It has a simple menubar, with menus containing Outliner commands, links to OPML documents you can view and edit, and links to docs.
 
-You can try it out <a href="http://hello.blorkmark.com/">here</a>.
+You can try it out <a href="http://static.smallpicture.com/concord/example1/">here</a>.
+
+
+
+### Inaugural blog post
+
+Here's a <a href="http://4352.mediahackers.org/ourGplOutliner">draft</a> of the post I plan to run on Scripting News when this is publicly announce. It includes a link to a podcast.
 
 
 
