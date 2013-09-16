@@ -32,7 +32,7 @@ The GPL is the right license for our goals. We want to encourage developers to a
 
 This <a href="https://github.com/scripting/concord/tree/master/example0">example</a> has the bare minimum to add an outliner to an existing app.
 
-You can try it out <a href="http://static.smallpicture.com/concord/example0/">here</a>. 
+You can try it out <a href="http://static.smallpicture.com/concord/example0/index.html">here</a>. 
 
 
 
@@ -42,7 +42,7 @@ This <a href="https://github.com/scripting/concord/tree/master/example1">example
 
 It has a simple menubar, with menus containing Outliner commands, links to OPML documents you can view and edit, and links to docs.
 
-You can try it out <a href="http://static.smallpicture.com/concord/example1/">here</a>.
+You can try it out <a href="http://static.smallpicture.com/concord/example1/index.html">here</a>.
 
 
 
