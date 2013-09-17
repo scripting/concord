@@ -44,6 +44,8 @@ The GPL is the right license for our goals. We want to encourage developers to a
 
 This <a href="https://github.com/scripting/concord/blob/master/example0/index.html">example</a> has the bare minimum to add an outliner to an existing app.
 
+This saves developers the trouble of having to factor it out of Example 1, below.
+
 You can try it out <a href="http://static.smallpicture.com/concord/example0/index.html">here</a>. 
 
 
