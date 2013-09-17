@@ -36,7 +36,7 @@ Concord is the outlining engine in Fargo.
 
 Ideas include file systems, mailboxes, chatrooms, databases, documents, presentations, product plans, code, libraries, laws, systems of laws, contracts, rules, guidelines, principles, docs, manifestos, journals, blogs, etc. 
 
-The GPL is the right license for our goals. We want to encourage developers to add features compatibly, so that all outlines open, and can be edited in all environments. If commercial developers want to add private features to the outliner, we will try to work with them. We just want to be sure we can have a conversation about compatibility, and perhaps create revenue to fund development. If a non-commercial project emerges that breaks compatibilty, because the GPL is used, we will have the option of bringing their work into compatibility. 
+Here's an important 11-minute <a href="http://scripting.com/2013/09/17/importantPodcastAboutConcordGpl">podcast</a> about Concord and the GPL.  
 
 
 
