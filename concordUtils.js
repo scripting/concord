@@ -205,7 +205,7 @@ var defaultUtilsOutliner = "#outliner";
 			httpReadStatus = status;
 			});
 		}
-//string and date utility routines
+//string routines
 	function filledString (s, ct) {
 		var theString = "";
 		for (var i = 0; i < ct; i++) {
@@ -235,61 +235,8 @@ var defaultUtilsOutliner = "#outliner";
 			}
 		return s;
 		};
-	function stringKBytes (num) {
-		return (Math.round (num / 1024) + "K");
-		}
-	function sameDay (d1, d2) {
-		d1 = new Date (d1);
-		d2 = new Date (d2);
-		return ((d1.getFullYear () == d2.getFullYear ()) && (d1.getMonth () == d2.getMonth ()) && (d1.getDate () == d2.getDate ()));
-		}
-	function dayOfWeekToString (theDay) {
-		var weekday=new Array (7);
-		weekday[0]="Sunday";
-		weekday[1]="Monday";
-		weekday[2]="Tuesday";
-		weekday[3]="Wednesday";
-		weekday[4]="Thursday";
-		weekday[5]="Friday";
-		weekday[6]="Saturday";
-		return (weekday [theDay])
-		}
-	function monthToString (theMonthNum) { //3/8/13 by DW
-		var names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-		if (theMonthNum == undefined) {
-			var now = new Date ();
-			theMonthNum = now.getMonth ();
-			}
-		return (names [theMonthNum]);
-		}
-	function timeString (when, flIncludeSeconds) {
-		var hour = when.getHours (), minutes = when.getMinutes (), ampm = "AM", s
-		if (hour >= 12) {
-			ampm = "PM";
-			}
-		if (hour > 12) {
-			hour -= 12;
-			}
-		if (hour == 0) {
-			hour = 12;
-			}
-		if (minutes < 10) {
-			minutes = "0" + minutes;
-			}
-		if (flIncludeSeconds) {
-			var seconds = when.getSeconds ();
-			if (seconds < 10) {
-				seconds = "0" + seconds;
-				}
-			s = hour + ":" + minutes + ":" + seconds + ampm;
-			} 
-		else {
-			s = hour + ":" + minutes + ampm;
-			}
-		return (s);
-		}
 //misc
-	function deleteObject (id) {
-		var x = document.getElementById (id);
-		x.parentNode.removeChild (x);
+	function secondsSince (when) {
+		var now = new Date ();
+		return ((now - when) / 1000);
 		}
