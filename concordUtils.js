@@ -282,7 +282,7 @@ var defaultUtilsOutliner = "#outliner";
 				seconds = "0" + seconds;
 				}
 			s = hour + ":" + minutes + ":" + seconds + ampm;
-			}
+			} 
 		else {
 			s = hour + ":" + minutes + ampm;
 			}
