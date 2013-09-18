@@ -235,7 +235,7 @@ var defaultUtilsOutliner = "#outliner";
 			}
 		return s;
 		};
-	function stringKBytes (num) }
+	function stringKBytes (num) {
 		return (Math.round (num / 1024) + "K");
 		}
 	function sameDay (d1, d2) {
