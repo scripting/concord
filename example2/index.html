@@ -21,7 +21,7 @@
 			var appPrefs = {
 				"flLocked": false
 				};
-			var opmlurl = "http://reader.smallpicture.com/about.opml"; 
+			var opmlurl = "http://dl.dropboxusercontent.com/u/36518280/misc/aboutReader.opml"; 
 			var flRenderMode = true, flReadOnly = true, flProfile = false;
 			var font = "Georgia", fontSize = 17, lineHeight = 26;
 			var titleFont = "Georgia", titleFontSize = 32, titleLineHeight = 48;
@@ -83,7 +83,6 @@
 					return (true); //keep looking
 					});
 				}
-			
 			function dateToString (when) {
 				when = new Date (when);
 				var daynum = when.getDate ();
@@ -91,7 +90,6 @@
 				var yearnum = when.getFullYear ();
 				return (month + " " + daynum + ", " + yearnum + " at " + timeString (when, true));
 				}
-			
 			function opDeleteLine () {
 				return ($(defaultUtilsOutliner).concord ().op.deleteLine ());
 				}
@@ -195,7 +193,6 @@
 				whenLastUserEvent = new Date ();
 				console.log ("opKeystrokeCallback");
 				}
-			
 			function checkOutline (opmlUrl) {
 				whenLastCheckOutline = new Date ();
 				var jxhr = $.ajax ({
@@ -225,7 +222,6 @@
 					console.log ("checkOutline: error == " + errorThrown + ", status == " + textStatus);
 					});
 				}
-			
 			function setPrefs () {
 				$("#outliner").concord ({
 					"prefs": {
