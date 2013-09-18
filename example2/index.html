@@ -14,7 +14,8 @@
 			var appConsts = {
 				"productname": "reader",
 				"productnameForDisplay": "Reader",
-				"domain": "reader.smallpicture.com", 
+				"domain": "reader.blorkmark.com",  //change it if you fork
+				"analyticsAccount": "'UA-39531990-1", //change it if you fork
 				"version": "0.15"
 				}
 			var appPrefs = {
@@ -170,7 +171,6 @@
 				}
 			function opExpandCallback (parent) {
 				var type = parent.attributes.getOne ("type"), url = parent.attributes.getOne ("url"), xmlUrl = parent.attributes.getOne ("xmlUrl");
-				whenLastUserEvent = new Date ();
 				//link nodes
 					if ((type == "link") && (url != undefined)) {
 						window.open (url);
@@ -183,12 +183,12 @@
 						}
 				//include nodes
 					if ((type == "include") && (url != undefined)) {
-						op.deleteSubs ();
-						op.clearChanged ();
+						parent.deleteSubs ();
+						parent.clearChanged ();
 						readText (url, function (opmltext, op) {
 							op.insertXml (opmltext, right); 
 							op.clearChanged ();
-							}, op, true);
+							}, parent, true);
 						}
 				}
 			function opKeystrokeCallback (event) { 
@@ -291,7 +291,7 @@
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 			
-			ga('create', 'UA-39531990-1', appConsts.domain);
+			ga('create', appConsts.analyticsAccount, appConsts.domain);
 			ga('send', 'pageview');
 			</script>
 		<style>
