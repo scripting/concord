@@ -60,6 +60,18 @@ You can try it out <a href="http://static.smallpicture.com/concord/example1/inde
 
 
 
+### Example 2: Small Picture Reader
+
+We've released the <a href="https://github.com/scripting/concord/blob/master/example2/index.html">source</a> for <a href="http://docs.fargo.io/fargo/reader">Small Picture Reader</a> under the GPL as part of the Concord release.
+
+This app provides a way to read any OPML file even if you aren't using an outliner.
+
+There's a command in Fargo that creates a link between the document you're editing and a reader version.
+
+If you want to run the app, <a href="http://reader.blorkmark.com/">click here</a>.
+
+
+
 ### Inaugural blog post
 
 <a href="http://scripting.com/2013/09/16/concordOurGplOutliner">Here's the post</a> I ran on Scripting News when Concord was publicly announced. It includes a link to a podcast.
