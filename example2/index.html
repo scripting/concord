@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example 2</title>
+		<meta name="copyright" content="Copyright 2013, Small Picture, Inc.">
+		<script src="http://rawgithub.com/scripting/concord/master/libraries/jquery-1.9.1.min.js"></script>  
+		<link href="http://rawgithub.com/scripting/concord/master/libraries/bootstrap.css" rel="stylesheet">
+		<script src="http://rawgithub.com/scripting/concord/master/libraries/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="http://rawgithub.com/scripting/concord/master/concord.css"/>
+		<script src="http://rawgithub.com/scripting/concord/master/concord.js"></script>
+		<script src="http://rawgithub.com/scripting/concord/master/concordUtils.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<script>
+			var appConsts = {
+				"productname": "reader",
+				"productnameForDisplay": "Reader",
+				"domain": "reader.smallpicture.com", 
+				"version": "0.15"
+				}
+			var appPrefs = {
+				"flLocked": false
+				};
+			var opmlurl = "http://reader.smallpicture.com/about.opml"; 
+			var flRenderMode = true, flReadOnly = true, flProfile = false;
+			var font = "Georgia", fontSize = 17, lineHeight = 26;
+			var titleFont = "Georgia", titleFontSize = 32, titleLineHeight = 48;
+			var lastOpmltext = "";
+			var flStartedUp = false;
+			var whenLastUserEvent = new Date ();
+			var whenLastGooglePing = new Date (), secsBetwGooglePings = 300, ctGooglePings = 0; 
+			var whenLastCheckOutline, secsBetwOutlineChecks = 10, ctOutlineChecks = 0, ctOutlineUpdates = 0; 
+			var opmlHeadElements;
+			var flUpdateWaiting = false, flOutlineDisplayed = false;
+			var urlReader = "http://reader.smallpicture.com/";
+			
+			
+			function getURLParameter (name) {
+				return (decodeURI ((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]));
+				}
+			function monthToString (theMonthNum) {
+				var names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+				if (theMonthNum == undefined) {
+					var now = new Date ();
+					theMonthNum = now.getMonth ();
+					}
+				return (names [theMonthNum]);
+				}
+			function timeString (when, flIncludeSeconds) { 
+				var hour = when.getHours (), minutes = when.getMinutes (), ampm = "AM", s;
+				if (hour >= 12) {
+					ampm = "PM";
+					}
+				if (hour > 12) {
+					hour -= 12;
+					}
+				if (hour == 0) {
+					hour = 12;
+					}
+				if (minutes < 10) { 
+					minutes = "0" + minutes;
+					}
+				if (flIncludeSeconds) {
+					var seconds = when.getSeconds ();
+					if (seconds < 10) {
+						seconds = "0" + seconds;
+						}
+					s = hour + ":" + minutes + ":" + seconds + ampm;
+					}
+				else {
+					s = hour + ":" + minutes + ampm;
+					}
+				return (s);
+				}
+			function removeRules () { //8/23/13 by DW
+				$(defaultUtilsOutliner).concord ().op.visitAll (function (headline) {
+					var s = headline.getLineText ().toLowerCase ();
+					var ix = s.indexOf ("<rules");
+					if (ix == 0) {
+						$(defaultUtilsOutliner).concord ().op.setCursor (headline.getCursor ()); //odd, but x.deleteLine operates on the cursor, not x.
+						headline.deleteLine ();
+						}
+					return (true); //keep looking
+					});
+				}
+			
+			function dateToString (when) {
+				when = new Date (when);
+				var daynum = when.getDate ();
+				var month = monthToString (when.getMonth ()); 
+				var yearnum = when.getFullYear ();
+				return (month + " " + daynum + ", " + yearnum + " at " + timeString (when, true));
+				}
+			
+			function opDeleteLine () {
+				return ($(defaultUtilsOutliner).concord ().op.deleteLine ());
+				}
+			function opMakeFirstAtLevel () { //work around bug in opReorg -- 5/16/13 by DW
+				while (true) {
+					if (!opReorg (up, 1)) {
+						break;
+						}
+					}
+				}
+			function updateOutline (opmltext) {
+				var title, lt;
+				document.getElementById ("idTopLine").style.visibility = "visible";
+				document.getElementById ("idBottomLine").style.visibility = "visible";
+				$("#outliner").concord ().op.xmlToOutline (opmltext);
+				if (flProfile) { //5/14/13 by DW
+					opFirstSummit ();
+					while (true) {
+						lt = opGetLineText ().toLowerCase ();
+						if ((lt == "profile") || (lt == "#profile")) {
+							opReorg (up, infinity);
+							opReorg (up, 1); //workaround bug in opReorg -- 5/16/13 by DW
+							if (opGo (down, 1)) {
+								opDemote ();
+								opDeleteLine ();
+								}
+							opPromote ();
+							opDeleteLine ();
+							break;
+							}
+						if (!opGo (down, 1)) {
+							break;
+							}
+						}
+					}
+				title = $("#outliner").concord ().op.getTitle ();
+				document.title = title; //4/22/13 by DW
+				opmlHeadElements = $("#outliner").concord ().op.getHeaders ();
+				document.getElementById ("idTitle").innerHTML = (opmlHeadElements.longTitle != undefined) ? opmlHeadElements.longTitle : title; //5/10/13 by DW
+				document.getElementById ("idDescription").innerHTML = (opmlHeadElements.description != undefined) ? "<p class=\"divDescription\">" + opmlHeadElements.description + "</p>" : ""; //5/10/13 by DW
+				document.getElementById ("idOwnerName").innerHTML = (opmlHeadElements.ownerName == undefined) ? "" : "<i>by</i> " + opmlHeadElements.ownerName + "&nbsp;&nbsp;|&nbsp;&nbsp;";
+				document.getElementById ("idModDate").innerHTML = (opmlHeadElements.dateModified == undefined) ? dateToString (new Date()) : dateToString (opmlHeadElements.dateModified);
+				document.getElementById ("idByline").style.visibility = "visible";
+				document.getElementById ("idFootnote").style.visibility = "visible";
+				document.getElementById ("idTwitterIntentLink").href = "http://twitter.com/intent/tweet?url=" + urlReader + "?opmlurl=" + opmlurl + "&text=" + title + ". ";
+				removeRules (); //8/23/13 by DW
+				flOutlineDisplayed = true;
+				}
+			function updateLockedIcon () {
+				var iconname = (appPrefs.flLocked) ? "lock" : "unlock";
+				var waitingstyle = " style='color: green;'";
+				var style = (flUpdateWaiting) ? waitingstyle : "";
+				
+				document.getElementById ("idLockIcon").innerHTML = "<i class=\"icon-" + iconname + "\"" + style + "></i>";
+				
+				var tip = (appPrefs.flLocked) ? "Unlock to allow updates." : "Lock the outline while you're reading.";
+				document.getElementById ("idLinkToLockIcon").title = tip;
+				}
+			function toggleLocked () {
+				appPrefs.flLocked = !appPrefs.flLocked;
+				if ((!appPrefs.flLocked) && flUpdateWaiting) {
+					updateOutline (lastOpmltext);
+					flUpdateWaiting = false;
+					}
+				updateLockedIcon ();
+				}
+			function getOpmlHeadElements () {
+				var headers = {};
+				$("#outliner").concord().root.data("head").children().each(function(){
+					headers[$(this).prop("tagName")] = $(this).text();
+					});
+				return headers;
+				}
+			function opCursorMovedCallback (op) {
+				whenLastUserEvent = new Date ();
+				console.log ("opCursorMovedCallback");
+				}
+			function opExpandCallback (parent) {
+				var type = parent.attributes.getOne ("type"), url = parent.attributes.getOne ("url"), xmlUrl = parent.attributes.getOne ("xmlUrl");
+				whenLastUserEvent = new Date ();
+				//link nodes
+					if ((type == "link") && (url != undefined)) {
+						window.open (url);
+						return;
+						}
+				//rss nodes
+					if ((type == "rss") && (xmlUrl != undefined)) {
+						window.open (xmlUrl);
+						return;
+						}
+				//include nodes
+					if ((type == "include") && (url != undefined)) {
+						op.deleteSubs ();
+						op.clearChanged ();
+						readText (url, function (opmltext, op) {
+							op.insertXml (opmltext, right); 
+							op.clearChanged ();
+							}, op, true);
+						}
+				}
+			function opKeystrokeCallback (event) { 
+				whenLastUserEvent = new Date ();
+				console.log ("opKeystrokeCallback");
+				}
+			
+			function checkOutline (opmlUrl) {
+				whenLastCheckOutline = new Date ();
+				var jxhr = $.ajax ({
+					url: opmlUrl,
+					dataType: "text",
+					timeout: 30000
+					})
+				.success (function (data, status, xhr) {
+					if (xhr.status==200) {
+						if (data != lastOpmltext) {
+							if (appPrefs.flLocked && flOutlineDisplayed) {
+								flUpdateWaiting = true;
+								updateLockedIcon ();
+								console.log ("checkOutline: Update waiting because outline is locked.");
+								}
+							else {
+								updateOutline (data);
+								console.log ("checkOutline: Outline updated.");
+								}
+							lastOpmltext = data;
+							ctOutlineUpdates++;
+							}
+						flStartedUp = true;
+						}
+					})
+				.error (function (status, textStatus, errorThrown) {
+					console.log ("checkOutline: error == " + errorThrown + ", status == " + textStatus);
+					});
+				}
+			
+			function setPrefs () {
+				$("#outliner").concord ({
+					"prefs": {
+						"outlineFont": font, 
+						"outlineFontSize": fontSize, 
+						"outlineLineHeight": lineHeight,
+						"renderMode": flRenderMode,
+						"readonly": flReadOnly,
+						"typeIcons": appTypeIcons
+						},
+					"callbacks": {
+						"opCursorMoved": opCursorMovedCallback,
+						"opExpand": opExpandCallback,
+						"opKeystroke": opKeystrokeCallback
+						}
+					});
+				}
+			function setTitleStyle () {
+				var title = document.getElementById ("idTitle");
+				title.style.fontFamily = titleFont;
+				title.style.fontSize = titleFontSize;
+				}
+			function backgroundProcess () {
+				if (secondsSince (whenLastCheckOutline) >= secsBetwOutlineChecks)  {
+					checkOutline (opmlurl);
+					ctOutlineChecks++;
+					}
+				if (secondsSince (whenLastGooglePing) >= secsBetwGooglePings) { 
+					if (secondsSince (whenLastUserEvent) <= 300) {
+						ga ("send", "pageview");
+						whenLastGooglePing = new Date ();
+						ctGooglePings++;
+						}
+					}
+				}
+			function startup () {
+				var urlparam = getURLParameter ("opmlurl");
+				if (urlparam != "null") { 
+					opmlurl = decodeURIComponent (urlparam);
+					}
+				opmlurl = opmlurl.replace ("dl.dropbox.com", "dl.dropboxusercontent.com");
+				document.getElementById ("idVersion").innerHTML = " v" + appConsts.version;
+				setPrefs ();
+				setTitleStyle ();
+				updateLockedIcon ();
+				checkOutline (opmlurl);
+				$(function () {
+					$("a[rel=tooltip]").tooltip({
+						live: true
+						})
+					})
+				$(function () {
+					$("a[rel=popover]").popover({
+						live: true
+						})
+					})
+				setInterval (function () {backgroundProcess (); }, 1000);
+				}
+			</script>
+		<script> /* google analytics code */
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-39531990-1', appConsts.domain);
+			ga('send', 'pageview');
+			</script>
+		<style>
+			body {
+				background-color: #fdfdfa;
+				}
+			.concord-level-1-text {
+				font-weight: bold !important;
+				}
+			.concord-level-1{
+				margin-bottom: 8px !important;
+				}
+			.concord-text a, .concord-text a:visited {
+				color: #0088cc;
+				}
+			.divMyOutline {
+				}
+			hr {
+				border-top: 1px solid gainsboro;
+				}
+			.leftSidebar {
+				border-right-width: 1px;
+				border-right-style: solid;
+				left: 0;
+				padding: 0 6px 6px 6px;
+				position: fixed;
+				top: 0;
+				border-right-color: gainsboro; 
+				height: 100%;
+				}
+			.divIcon {
+				padding-bottom: 35px;
+				}
+			.divIcon i {
+				font-size: 24px;
+				color: silver; 
+				}
+			.divByLine {
+				font-family: Georgia;
+				font-size: 14px;
+				}
+			.divDescription {
+				font-family: Georgia;
+				color: grey;
+				font-size: 15px;
+				}
+			.divFootnote {
+				font-family: Arial;
+				font-size: 14px;
+				line-height: 160%;
+				}
+			</style>
+		</head>
+	<body>
+		<aside class="leftSidebar">
+			<div style="margin-top: 40px;">
+				<center>
+					<div class="divIcon"><a href="http://fargo.io/" target="_blank" title="Use Fargo to create your own outlines."><i class="icon-home"></i></a></div>
+					<div class="divIcon"><a id="idTwitterIntentLink" target="_blank" title="Tweet a link to this outline."><i class="icon-twitter"></i></a></div>
+					<div class="divIcon"><a href="#" id="idLinkToLockIcon" onclick="toggleLocked ();"><span id="idLockIcon"></span></a></div>
+					</center>
+				</div>
+			</aside>
+		<div class="bs-docs-grid" id="idSmallPicturePage">
+			<div class="row-fluid show-grid" style="margin-top: 40px; margin-bottom: 200px;">
+				<div class="span2">
+					&nbsp;
+					</div>
+				<div class="span8" style="margin-left: 0;">
+					<hr id="idTopLine" style="margin-top: 0; margin-bottom: 10px; visibility: hidden;">
+					<h2 id="idTitle"></h2>
+					<span id="idDescription"></span>
+					<hr id="idBottomLine" style="margin-top: 10px; margin-bottom: 10px; visibility: hidden;">
+					<div class="divByLine" id="idByline" style="margin-bottom: 40px; visibility: hidden;"><span id="idOwnerName"></span><span id="idModDate"></span>.</div>
+					<div class="divMyOutline">
+						<div id="outliner"></div>
+						</div>
+					<div class="divFootnote" id="idFootnote" style="visibility: hidden;">
+						<hr style="margin-top: 60px; margin-bottom: 5px;">
+						<div style="float: right;"><i><span id="idVersion"></span></i></div>
+						<i>Small Picture Reader</i> is an easy way to publish outlines created in <a href="http://fargo.io/" target="_blank">Fargo</a>. &copy; 2013 <a href="http://smallpicture.com/" target="_blank">Small Picture</a>, Inc.
+						<hr style="margin-top: 5px; margin-bottom: 30px;">
+						</div>
+					</div>
+				<div class="span2">
+					&nbsp;
+					</div>
+				</div>
+			</div>
+		<div id="idErrorMessage"></div>
+		<script>
+			$(document).ready (function () {
+				startup ();
+				});
+			</script>
+		</body>
+	</html>
