@@ -1,4 +1,12 @@
-### Created the worknotes outline (this file). 
+### 9/19/13 by DW
+
+Added worknotes section to readme.md.
+
+Rendering worknotes as worknotes.md at the top level of the repo.
+
+
+
+### 9/18/13 by DW
 
 Created the worknotes outline (this file). 
 

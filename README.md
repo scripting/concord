@@ -78,6 +78,14 @@ If you want to run the app, <a href="http://reader.blorkmark.com/">click here</a
 
 
 
+### Worknotes
+
+I keep a log of work I do on Concord, in an <a href="https://raw.github.com/scripting/concord/master/opml/worknotes.opml">outline</a> of course. 
+
+There's a <a href="https://github.com/scripting/concord/blob/master/worknotes.md">markdown rendering</a> of the worknotes file. 
+
+
+
 ### Community
 
 We have a <a href="https://groups.google.com/forum/?fromgroups#!forum/smallpicture-concord">Google Group mail list</a> for technical support.
