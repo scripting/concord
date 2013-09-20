@@ -15,7 +15,7 @@
 				"productname": "Hello",
 				"productnameForDisplay": "Hello Outliner",
 				"domain": "hello.blorkmark.com", 
-				"version": "0.51"
+				"version": "0.52"
 				}
 			var appPrefs = {
 				"outlineFont": "Arial", "outlineFontSize": 16, "outlineLineHeight": 24,
@@ -184,7 +184,7 @@
 						liContent = liContent.replace ("Cmd-", cmdKeyPrefix);
 						li.html (liContent);
 						});
-				setOutlinerPrefs ("#outliner", false, false);
+				setOutlinerPrefs ("#outliner", true, false); //9/20/13 by DW -- change initial value for renderMode from false to true
 				opSetFont (appPrefs.outlineFont, appPrefs.outlineFontSize, appPrefs.outlineLineHeight); 
 				opXmlToOutline (localStorage.savedOpmltext);
 				self.setInterval (function () {backgroundProcess ()}, 1000); //call every second
@@ -309,6 +309,7 @@
 										<li><a onclick="editSource (urlConcordSource);">Concord</a></li>
 										<li><a onclick="editSource (urlConcordCssSource);">Concord CSS</a></li>
 										<li><a onclick="editSource (urlConcordUtilsSource);">Concord Utils</a></li>
+										<li class="divider"></li>
 										<li><a onclick="editSource (urlConcordDocs);">Concord Docs</a></li>
 										</ul>
 									</li>

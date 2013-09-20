@@ -1,8 +1,14 @@
+### 9/20/13 by DW
+
+Example1
+
+
+
 ### 9/19/13 by DW
 
 Added worknotes section to readme.md.
 
-Rendering worknotes as worknotes.md at the top level of the repo.
+Rendering worknotes as <a href="https://github.com/scripting/concord/blob/master/worknotes.md">worknotes.md</a> at the top level of the repo.
 
 
 
