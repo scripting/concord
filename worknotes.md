@@ -2,11 +2,11 @@
 
 Example1
 
-	Change the initial value of renderMode from false to true.
+   Change the initial value of renderMode from false to true.
 
-	Added a separator before Concord Docs in the Source menu.
+   Added a separator before Concord Docs in the Source menu.
 
-	Changed version number to 0.52.
+   Changed version number to 0.52.
 
 
 
@@ -28,11 +28,11 @@ Added a bunch of utility routines to concordUtils.js.
 
 Example 2, the Reader app is working. 
 
-	It works with any OPML file.
+   It works with any OPML file.
 
-	Handles includes. 
+   Handles includes. 
 
-	Anything Concord can display it can display, because it builds on Concord. ;-)
+   Anything Concord can display it can display, because it builds on Concord. ;-)
 
 
 
