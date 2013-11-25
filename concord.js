@@ -21,7 +21,7 @@ if (!Array.prototype.indexOf) {
 	}
 var concord = {
 	version: "2.48",
-	mobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),
+	mobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent),
 	ready: false,
 	handleEvents: true,
 	resumeCallbacks: [],
