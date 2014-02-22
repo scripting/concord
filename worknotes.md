@@ -1,3 +1,11 @@
+### 2/22/14 by DW
+
+v2.49 -- xmlToOutline takes a new optional param, flSetFocus. Defaults true. If false, we don't set the focus in the outline. This is useful when using the outliner to display text in a web page. If the outline is two screens down, you don't want the page to scroll down to it on reload. 
+
+Thanks to <a href="http://k4shif.blogspot.com/">Kashif Khan</a> for finding this fix. ;-)
+
+
+
 ### 9/20/13 by DW
 
 Example1 -- Hello Outliner

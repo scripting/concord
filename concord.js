@@ -20,7 +20,7 @@ if (!Array.prototype.indexOf) {
 		}
 	}
 var concord = {
-	version: "2.48",
+	version: "2.49",
 	mobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),
 	ready: false,
 	handleEvents: true,
@@ -2449,7 +2449,12 @@ function ConcordOp(root, concordInstance, _cursor) {
 		this.setCursor(node);
 		this.markChanged();
 		};
-	this.xmlToOutline = function(xmlText) {
+	this.xmlToOutline = function(xmlText, flSetFocus) { //2/22/14 by DW -- new param, flSetFocus
+		
+		if (flSetFocus == undefined) { //2/22/14 by DW
+			flSetFocus = true;
+			}
+		
 		var doc = null;
 		if(typeof xmlText == "string") {
 			doc = $($.parseXML(xmlText));
@@ -2503,7 +2508,11 @@ function ConcordOp(root, concordInstance, _cursor) {
 				} while(cursor!=null);
 			}
 		this.setTextMode(false);
-		this.setCursor(root.find(".concord-node:first"));
+		
+		if (flSetFocus) {
+			this.setCursor(root.find(".concord-node:first"));
+			}
+		
 		root.data("currentChange", root.children().clone(true, true));
 		return true;
 		};
