@@ -1213,7 +1213,6 @@ function ConcordEvents(root, editor, op, concordInstance) {
 			return;
 			}
 		if(!editor.editable($(event.target))) {
-			event.preventDefault();
 			if(root.data("mousedown") && !root.data("dragging")) {
 				var target = $(event.target);
 				if(target.hasClass("node-icon")){
