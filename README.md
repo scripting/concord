@@ -68,7 +68,7 @@ This app provides a way to read any OPML file even if you aren't using an outlin
 
 There's a command in Fargo that creates a link between the document you're editing and a reader version.
 
-If you want to run the app, <a href="http://reader.blorkmark.com/">click here</a>.
+If you want to run the app, <a href="http://static.smallpicture.com/concord/example2/index.html">click here</a>.
 
 
 
