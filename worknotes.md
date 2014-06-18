@@ -1,3 +1,13 @@
+### 6/18/14 by DW -- v0.40
+
+Started a version number for the whole Concord release, so we have an easy way to refer to the whole package. This is version 0.40. The next version will be 0.41. We'll increment by hudredths until it feels like a 1.0 then we'll start from there. 
+
+Rebuilt the examples using relative URLs for includes, rather than the "raw" github ones.
+
+Now the examples run directly from the folder you download, and incorporate any mods you may make.
+
+
+
 ### 2/22/14 by DW
 
 v2.49 -- xmlToOutline takes a new optional param, flSetFocus. Defaults true. If false, we don't set the focus in the outline. This is useful when using the outliner to display text in a web page. If the outline is two screens down, you don't want the page to scroll down to it on reload. 
