@@ -1,4 +1,4 @@
-// Copyright 2013, Small Picture, Inc.
+// Copyright 2013-2014, Small Picture, Inc.
 var appTypeIcons = {
 	"blogpost": "file-text-alt",
 	"code": "laptop",
