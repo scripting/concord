@@ -1,6 +1,6 @@
 ### Outliners everywhere!
 
-I've long felt that every operating system and web browser should have a great outliner baked-in. 
+I've long felt that every operating system and web browser should have a great outliner baked-in.  
 
 If you were going to try to do that today, you'd release it under the GPL written in JavaScript. 
 
