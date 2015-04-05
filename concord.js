@@ -2760,6 +2760,14 @@ function Op(opmltext){
 			var keyCaptured = false;
 			var commandKey = event.metaKey || event.ctrlKey;
 			switch(event.which) {
+                		case 33:
+					//Page up
+	                		keyCaptured = true;
+                    			break;
+                		case 34:
+					//Page down
+                    			keyCaptured = true;
+                    			break;
 				case 8:
 					//Backspace
 					if(concord.mobile){
