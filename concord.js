@@ -2760,13 +2760,36 @@ function Op(opmltext){
 			var keyCaptured = false;
 			var commandKey = event.metaKey || event.ctrlKey;
 			switch(event.which) {
-                		case 33:
+		                case 33:
 					//Page up
-	                		keyCaptured = true;
+                			keyCaptured = true;
                     			break;
                 		case 34:
 					//Page down
                     			keyCaptured = true;
+                    			break;
+                		case 35:
+                    			//End
+                    			keyCaptured = true;
+			                if ( !concordInstance.op.inTextMode() ) {
+                        			concordInstance.op.go(left, 32767);
+                        			concordInstance.op.go(down, 32767);
+                        			window.scrollTo(0, 999999);
+                        			while ( concordInstance.op.countSubs() > 0 && concordInstance.op.subsExpanded() ) {
+                            				concordInstance.op.go(right, 1);
+                            				concordInstance.op.go(down, 32767);
+                        			}
+                        			window.scrollTo(0, 999999);
+                    			}
+                    			break;
+                		case 36:
+                    			//Home
+                    			keyCaptured = true;
+                    			if ( !concordInstance.op.inTextMode() ) {
+                        			concordInstance.op.go(left, 32767);
+                        			concordInstance.op.go(up, 32767);
+                        			window.scrollTo(0, 0);
+                    			}
                     			break;
 				case 8:
 					//Backspace
