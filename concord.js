@@ -677,6 +677,12 @@ function ConcordEditor(root, concordInstance) {
 			level = 1;
 			}
 		var node = $("<li></li>");
+
+		// allow outside callback function to manipulate dom
+		if (this.createNodeFromOutlineItem) {
+			node = this.createNodeFromOutlineItem($(outline[0].attributes));
+		}
+
 		node.addClass("concord-node");
 		node.addClass("concord-level-"+level);
 		var attributes = {};
@@ -2728,6 +2734,19 @@ function Op(opmltext){
 	$.fn.concord = function(options) {
 		return new ConcordOutline($(this), options);
 		};
+	
+	// signal key up on node text
+	$(document).on("keyup", function(event) {
+		var focusRoot = concord.getFocusRoot();
+		if(focusRoot==null){
+			return;
+			}
+		var context = focusRoot;
+		var concordInstance = new ConcordOutline(context.parent());
+		concordInstance.fireCallback("opKeyUp", event);	
+	});
+	
+
 	$(document).on("keydown", function(event) {
 		if(!concord.handleEvents){
 			return;
