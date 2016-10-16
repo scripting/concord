@@ -1548,6 +1548,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 				});
 			concordInstance.editor.recalculateLevels(node.find(".concord-node"));
 			this.markChanged();
+			
 			}
 		};
 	this.expand = function(triggerCallbacks) {
@@ -2147,6 +2148,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 					clonedMove.insertAfter(parent);
 					concordInstance.editor.recalculateLevels(parent.nextAll(".concord-node"));
 					ableToMoveInDirection = true;
+					concordInstance.fireCallback("opDemote", clonedMove);
 					}
 				break;
 			case right:
@@ -2179,6 +2181,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 					prev.removeClass("collapsed");
 					concordInstance.editor.recalculateLevels(prev.find(".concord-node"));
 					ableToMoveInDirection = true;
+					concordInstance.fireCallback("opPromote", clonedMove);
 					}
 				break;
 			}
