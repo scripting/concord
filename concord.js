@@ -1465,6 +1465,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 			}
 		};
 	this.deleteLine = function() {
+
 		this.saveState();
 		if(this.inTextMode()){
 			var cursor = this.getCursor();
@@ -1472,6 +1473,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 			if(p.length==0){
 				p = cursor.parents(".concord-node:first");
 				}
+
 			cursor.remove();
 			if(p.length==1) {
 				this.setCursor(p);
@@ -1484,6 +1486,21 @@ function ConcordOp(root, concordInstance, _cursor) {
 					}
 			}else{
 				var selected = root.find(".selected");
+
+				// get attributes for each element
+				// since they may not be referencable once deleted
+				var nodeAttribues = []
+				selected.each(function(){
+						var attribs = {}
+						for (var i = 0; i < this.attributes.length; i++) {
+						    var attrib = this.attributes[i];
+						    attribs[attrib.name] = attrib.value;
+						}
+						nodeAttribues.push(attribs);
+				});
+				
+				concordInstance.fireCallback("opDeleteLine", nodeAttribues);
+
 				if(selected.length == 1) {
 					var p = selected.prev();
 					if(p.length==0){
@@ -1523,6 +1540,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 			var node = this.insert("", down);
 			this.setCursor(node);
 			}
+
 		this.markChanged();
 		};
 	this.deleteSubs = function() {
@@ -1536,6 +1554,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 		this.markChanged();
 		};
 	this.demote = function() {
+		console.log("Demote was called.", 1539);
 		var node = this.getCursor();
 		var movedSiblings = false;
 		if(node.nextAll().length>0){
@@ -1584,11 +1603,13 @@ function ConcordOp(root, concordInstance, _cursor) {
 			}
 		};
 	this.expandAllLevels = function() {
-		var node = this.getCursor();
-		if(node.length == 1) {
-			node.removeClass("collapsed");
-			node.find(".concord-node").removeClass("collapsed");
-			}
+		root.find(".concord-node").removeClass("collapsed");
+		// if expand all levels then why are you only expanding based on cursor?
+		// var node = this.getCursor();
+		// if(node.length == 1) {
+		// 	node.removeClass("collapsed");
+		// 	node.find(".concord-node").removeClass("collapsed");
+		// 	}
 		};
 	this.focusCursor = function(){
 		this.getCursor().children(".concord-wrapper").children(".concord-text").focus();
@@ -2746,6 +2767,9 @@ function Op(opmltext){
 			}
 		var context = focusRoot;
 		var concordInstance = new ConcordOutline(context.parent());
+		if ( !((event.which>=37) && (event.which <=40)) && !(event.which == 9 || event.which == 16) ){
+			concordInstance.fireCallback("opTextChange", event);	
+		}
 		concordInstance.fireCallback("opKeyUp", event);	
 	});
 	
