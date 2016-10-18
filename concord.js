@@ -2754,27 +2754,33 @@ function Op(opmltext){
 	fakeDom.concord().op.xmlToOutline(opmltext);
 	return fakeDom.concord().op;
 	}
+
+/************************
+*
+*   LISTENERS
+*
+*******************/
+
 (function($) {
 	$.fn.concord = function(options) {
-		return new ConcordOutline($(this), options);
-		};
-	
-	// signal key up on node text
-	$(document).on("keyup", function(event) {
-		var focusRoot = concord.getFocusRoot();
-		if(focusRoot==null){
-			return;
-			}
-		var context = focusRoot;
-		var concordInstance = new ConcordOutline(context.parent());
-		if ( !((event.which>=37) && (event.which <=40)) && !(event.which == 9 || event.which == 16) ){
-			concordInstance.fireCallback("opTextChange", event);	
-		}
-		concordInstance.fireCallback("opKeyUp", event);	
-	});
-	
+		
 
-	$(document).on("keydown", function(event) {
+		// signal key up on node text
+		$(this).on("keyup", ".concord-node",function(event) {
+			var focusRoot = concord.getFocusRoot();
+			if(focusRoot==null){
+				return;
+				}
+			var context = focusRoot;
+			var concordInstance = new ConcordOutline(context.parent());
+			if ( !((event.which>=37) && (event.which <=40)) && !(event.which == 9 || event.which == 16) ){
+				concordInstance.fireCallback("opTextChange", event);	
+			}
+			concordInstance.fireCallback("opKeyUp", event);	
+		});
+
+		$(this).on("keydown", function(event) {
+			
 		if(!concord.handleEvents){
 			return;
 			}
@@ -3154,7 +3160,7 @@ function Op(opmltext){
 				}
 			}
 		});
-	$(document).on("mouseup", function(event) {
+	$(this).on("mouseup", function(event) {
 		if(!concord.handleEvents){
 			return;
 			}
@@ -3174,21 +3180,25 @@ function Op(opmltext){
 			var focusRoot = concord.getFocusRoot();
 			}
 		});
-	$(document).on("click", concord.updateFocusRootEvent);
-	$(document).on("dblclick", concord.updateFocusRootEvent);
-	$(document).on('show', function(e){
+	$(this).on("click", concord.updateFocusRootEvent);
+	$(this).on("dblclick", concord.updateFocusRootEvent);
+	$(this).on('show', function(e){
 		if($(e.target).is(".modal")){
 			if($(e.target).attr("concord-events") != "true"){
 				concord.stopListening();
 				}
 			}
 		});
-	$(document).on('hidden', function(e){
+	$(this).on('hidden', function(e){
 		if($(e.target).is(".modal")){
 			if($(e.target).attr("concord-events") != "true"){
 				concord.resumeListening();
 				}
 			}
 		});
+
+		return new ConcordOutline($(this), options);
+	}; // should be part of init function
+	
 	concord.ready=true;
 	})(jQuery);
