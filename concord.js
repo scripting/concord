@@ -548,19 +548,31 @@ function ConcordEditor(root, concordInstance) {
 			}
 		
 		var subheads; 
+
 		if (!flsubsonly) { //8/5/13 by DW
 			opml += '<outline text="' + ConcordUtil.escapeXml(text) + '"';
-			var attributes = node.data("attributes");
+			var attributes = node.context.attributes; //node.data("attributes"); // didn't grab attributes
+
 			if(attributes===undefined){
 				attributes={};
 				}
-			for(var name in attributes){
-				if((name!==undefined) && (name!="") && (name != "text")) {
-					if(attributes[name]!==undefined){
-						opml += ' ' + name + '="' + ConcordUtil.escapeXml(attributes[name]) + '"';
-						}
-					}
+			
+			// didn't grab attributes
+			// for(var name in attributes){
+			// 	if((name!==undefined) && (name!="") && (name != "text")) {
+			// 		if(attributes[name]!==undefined){
+			// 			opml += ' ' + name + '="' + ConcordUtil.escapeXml(attributes[name]) + '"';
+			// 			}
+			// 		}
+			// 	}
+
+			//attributes grabber replaced with this ...
+			$(attributes).each(function(i, item) {
+				if (item.name != 'class') {
+					opml += ' ' + item.name + '="' + ConcordUtil.escapeXml(item.value) + '"';	
 				}
+			})
+
 			subheads = node.children("ol").children(".concord-node");
 			if(subheads.length==0){
 				opml+="/>\n";
@@ -2763,10 +2775,11 @@ function Op(opmltext){
 
 (function($) {
 	$.fn.concord = function(options) {
-		
-
-		// signal key up on node text
-		$(this).on("keyup", ".concord-node",function(event) {
+		return new ConcordOutline($(this), options);
+	}; // should be part of init function
+	
+	// signal key up on node text
+		$(document).on("keyup", ".concord-node",function(event) {
 			var focusRoot = concord.getFocusRoot();
 			if(focusRoot==null){
 				return;
@@ -2779,7 +2792,7 @@ function Op(opmltext){
 			concordInstance.fireCallback("opKeyUp", event);	
 		});
 
-		$(this).on("keydown", function(event) {
+		$(document).on("keydown", function(event) {
 			
 		if(!concord.handleEvents){
 			return;
@@ -2814,6 +2827,7 @@ function Op(opmltext){
 			switch(event.which) {
 				case 8:
 					//Backspace
+
 					if(concord.mobile){
 						if((concordInstance.op.getLineText()=="") || (concordInstance.op.getLineText()=="<br>")){
 							event.preventDefault();
@@ -2826,6 +2840,15 @@ function Op(opmltext){
 								concordInstance.op.saveState();
 								concordInstance.op.getCursor().addClass("dirty");
 								}
+
+							// if user is backspacing in an empty node
+							// switch to select mode so they may use backspace again
+							// to delete the node
+							if (concordInstance.op.getLineText() == "") {
+
+								concordInstance.op.setTextMode(false)
+							}
+
 							}else{
 								keyCaptured = true;
 								event.preventDefault();
@@ -2884,11 +2907,12 @@ function Op(opmltext){
 						break;
 				case 82:
 					//CMD+R
-						if(commandKey) {
-							keyCaptured = true;
-							event.preventDefault();
-							concordInstance.op.reorg(right);
-							}
+					//this ruins refresh on most browsers
+						// if(commandKey) {
+						// 	keyCaptured = true;
+						// 	event.preventDefault();
+						// 	concordInstance.op.reorg(right);
+						// 	}
 						break;
 				case 219:
 					//CMD+[
@@ -3160,7 +3184,7 @@ function Op(opmltext){
 				}
 			}
 		});
-	$(this).on("mouseup", function(event) {
+	$(document).on("mouseup", function(event) {
 		if(!concord.handleEvents){
 			return;
 			}
@@ -3180,25 +3204,25 @@ function Op(opmltext){
 			var focusRoot = concord.getFocusRoot();
 			}
 		});
-	$(this).on("click", concord.updateFocusRootEvent);
-	$(this).on("dblclick", concord.updateFocusRootEvent);
-	$(this).on('show', function(e){
+	$(document).on("click", concord.updateFocusRootEvent);
+	$(document).on("dblclick", concord.updateFocusRootEvent);
+	$(document).on('show', function(e){
 		if($(e.target).is(".modal")){
 			if($(e.target).attr("concord-events") != "true"){
 				concord.stopListening();
 				}
 			}
 		});
-	$(this).on('hidden', function(e){
+	$(document).on('hidden', function(e){
 		if($(e.target).is(".modal")){
 			if($(e.target).attr("concord-events") != "true"){
 				concord.resumeListening();
 				}
 			}
 		});
+	
+	
 
-		return new ConcordOutline($(this), options);
-	}; // should be part of init function
 	
 	concord.ready=true;
 	})(jQuery);
