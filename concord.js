@@ -548,19 +548,31 @@ function ConcordEditor(root, concordInstance) {
 			}
 		
 		var subheads; 
+
 		if (!flsubsonly) { //8/5/13 by DW
 			opml += '<outline text="' + ConcordUtil.escapeXml(text) + '"';
-			var attributes = node.data("attributes");
+			var attributes = node.context.attributes; //node.data("attributes"); // didn't grab attributes
+
 			if(attributes===undefined){
 				attributes={};
 				}
-			for(var name in attributes){
-				if((name!==undefined) && (name!="") && (name != "text")) {
-					if(attributes[name]!==undefined){
-						opml += ' ' + name + '="' + ConcordUtil.escapeXml(attributes[name]) + '"';
-						}
-					}
+			
+			// didn't grab attributes
+			// for(var name in attributes){
+			// 	if((name!==undefined) && (name!="") && (name != "text")) {
+			// 		if(attributes[name]!==undefined){
+			// 			opml += ' ' + name + '="' + ConcordUtil.escapeXml(attributes[name]) + '"';
+			// 			}
+			// 		}
+			// 	}
+
+			//attributes grabber replaced with this ...
+			$(attributes).each(function(i, item) {
+				if (item.name != 'class') {
+					opml += ' ' + item.name + '="' + ConcordUtil.escapeXml(item.value) + '"';	
 				}
+			})
+
 			subheads = node.children("ol").children(".concord-node");
 			if(subheads.length==0){
 				opml+="/>\n";
@@ -677,6 +689,12 @@ function ConcordEditor(root, concordInstance) {
 			level = 1;
 			}
 		var node = $("<li></li>");
+
+		// allow outside callback function to manipulate dom
+		if (this.createNodeFromOutlineItem) {
+			node = this.createNodeFromOutlineItem($(outline[0].attributes));
+		}
+
 		node.addClass("concord-node");
 		node.addClass("concord-level-"+level);
 		var attributes = {};
@@ -1459,6 +1477,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 			}
 		};
 	this.deleteLine = function() {
+
 		this.saveState();
 		if(this.inTextMode()){
 			var cursor = this.getCursor();
@@ -1466,6 +1485,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 			if(p.length==0){
 				p = cursor.parents(".concord-node:first");
 				}
+
 			cursor.remove();
 			if(p.length==1) {
 				this.setCursor(p);
@@ -1478,6 +1498,21 @@ function ConcordOp(root, concordInstance, _cursor) {
 					}
 			}else{
 				var selected = root.find(".selected");
+
+				// get attributes for each element
+				// since they may not be referencable once deleted
+				var nodeAttribues = []
+				selected.each(function(){
+						var attribs = {}
+						for (var i = 0; i < this.attributes.length; i++) {
+						    var attrib = this.attributes[i];
+						    attribs[attrib.name] = attrib.value;
+						}
+						nodeAttribues.push(attribs);
+				});
+				
+				concordInstance.fireCallback("opDeleteLine", nodeAttribues);
+
 				if(selected.length == 1) {
 					var p = selected.prev();
 					if(p.length==0){
@@ -1517,6 +1552,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 			var node = this.insert("", down);
 			this.setCursor(node);
 			}
+
 		this.markChanged();
 		};
 	this.deleteSubs = function() {
@@ -1530,6 +1566,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 		this.markChanged();
 		};
 	this.demote = function() {
+		console.log("Demote was called.", 1539);
 		var node = this.getCursor();
 		var movedSiblings = false;
 		if(node.nextAll().length>0){
@@ -1542,6 +1579,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 				});
 			concordInstance.editor.recalculateLevels(node.find(".concord-node"));
 			this.markChanged();
+			
 			}
 		};
 	this.expand = function(triggerCallbacks) {
@@ -1577,11 +1615,13 @@ function ConcordOp(root, concordInstance, _cursor) {
 			}
 		};
 	this.expandAllLevels = function() {
-		var node = this.getCursor();
-		if(node.length == 1) {
-			node.removeClass("collapsed");
-			node.find(".concord-node").removeClass("collapsed");
-			}
+		root.find(".concord-node").removeClass("collapsed");
+		// if expand all levels then why are you only expanding based on cursor?
+		// var node = this.getCursor();
+		// if(node.length == 1) {
+		// 	node.removeClass("collapsed");
+		// 	node.find(".concord-node").removeClass("collapsed");
+		// 	}
 		};
 	this.focusCursor = function(){
 		this.getCursor().children(".concord-wrapper").children(".concord-text").focus();
@@ -2141,6 +2181,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 					clonedMove.insertAfter(parent);
 					concordInstance.editor.recalculateLevels(parent.nextAll(".concord-node"));
 					ableToMoveInDirection = true;
+					concordInstance.fireCallback("opDemote", clonedMove);
 					}
 				break;
 			case right:
@@ -2173,6 +2214,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 					prev.removeClass("collapsed");
 					concordInstance.editor.recalculateLevels(prev.find(".concord-node"));
 					ableToMoveInDirection = true;
+					concordInstance.fireCallback("opPromote", clonedMove);
 					}
 				break;
 			}
@@ -2724,11 +2766,34 @@ function Op(opmltext){
 	fakeDom.concord().op.xmlToOutline(opmltext);
 	return fakeDom.concord().op;
 	}
+
+/************************
+*
+*   LISTENERS
+*
+*******************/
+
 (function($) {
 	$.fn.concord = function(options) {
 		return new ConcordOutline($(this), options);
-		};
-	$(document).on("keydown", function(event) {
+	}; // should be part of init function
+	
+	// signal key up on node text
+		$(document).on("keyup", ".concord-node",function(event) {
+			var focusRoot = concord.getFocusRoot();
+			if(focusRoot==null){
+				return;
+				}
+			var context = focusRoot;
+			var concordInstance = new ConcordOutline(context.parent());
+			if ( !((event.which>=37) && (event.which <=40)) && !(event.which == 9 || event.which == 16) ){
+				concordInstance.fireCallback("opTextChange", event);	
+			}
+			concordInstance.fireCallback("opKeyUp", event);	
+		});
+
+		$(document).on("keydown", function(event) {
+			
 		if(!concord.handleEvents){
 			return;
 			}
@@ -2762,6 +2827,7 @@ function Op(opmltext){
 			switch(event.which) {
 				case 8:
 					//Backspace
+
 					if(concord.mobile){
 						if((concordInstance.op.getLineText()=="") || (concordInstance.op.getLineText()=="<br>")){
 							event.preventDefault();
@@ -2774,6 +2840,15 @@ function Op(opmltext){
 								concordInstance.op.saveState();
 								concordInstance.op.getCursor().addClass("dirty");
 								}
+
+							// if user is backspacing in an empty node
+							// switch to select mode so they may use backspace again
+							// to delete the node
+							if (concordInstance.op.getLineText() == "") {
+
+								concordInstance.op.setTextMode(false)
+							}
+
 							}else{
 								keyCaptured = true;
 								event.preventDefault();
@@ -2832,11 +2907,12 @@ function Op(opmltext){
 						break;
 				case 82:
 					//CMD+R
-						if(commandKey) {
-							keyCaptured = true;
-							event.preventDefault();
-							concordInstance.op.reorg(right);
-							}
+					//this ruins refresh on most browsers
+						// if(commandKey) {
+						// 	keyCaptured = true;
+						// 	event.preventDefault();
+						// 	concordInstance.op.reorg(right);
+						// 	}
 						break;
 				case 219:
 					//CMD+[
@@ -3144,5 +3220,9 @@ function Op(opmltext){
 				}
 			}
 		});
+	
+	
+
+	
 	concord.ready=true;
 	})(jQuery);
