@@ -38,17 +38,17 @@ Here's an important 11-minute <a href="http://scripting.com/2013/09/17/important
 
 ### Tour of the repository
 
-concord.js -- the JavaScript code for the outliner.
+<a href="https://github.com/scripting/concord/blob/master/concord.js">concord.js</a> -- the JavaScript code for the outliner.
 
-concordstyles.css -- styles for Concord outlines.
+<a href="https://github.com/scripting/concord/blob/master/concordstyles.css">concordstyles.css</a> -- styles for Concord outlines.
 
-concordutils.js -- utility routines for apps that include Concord. Everything here is optional, think of it as sample code, but the kind of stuff that likely will be in every app that uses Concord. concord.js does not include this file, but the example apps do. 
+<a href="https://github.com/scripting/concord/blob/master/concordutils.js">concordutils.js</a> -- utility routines for apps that include Concord. Everything here is optional, think of it as sample code, but the kind of stuff that likely will be in every app that uses Concord. concord.js does not include this file, but the example apps do. 
 
-libraries -- Concord uses jQuery, bootstrap and Font Awesome. There are copies of each in the libraries folder. concord.js does not include these files, but the example apps do. 
+<a href="https://github.com/scripting/concord/tree/master/libraries">libraries</a> -- Concord uses jQuery, bootstrap and Font Awesome. There are copies of each in the libraries folder. concord.js does not include these files, but the example apps do. 
 
-opml -- contains OPML source code for concord.js and the other files. OPML is the native file format for Concord, so you can open these files in the example apps. They are menu items in example1. 
+<a href="https://github.com/scripting/concord/tree/master/opml">opml</a> -- contains OPML source code for concord.js and the other files. OPML is the native file format for Concord, so you can open these files in the example apps. They are menu items in example1. 
 
-archive -- contains the readme file from the previous version. We may archive other things there in the future.
+<a href="https://github.com/scripting/concord/tree/master/archive">archive</a> -- contains the readme file from the previous version. We may archive other things there in the future.
 
 ### Example 0: The bare minimum
 

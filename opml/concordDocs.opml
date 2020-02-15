@@ -36,12 +36,12 @@
 			<outline text="Here's an important 11-minute &lt;a href=&quot;http://scripting.com/2013/09/17/importantPodcastAboutConcordGpl&quot;&gt;podcast&lt;/a&gt; about Concord and the GPL.  "></outline>
 			</outline>
 		<outline text="### Tour of the repository">
-			<outline text="concord.js -- the JavaScript code for the outliner."></outline>
-			<outline text="concordstyles.css -- styles for Concord outlines."></outline>
-			<outline text="concordutils.js -- utility routines for apps that include Concord. Everything here is optional, think of it as sample code, but the kind of stuff that likely will be in every app that uses Concord. concord.js does not include this file, but the example apps do. "></outline>
-			<outline text="libraries -- Concord uses jQuery, bootstrap and Font Awesome. There are copies of each in the libraries folder. concord.js does not include these files, but the example apps do. "></outline>
-			<outline text="opml -- contains OPML source code for concord.js and the other files. OPML is the native file format for Concord, so you can open these files in the example apps. They are menu items in example1. "></outline>
-			<outline text="archive -- contains the readme file from the previous version. We may archive other things there in the future."></outline>
+			<outline text="&lt;a href=&quot;https://github.com/scripting/concord/blob/master/concord.js&quot;&gt;concord.js&lt;/a&gt; -- the JavaScript code for the outliner."></outline>
+			<outline text="&lt;a href=&quot;https://github.com/scripting/concord/blob/master/concordstyles.css&quot;&gt;concordstyles.css&lt;/a&gt; -- styles for Concord outlines."></outline>
+			<outline text="&lt;a href=&quot;https://github.com/scripting/concord/blob/master/concordutils.js&quot;&gt;concordutils.js&lt;/a&gt; -- utility routines for apps that include Concord. Everything here is optional, think of it as sample code, but the kind of stuff that likely will be in every app that uses Concord. concord.js does not include this file, but the example apps do. "></outline>
+			<outline text="&lt;a href=&quot;https://github.com/scripting/concord/tree/master/libraries&quot;&gt;libraries&lt;/a&gt; -- Concord uses jQuery, bootstrap and Font Awesome. There are copies of each in the libraries folder. concord.js does not include these files, but the example apps do. "></outline>
+			<outline text="&lt;a href=&quot;https://github.com/scripting/concord/tree/master/opml&quot;&gt;opml&lt;/a&gt; -- contains OPML source code for concord.js and the other files. OPML is the native file format for Concord, so you can open these files in the example apps. They are menu items in example1. "></outline>
+			<outline text="&lt;a href=&quot;https://github.com/scripting/concord/tree/master/archive&quot;&gt;archive&lt;/a&gt; -- contains the readme file from the previous version. We may archive other things there in the future."></outline>
 			</outline>
 		<outline created="Mon, 16 Sep 2013 13:32:57 GMT" pgfnum="30317" text="### Example 0: The bare minimum">
 			<outline text="This &lt;a href=&quot;https://github.com/scripting/concord/blob/master/example0/index.html&quot;&gt;example&lt;/a&gt; has the bare minimum to add an outliner to an existing app."></outline>
