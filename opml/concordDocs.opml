@@ -35,6 +35,14 @@
 			<outline created="Sat, 14 Sep 2013 15:38:43 GMT" pgfnum="30286" text="Ideas include file systems, mailboxes, chatrooms, databases, documents, presentations, product plans, code, libraries, laws, systems of laws, contracts, rules, guidelines, principles, docs, manifestos, journals, blogs, etc. "></outline>
 			<outline text="Here's an important 11-minute &lt;a href=&quot;http://scripting.com/2013/09/17/importantPodcastAboutConcordGpl&quot;&gt;podcast&lt;/a&gt; about Concord and the GPL.  "></outline>
 			</outline>
+		<outline text="### Tour of the repository">
+			<outline text="concord.js -- the JavaScript code for the outliner."></outline>
+			<outline text="concordstyles.css -- styles for Concord outlines."></outline>
+			<outline text="concordutils.js -- utility routines for apps that include Concord. Everything here is optional, think of it as sample code, but the kind of stuff that likely will be in every app that uses Concord. concord.js does not include this file, but the example apps do. "></outline>
+			<outline text="libraries -- Concord uses jQuery, bootstrap and Font Awesome. There are copies of each in the libraries folder. concord.js does not include these files, but the example apps do. "></outline>
+			<outline text="opml -- contains OPML source code for concord.js and the other files. OPML is the native file format for Concord, so you can open these files in the example apps. They are menu items in example1. "></outline>
+			<outline text="archive -- contains the readme file from the previous version. We may archive other things there in the future."></outline>
+			</outline>
 		<outline created="Mon, 16 Sep 2013 13:32:57 GMT" pgfnum="30317" text="### Example 0: The bare minimum">
 			<outline text="This &lt;a href=&quot;https://github.com/scripting/concord/blob/master/example0/index.html&quot;&gt;example&lt;/a&gt; has the bare minimum to add an outliner to an existing app."></outline>
 			<outline created="Tue, 17 Sep 2013 12:49:40 GMT" pgfnum="30324" text="This saves developers the trouble of having to factor it out of Example 1, below."></outline>
