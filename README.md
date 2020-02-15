@@ -14,9 +14,11 @@ Concord's native file format is <a href="http://dev.opml.org/">OPML</a>.
 
 You can see the work notes <a href="https://github.com/scripting/concord/blob/master/worknotes.md">here</a>. 
 
-I've been adding features carefully and slowly over the years. The best way to see them is to review the history in GitHub. 
+I've been adding features carefully and slowly over the years. 
 
-The biggest change is that Concord is now managed using the same code editing and deploying tools I use for all my other <a href="https://github.com/scripting?tab=repositories">projects</a>, so it will be easier to publicly release new versions. 
+The biggest change is that Concord is now managed using the same tools I use for all my other <a href="https://github.com/scripting?tab=repositories">projects</a>, so it will be easier to publicly release new versions. 
+
+The examples and writing on this site are from 2013, this update is a restoration of the original site, not a rewrite. 
 
 ### Concord is an outliner
 

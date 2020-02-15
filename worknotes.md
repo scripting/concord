@@ -1,3 +1,5 @@
+* 2/15/20; 11:22:30 AM by DW
+   * <a href="http://scripting.com/2020/02/15.html#a161619">Released</a> version 3.0.3. Lots of cleanup work remains, for sure. ;-)
 * 2/13/20; 11:49:36 AM by DW
    * Saved a <a href="https://s3.amazonaws.com/scripting.com/2020/02/13/concord-master.zip">snapshot</a> of the Concord repository before I made any changes. 
 * 2/12/20; 11:53:59 AM by DW

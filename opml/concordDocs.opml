@@ -20,8 +20,9 @@
 			</outline>
 		<outline text="### What's new?">
 			<outline text="You can see the work notes &lt;a href=&quot;https://github.com/scripting/concord/blob/master/worknotes.md&quot;&gt;here&lt;/a&gt;. "></outline>
-			<outline text="I've been adding features carefully and slowly over the years. The best way to see them is to review the history in GitHub. "></outline>
-			<outline text="The biggest change is that Concord is now managed using the same code editing and deploying tools I use for all my other &lt;a href=&quot;https://github.com/scripting?tab=repositories&quot;&gt;projects&lt;/a&gt;, so it will be easier to publicly release new versions. "></outline>
+			<outline text="I've been adding features carefully and slowly over the years. "></outline>
+			<outline text="The biggest change is that Concord is now managed using the same tools I use for all my other &lt;a href=&quot;https://github.com/scripting?tab=repositories&quot;&gt;projects&lt;/a&gt;, so it will be easier to publicly release new versions. "></outline>
+			<outline text="The examples and writing on this site are from 2013, this update is a restoration of the original site, not a rewrite. "></outline>
 			</outline>
 		<outline created="Sat, 14 Sep 2013 15:31:18 GMT" pgfnum="30273" text="### Concord is an outliner">
 			<outline created="Sat, 14 Sep 2013 15:31:22 GMT" pgfnum="30274" text="&lt;a href=&quot;http://outlinerhowto.opml.org/&quot;&gt;An outliner&lt;/a&gt; is a text editor that organizes information in a hierarchy, allowing users to control the level of detail and to reorganize according to structure. Your notes can have full detail, yet be organized so a casual reader can get a quick overview. Outlining is a great way for teams to organize work. "></outline>
