@@ -1,34 +1,30 @@
-### Outliners everywhere!
+# Concord
 
-I've long felt that every operating system and web browser should have a great outliner baked-in.  
+Concord is a JavaScript outliner written by Kyle Shank in 2013, maintained by Dave Winer since, GPL-licensed.  
 
-If you were going to try to do that today, you'd release it under the GPL written in JavaScript. 
+The user interface is keystroke and mouse-compatible with the Living Videotext outliners, ThinkTank, Ready and MORE, and the outliner built into UserLand Frontier and Radio UserLand. 
 
-That's exactly what Concord is. 
+There's a new release in February 2020, the first since 2013. 
 
-<i><a href="http://scripting.com/2013/09/16/concordOurGplOutliner">Dave Winer</a>, 9/16/13.</i>
+Concord is the core component of <a href="http://littleoutliner.com/">Little Outliner</a> and numerous other of Dave's projects. 
 
+Concord's native file format is <a href="http://dev.opml.org/">OPML</a>.
 
+### What's new?
+
+You can see the work notes <a href="https://github.com/scripting/concord/blob/master/worknotes.md">here</a>. 
+
+I've been adding features carefully and slowly over the years. The best way to see them is to review the history in GitHub. 
+
+The biggest change is that Concord is now managed using the same code editing and deploying tools I use for all my other <a href="https://github.com/scripting?tab=repositories">projects</a>, so it will be easier to publicly release new versions. 
 
 ### Concord is an outliner
 
-<a href="http://docs.fargo.io/outlinerHowto">An outliner</a> is a text editor that organizes information in a hierarchy, allowing users to control the level of detail and to reorganize according to structure. Your notes can have full detail, yet be organized so a casual reader can get a quick overview. Outlining is a great way for teams to organize work. 
-
-
+<a href="http://outlinerhowto.opml.org/">An outliner</a> is a text editor that organizes information in a hierarchy, allowing users to control the level of detail and to reorganize according to structure. Your notes can have full detail, yet be organized so a casual reader can get a quick overview. Outlining is a great way for teams to organize work. 
 
 ### Written in JavaScript
 
 It's a jQuery plug-in that implements a full-featured outliner that you can drop into other applications with a minimum of work. 
-
-
-
-### It's the core of Fargo
-
-<a href="http://fargo.io/">Fargo</a> is our browser-based outliner that hooks into Dropbox.  
-
-Concord is the outlining engine in Fargo.
-
-
 
 ### GPL-licensed
 
@@ -38,17 +34,13 @@ Ideas include file systems, mailboxes, chatrooms, databases, documents, presenta
 
 Here's an important 11-minute <a href="http://scripting.com/2013/09/17/importantPodcastAboutConcordGpl">podcast</a> about Concord and the GPL.  
 
-
-
 ### Example 0: The bare minimum
 
 This <a href="https://github.com/scripting/concord/blob/master/example0/index.html">example</a> has the bare minimum to add an outliner to an existing app.
 
 This saves developers the trouble of having to factor it out of Example 1, below.
 
-You can try it out <a href="http://static.smallpicture.com/concord/example0/index.html">here</a>. 
-
-
+You can try it out <a href="http://scripting.com/code/concord/repo/example0/">here</a>. 
 
 ### Example 1: Hello Outliner
 
@@ -56,9 +48,7 @@ This <a href="https://github.com/scripting/concord/tree/master/example1/index.ht
 
 It has a simple menubar, with menus containing Outliner commands, links to OPML documents you can view and edit, and links to docs.
 
-You can try it out <a href="http://static.smallpicture.com/concord/example1/index.html">here</a>.
-
-
+You can try it out <a href="http://scripting.com/code/concord/repo/example1/">here</a>.
 
 ### Example 2: Small Picture Reader
 
@@ -66,29 +56,19 @@ We've released the <a href="https://github.com/scripting/concord/blob/master/exa
 
 This app provides a way to read any OPML file even if you aren't using an outliner.
 
-There's a command in Fargo that creates a link between the document you're editing and a reader version.
+There's a command in Little Outliner that creates a link between the document you're editing and a reader version.
 
-If you want to run the app, <a href="http://static.smallpicture.com/concord/example2/index.html">click here</a>.
+If you want to run the app, <a href="http://scripting.com/code/concord/repo/example2/">click here</a>.
 
+### The previous version
 
+Here's a <a href="http://scripting.com/2020/02/13/concord-master.zip">snapshot</a> of this repo before integrating the new stuff. 
 
-### Inaugural blog post
+Here's the <a href="https://github.com/scripting/concord/blob/master/archive/readme2013.md">previous readme</a>. 
 
-<a href="http://scripting.com/2013/09/16/concordOurGplOutliner">Here's the post</a> I ran on Scripting News when Concord was publicly announced. It includes a link to a podcast.
+### Support
 
+If you have a question, comment, or bug to report, please post an <a href="https://github.com/scripting/concord/issues">issue</a> here. 
 
-
-### Worknotes
-
-I keep a log of work I do on Concord, in an <a href="https://raw.github.com/scripting/concord/master/opml/worknotes.opml">outline</a> of course. 
-
-There's a <a href="https://github.com/scripting/concord/blob/master/worknotes.md">markdown rendering</a> of the worknotes file. 
-
-
-
-### Community
-
-We have a <a href="https://groups.google.com/forum/?fromgroups#!forum/smallpicture-concord">Google Group mail list</a> for technical support.
-
-
+I do not take pull requests, it's best to describe the problem or feature you want to add, as an issue, and let's talk about the best way to do it. Writing the code is never the biggest part of a change or addition. 
 

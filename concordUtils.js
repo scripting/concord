@@ -1,4 +1,4 @@
-// Copyright 2013-2014, Small Picture, Inc.
+// Copyright 2013, Small Picture, Inc.
 var appTypeIcons = {
 	"blogpost": "file-text-alt",
 	"code": "laptop",
@@ -185,7 +185,7 @@ var defaultUtilsOutliner = "#outliner";
 		return ($(defaultUtilsOutliner).concord ().op.wipe ());
 		}
 //readText
-	var readHttpUrl = "http://trex.smallpicture.com/ajax/httpReadUrl";
+	var readHttpUrl = "http://httpproxy.scripting.com/httpReadUrl";
 	
 	function readText (url, callback, op, flAcceptOpml) {
 		var headerval = {};

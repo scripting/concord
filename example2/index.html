@@ -3,13 +3,15 @@
 	<head>
 		<title>Example 2</title>
 		<meta name="copyright" content="Copyright 2013-2014, Small Picture, Inc.">
+		
 		<script src="../libraries/jquery-1.9.1.min.js"></script>  
 		<link href="../libraries/bootstrap.css" rel="stylesheet">
 		<script src="../libraries/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="../concord.css"/>
+		<link rel="stylesheet" href="../libraries/fontAwesome/css/all.css">
+		<script src="../concordutils.js"></script>
+		<link rel="stylesheet" href="../concordstyles.css">
 		<script src="../concord.js"></script>
-		<script src="../concordUtils.js"></script>
-		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		
 		<script>
 			var appConsts = {
 				"productname": "reader",
@@ -21,7 +23,7 @@
 			var appPrefs = {
 				"flLocked": false
 				};
-			var opmlurl = "http://dl.dropboxusercontent.com/u/36518280/misc/aboutReader.opml"; 
+			var opmlurl = "http://scripting.com/code/concord/example2/aboutreader.opml"; 
 			var flRenderMode = true, flReadOnly = true, flProfile = false;
 			var font = "Georgia", fontSize = 17, lineHeight = 26;
 			var titleFont = "Georgia", titleFontSize = 32, titleLineHeight = 48;

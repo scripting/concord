@@ -6,17 +6,17 @@
 		<script src="../libraries/jquery-1.9.1.min.js"></script>  
 		<link href="../libraries/bootstrap.css" rel="stylesheet">
 		<script src="../libraries/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="../concord.css"/>
+		<link rel="stylesheet" href="../libraries/fontAwesome/css/all.css">
+		<script src="../concordutils.js"></script>
+		<link rel="stylesheet" href="../concordstyles.css">
 		<script src="../concord.js"></script>
-		<script src="../concordUtils.js"></script>
-		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 		
 		<script>
 			var appConsts = {
 				"productname": "Hello",
 				"productnameForDisplay": "Hello Outliner",
 				"domain": "hello.blorkmark.com", 
-				"version": "0.52"
+				"version": "0.5.3"
 				}
 			var appPrefs = {
 				"outlineFont": "Arial", "outlineFontSize": 16, "outlineLineHeight": 24,
@@ -26,14 +26,14 @@
 			var flReadOnly = false, flRenderMode = false;
 			var cmdKeyPrefix = "Ctrl+"; 
 			
-			var urlConcordSource = "http://raw.github.com/scripting/concord/master/opml/concord.opml";
-			var urlConcordCssSource = "http://raw.github.com/scripting/concord/master/opml/concordCss.opml";
-			var urlConcordDocs = "http://raw.github.com/scripting/concord/master/opml/concordDocs.opml";
-			var urlConcordUtilsSource = "http://raw.github.com/scripting/concord/master/opml/concordUtils.opml";
-			var urlHelloOutliner = "http://raw.github.com/scripting/concord/master/example1/source.opml";
-			var urlExample0 = "http://raw.github.com/scripting/concord/master/example0/source.opml";
-			var urlExample2 = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/18/archive056.opml";
-			var urlWorknotes = "http://static.smallpicture.com/tacoma/wo/admin/2013/09/18/archive057.opml";
+			var urlConcordSource = "http://scripting.com/code/concord/repo/opml/concord.opml";
+			var urlConcordCssSource = "http://scripting.com/code/concord/repo/opml/concordstyles.opml";
+			var urlConcordDocs = "http://scripting.com/code/concord/repo/opml/concorddocs.opml";
+			var urlWorknotes = "http://scripting.com/code/concord/repo/opml/worknotes.opml";
+			var urlConcordUtilsSource = "http://scripting.com/code/concord/repo/opml/concordutils.opml";
+			var urlExample0 = "http://scripting.com/code/concord/repo/example0/source.opml";
+			var urlHelloOutliner = "http://scripting.com/code/concord/repo/example1/source.opml";
+			var urlExample2 = "http://scripting.com/code/concord/repo/example2/source.opml";
 			
 			function initLocalStorage () {
 				if (localStorage.savedOpmltext == undefined) {
@@ -85,6 +85,7 @@
 				
 				document.open ();
 				document.write (htmltext);
+				document.write ("<html><head></head><body>Hi mom!</body></html>");
 				document.close ();
 				}
 			function opExpandCallback (parent) {
@@ -132,6 +133,7 @@
 				}
 			function opKeystrokeCallback (event) { 
 				whenLastKeystroke = new Date (); 
+				console.log ("opKeystrokeCallback: key == " + event.which);
 				}
 			function runSelection () {
 				var value = eval (opGetLineText ());
@@ -221,6 +223,7 @@
 					}
 				.divMenubar .navbar .nav > li > a { 
 					font-size: 15px;
+					color: black;
 					padding-top: 12px;
 					padding-left: 8px; padding-right: 8px; //6/3/13 by DW
 					outline: none !important;
@@ -312,6 +315,8 @@
 										<li><a onclick="editSource (urlConcordUtilsSource);">Concord Utils</a></li>
 										<li class="divider"></li>
 										<li><a onclick="editSource (urlConcordDocs);">Concord Docs</a></li>
+										<li class="divider"></li>
+										<li><a onclick="nukeDom ();">Nuke the DOM</a></li>
 										</ul>
 									</li>
 								<li class="dropdown" id="idDocsMenu">
@@ -327,6 +332,12 @@
 								<li>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="idProductVersion"></span></a>
 									</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="idProductVersion"></span>&nbsp;<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="http://github.com/scripting/concord" target="_blank">GitHub</a></li>
+										</ul>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -336,6 +347,9 @@
 		<div class="divOutlinerContainer">
 			<div id="outliner">
 				</div>
+			</div>
+		<div class="divSubtext">
+			<p>This is the outliner at the core of <a href="http://fargo.io/">Fargo</a>. All the outline operations work. The outline is saved as you work in HTML 5 localStorage. The full source and docs are on <a href="http://github.com/scripting/concord">GitHub</a>.</p>
 			</div>
 		<script>
 			$(document).ready (function () {

@@ -3,20 +3,26 @@
 	<head>
 		<title>Example 0</title> 
 		<meta name="copyright" content="Copyright 2013-2014, Small Picture, Inc.">
+		
 		<script src="../libraries/jquery-1.9.1.min.js"></script>  
 		<link href="../libraries/bootstrap.css" rel="stylesheet">
 		<script src="../libraries/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="../concord.css"/>
+		<link rel="stylesheet" href="../libraries/fontAwesome/css/all.css">
+		<script src="../concordutils.js"></script>
+		<link rel="stylesheet" href="../concordstyles.css">
 		<script src="../concord.js"></script>
-		<script src="../concordUtils.js"></script>
-		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		
 		<style>
 			body {
 				background-color: whitesmoke;
 				}
+			h1 {
+				margin-top: 75px;
+				}
 			.divOutlinerContainer { 
 				width: 50%;
-				margin-top: 75px;
+				margin-top: 25px;
+				margin-bottom: 15px;
 				margin-left: auto;
 				margin-right: auto;
 				border:1px solid gainsboro;
@@ -32,10 +38,16 @@
 		<div class="divForkMe">
 			<a href="http://github.com/scripting/concord"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 1050;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 			</div>
+		<center>
+			<h1>The Hello World of Outliners</h1>
+			</center>
 		<div class="divOutlinerContainer">
 			<div id="outliner">
 				</div>
 			</div>
+		<center>
+			<p>You can <a href="http://outlinerhowto.opml.org/">enter and edit outline structures</a>, but that's all.</p>
+			</center>
 		<script>
 			$(document).ready (function () {
 				$("#outliner").concord ({

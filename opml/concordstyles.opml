@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<opml version="2.0">
+	<head>
+		<title>concordstyles.css</title>
+		<dateModified>&lt;%dateModified%></dateModified>
+		<expansionState></expansionState>
+		<vertScrollState>1</vertScrollState>
+		<windowTop>300</windowTop>
+		<windowLeft>700</windowLeft>
+		<windowBottom>900</windowBottom>
+		<windowRight>1500</windowRight>
+		</head>
+	<body text="concordstyles.css">
+		<outline text=".concord{">
+			<outline text="font-family: Geneva, Arial;"></outline>
+			<outline text="font-size: 12pt;"></outline>
+			<outline text="margin: 0;"></outline>
+			<outline text="padding: 0;"></outline>
+			<outline text="border: 0;"></outline>
+			<outline text="line-height: 20px;"></outline>
+			<outline text="list-style-type: none;"></outline>
+			<outline text="color: #000;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord ol{">
+			<outline text="list-style-type: none;"></outline>
+			<outline text="padding: 0 0 0 16px;"></outline>
+			<outline text="margin: 0;"></outline>
+			<outline text="clear: both;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node{">
+			<outline text="clear:left;"></outline>
+			<outline text="display: block;"></outline>
+			<outline text="min-height: 20px;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node .concord-wrapper{">
+			<outline text="display: inline-block;"></outline>
+			<outline text="/* background: url('http://static.smallpicture.com/concord-assets/wedge.png') no-repeat 3px 8px; */"></outline>
+			<outline text="background-repeat: no-repeat;"></outline>
+			<outline text="position: relative;"></outline>
+			<outline text="padding-left: 20px;"></outline>
+			<outline text="/* float: left; */"></outline>
+			<outline text="/* margin-bottom: 3px; */"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.concord-comment .node-icon:before{">
+			<outline text="content: &quot;\f100&quot; !important;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node &gt; .concord-wrapper.type-icon .node-icon {">
+			<outline text="position: absolute;"></outline>
+			<outline text="top: 0;"></outline>
+			<outline text="left: 0;"></outline>
+			<outline text="color: silver;"></outline>
+			<outline text="cursor: default;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.collapsed &gt; .concord-wrapper.type-icon .node-icon {">
+			<outline text="color: #000;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node[opml-type='link'] &gt; .concord-wrapper.type-icon .node-icon {">
+			<outline text="cursor: pointer;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.collapsed.selected &gt; .concord-wrapper.type-icon .node-icon {">
+			<outline text="color: #fff;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.selected.collapsed &gt; .concord-wrapper.type-icon .node-icon.icon-caret-right {">
+			<outline text="color: #fff;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.selected &gt; .concord-wrapper.type-icon .node-icon.icon-caret-right {">
+			<outline text="color: silver;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.collapsed &gt; .concord-wrapper{">
+			<outline text="/* background-image: url('http://static.smallpicture.com/concord-assets/wedgeParent.png'); */"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.concord-comment.collapsed &gt; .concord-wrapper{">
+			<outline text="/* background-image: url('http://static.smallpicture.com/concord-assets/commentParent.png') !important; */"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.selected.collapsed &gt; .concord-wrapper{">
+			<outline text="/* background-image: url('http://static.smallpicture.com/concord-assets/wedgeParentWhite.png'); */"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.concord-comment.selected.collapsed &gt; .concord-wrapper{">
+			<outline text="/* background-image: url('http://static.smallpicture.com/concord-assets/commentParentWhite.png') !important; */"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.selected.collapsed &gt; .concord-wrapper.type-icon{">
+			<outline text="background-image: none;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.drop-sibling &gt; .concord-wrapper .node-icon:before {">
+			<outline text="content: &quot;\f063&quot; !important;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.drop-sibling &gt; .concord-wrapper .node-icon {">
+			<outline text="color: black !important;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.drop-child &gt; .concord-wrapper .node-icon:before {">
+			<outline text="content: &quot;\f061&quot; !important;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.drop-child &gt; .concord-wrapper .node-icon{">
+			<outline text="color: black !important;"></outline>
+			<outline text="transform:rotate(45deg);"></outline>
+			<outline text="-ms-transform:rotate(45deg); /* IE 9 */"></outline>
+			<outline text="-webkit-transform:rotate(45deg); /* Safari and Chrome */"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node .concord-wrapper .concord-text{">
+			<outline text="cursor: text;"></outline>
+			<outline text="min-height: 20px;"></outline>
+			<outline text="line-height: 20px;"></outline>
+			<outline text="/* float: left; */"></outline>
+			<outline text="display: inline-block;"></outline>
+			<outline text="outline: none !important;"></outline>
+			<outline text="font-family: Geneva, Arial;"></outline>
+			<outline text="font-size: 12pt;"></outline>
+			<outline text="color: #000;"></outline>
+			<outline text="min-width: 10px;"></outline>
+			<outline text="white-space: pre-wrap;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord.dragging .concord-node .concord-wrapper .concord-text{">
+			<outline text="cursor: pointer;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord.readonly .concord-node .concord-wrapper .concord-text{">
+			<outline text="cursor: default !important;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.selected &gt; .concord-wrapper{">
+			<outline text="background-color: #000;"></outline>
+			<outline text="padding-right: 2px;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.selected &gt; .concord-wrapper .concord-text{">
+			<outline text="color: #fff;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord .concord-node.collapsed &gt; ol{">
+			<outline text="display: none;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord.dragging{">
+			<outline text="cursor: pointer !important;"></outline>
+			<outline text="}"></outline>
+			<outline text="#flip form{"></outline>
+			<outline text="display: inline;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord-text a, .concord-text a:visited{">
+			<outline text="cursor: pointer;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".concord-node.selected &gt; .concord-wrapper .concord-text a, .concord-node.selected &gt; .concord-wrapper .concord-text a:visited{">
+			<outline text="color: yellow;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".ui-loader-default{">
+			<outline text="display: none;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text=".icon-wordpress {">
+			<outline text="min-width: 20px;"></outline>
+			<outline text="background: url('http://static.smallpicture.com/concord-assets/wordpress128.png') no-repeat;"></outline>
+			<outline text="background-size: 100% auto;"></outline>
+			<outline text="}"></outline>
+			</outline>
+		<outline text="/** FONT AWESOME STYLES **/">
+			<outline text="li [class^=&quot;icon-&quot;], .nav li [class^=&quot;icon-&quot;], li [class*=&quot; icon-&quot;], .nav li [class*=&quot; icon-&quot;] {">
+				<outline text="display: inline-block;"></outline>
+				<outline text="width: 1.25em;"></outline>
+				<outline text="text-align: center;"></outline>
+				<outline text="}"></outline>
+				</outline>
+			<outline text="a [class^=&quot;icon-&quot;], a [class*=&quot; icon-&quot;] {">
+				<outline text="display: inline-block;"></outline>
+				<outline text="}"></outline>
+				</outline>
+			<outline text=""></outline>
+			<outline text="li [class^=&quot;fa-&quot;], .nav li [class^=&quot;fa-&quot;], li [class*=&quot; fa-&quot;], .nav li [class*=&quot; fa-&quot;] {">
+				<outline text="display: inline-block;"></outline>
+				<outline text="width: 1.25em;"></outline>
+				<outline text="text-align: center;"></outline>
+				<outline text="}"></outline>
+				</outline>
+			<outline text="a [class^=&quot;fa-&quot;], a [class*=&quot; fa-&quot;] {">
+				<outline text="display: inline-block;"></outline>
+				<outline text="}"></outline>
+				</outline>
+			</outline>
+		</body>
+	</opml>
