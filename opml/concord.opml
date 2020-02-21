@@ -43,7 +43,7 @@
 			<outline text="}"></outline>
 			</outline>
 		<outline text="var concord = {">
-			<outline text="version: &quot;3.0.3&quot;,"></outline>
+			<outline text="version: &quot;3.0.4&quot;,"></outline>
 			<outline text="mobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),"></outline>
 			<outline text="ready: false,"></outline>
 			<outline text="handleEvents: true,"></outline>
@@ -160,15 +160,11 @@
 			<outline text="};"></outline>
 			</outline>
 		<outline text="var concordClipboard = undefined;"></outline>
-		<outline text=""></outline>
-		<outline text=""></outline>
 		<outline text="var flConcordScrollEnabled = true; //6/24/14 by DW"></outline>
 		<outline text="var ctPixelsAboveOutlineArea = 0; //6/24/14 by DW"></outline>
 		<outline text=""></outline>
-		<outline text=""></outline>
-		<outline isComment="true" text="document.write('&lt;link rel=&quot;stylesheet&quot; href=&quot;http://static.smallpicture.com/concord-assets/fontawesome/4.1.0/css/font-awesome.min.css&quot;/&gt;');"></outline>
-		<outline isComment="true" text="document.write('&lt;link rel=&quot;stylesheet&quot; href=&quot;http://fargo.io/code/concord.css&quot;/&gt;');"></outline>
 		<outline text="jQuery.fn.reverse = [].reverse;"></outline>
+		<outline text=""></outline>
 		<outline text="//Constants">
 			<outline text="var nil = null;"></outline>
 			<outline text="var infinity = Number.MAX_VALUE;"></outline>
@@ -307,6 +303,9 @@
 					</outline>
 				<outline text="function concordMetaizeKeystroke (event) { //9/17/13 by DW">
 					<outline isComment="true" text="Changes">
+						<outline text="2/17/20; 12:30:26 PM by DW">
+							<outline text="Added cases for pageup, pagedown, home and end. "></outline>
+							</outline>
 						<outline text="2/6/20; 2:01:26 PM by DW">
 							<outline text="Add &quot;meta-&quot; if the meta key is down, in all cases. previously we'd only add them for A through Z"></outline>
 							</outline>
@@ -322,6 +321,78 @@
 								</outline>
 							<outline text="case 13:">
 								<outline text="return (&quot;return&quot;);"></outline>
+								</outline>
+							<outline text="case 33: ">
+								<outline text="return (&quot;pageup&quot;);"></outline>
+								</outline>
+							<outline text="case 34: ">
+								<outline text="return (&quot;pagedown&quot;);"></outline>
+								</outline>
+							<outline text="case 35: ">
+								<outline text="return (&quot;end&quot;);"></outline>
+								</outline>
+							<outline text="case 36: ">
+								<outline text="return (&quot;home&quot;);"></outline>
+								</outline>
+							<outline text="case 37:">
+								<outline text="return (&quot;leftarrow&quot;);"></outline>
+								</outline>
+							<outline text="case 38:">
+								<outline text="return (&quot;uparrow&quot;);"></outline>
+								</outline>
+							<outline text="case 39:">
+								<outline text="return (&quot;rightarrow&quot;);"></outline>
+								</outline>
+							<outline text="case 40:">
+								<outline text="return (&quot;downarrow&quot;);"></outline>
+								</outline>
+							<outline text="case 46:">
+								<outline text="return (&quot;delete&quot;);"></outline>
+								</outline>
+							<outline text="case 188:">
+								<outline text="return (&quot;,&quot;);"></outline>
+								</outline>
+							<outline text="case 190:">
+								<outline text="return (&quot;.&quot;);"></outline>
+								</outline>
+							<outline text="case 191:">
+								<outline text="return (&quot;/&quot;);"></outline>
+								</outline>
+							<outline text="case 192:">
+								<outline text="return (&quot;`&quot;);"></outline>
+								</outline>
+							<outline text="case 219:">
+								<outline text="return (&quot;[&quot;);"></outline>
+								</outline>
+							<outline text="case 220:">
+								<outline text="return (&quot;\\&quot;);"></outline>
+								</outline>
+							<outline text="case 221:">
+								<outline text="return (&quot;]&quot;);"></outline>
+								</outline>
+							<outline text="}"></outline>
+							</outline>
+						<outline isComment="true" text="switch (ch) {">
+							<outline text="case 8:">
+								<outline text="return (&quot;backspace&quot;);"></outline>
+								</outline>
+							<outline text="case 9:">
+								<outline text="return (&quot;tab&quot;);"></outline>
+								</outline>
+							<outline text="case 13:">
+								<outline text="return (&quot;return&quot;);"></outline>
+								</outline>
+							<outline text="case 33: //2/17/20 by DW">
+								<outline text="return (&quot;pageup&quot;);"></outline>
+								</outline>
+							<outline text="case 34: //2/17/20 by DW">
+								<outline text="return (&quot;pagedown&quot;);"></outline>
+								</outline>
+							<outline text="case 35: //2/17/20 by DW">
+								<outline text="return (&quot;end&quot;);"></outline>
+								</outline>
+							<outline text="case 36: //2/17/20 by DW">
+								<outline text="return (&quot;home&quot;);"></outline>
 								</outline>
 							<outline text="case 37:">
 								<outline text="return (&quot;leftarrow&quot;);"></outline>
@@ -3848,10 +3919,15 @@
 					<outline text="}"></outline>
 					</outline>
 				<outline text="if(!readonly){">
-					<outline text="concordInstance.fireCallback(&quot;opKeystroke&quot;, event);"></outline>
-					<outline text="var keyCaptured = false;"></outline>
-					<outline text="var commandKey = event.metaKey || event.ctrlKey;"></outline>
 					<outline text="var keystrokeString = ConcordUtil.getKeystroke (event);"></outline>
+					<outline text="event.concord = { //2/17/20 by DW">
+						<outline text="keystrokeString, "></outline>
+						<outline text="flKeyCaptured: false"></outline>
+						<outline text="};"></outline>
+						</outline>
+					<outline text="concordInstance.fireCallback(&quot;opKeystroke&quot;, event);"></outline>
+					<outline text="var keyCaptured = event.concord.flKeyCaptured;"></outline>
+					<outline text="var commandKey = event.metaKey || event.ctrlKey;"></outline>
 					<outline isComment="true" text="console.log (&quot;keydown: keystrokeString == &quot; + keystrokeString + &quot;, event.metaKey == &quot; + event.metaKey)"></outline>
 					<outline text="switch (keystrokeString) {">
 						<outline text="case &quot;backspace&quot;:">
@@ -4276,8 +4352,6 @@
 							</outline>
 						<outline text="}"></outline>
 						</outline>
-					<outline text=""></outline>
-					<outline text=""></outline>
 					<outline text="if(!keyCaptured) {">
 						<outline text="if((event.which &gt;= 32) &amp;&amp; ((event.which &lt; 112) || (event.which &gt; 123)) &amp;&amp; (event.which &lt; 1000) &amp;&amp; !commandKey) {">
 							<outline text="var node = concordInstance.op.getCursor();"></outline>

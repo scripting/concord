@@ -22,7 +22,7 @@ if (!Array.prototype.indexOf) {
 		}
 	}
 var concord = {
-	version: "3.0.3",
+	version: "3.0.4",
 	mobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),
 	ready: false,
 	handleEvents: true,
@@ -112,13 +112,11 @@ var concordEnvironment = {
 	"version" : concord.version
 	};
 var concordClipboard = undefined;
-
-
 var flConcordScrollEnabled = true; //6/24/14 by DW
 var ctPixelsAboveOutlineArea = 0; //6/24/14 by DW
 
-
 jQuery.fn.reverse = [].reverse;
+
 //Constants
 	var nil = null;
 	var infinity = Number.MAX_VALUE;
@@ -241,6 +239,14 @@ var ConcordUtil = {
 						return ("tab");
 					case 13:
 						return ("return");
+					case 33: 
+						return ("pageup");
+					case 34: 
+						return ("pagedown");
+					case 35: 
+						return ("end");
+					case 36: 
+						return ("home");
 					case 37:
 						return ("leftarrow");
 					case 38:
@@ -252,33 +258,19 @@ var ConcordUtil = {
 					case 46:
 						return ("delete");
 					case 188:
-						if (flmeta) {
-							return ("meta-,");
-							}
+						return (",");
 					case 190:
-						if (flmeta) {
-							return ("meta-.");
-							}
+						return (".");
 					case 191:
-						if (flmeta) {
-							return ("meta-/");
-							}
+						return ("/");
 					case 192:
-						if (flmeta) {
-							return ("meta-`");
-							}
+						return ("`");
 					case 219:
-						if (flmeta) {
-							return ("meta-[");
-							}
+						return ("[");
 					case 220:
-						if (flmeta) {
-							return ("meta-\\");
-							}
+						return ("\\");
 					case 221:
-						if (flmeta) {
-							return ("meta-]");
-							}
+						return ("]");
 					}
 				return (ch);
 				}
@@ -2991,10 +2983,14 @@ function Op(opmltext){
 				}
 			}
 		if(!readonly){
-			concordInstance.fireCallback("opKeystroke", event);
-			var keyCaptured = false;
-			var commandKey = event.metaKey || event.ctrlKey;
 			var keystrokeString = ConcordUtil.getKeystroke (event);
+			event.concord = { //2/17/20 by DW
+				keystrokeString, 
+				flKeyCaptured: false
+				};
+			concordInstance.fireCallback("opKeystroke", event);
+			var keyCaptured = event.concord.flKeyCaptured;
+			var commandKey = event.metaKey || event.ctrlKey;
 			switch (keystrokeString) {
 				case "backspace":
 					if (concord.mobile) {
@@ -3325,8 +3321,6 @@ function Op(opmltext){
 				default:
 					keyCaptured = false;
 				}
-			
-			
 			if(!keyCaptured) {
 				if((event.which >= 32) && ((event.which < 112) || (event.which > 123)) && (event.which < 1000) && !commandKey) {
 					var node = concordInstance.op.getCursor();

@@ -1,3 +1,7 @@
+* 2/17/20; 11:37:30 AM by DW
+   * Change the way we call back for keystrokes.
+      * A new second parameter contains a keystrokeString, we do all the parsing.
+      * If the callback returns true, it means they handled the keystroke, you should return.
 * 2/15/20; 11:22:30 AM by DW
    * <a href="http://scripting.com/2020/02/15.html#a161619">Released</a> version 3.0.3. Lots of cleanup work remains, for sure. ;-)
 * 2/13/20; 11:49:36 AM by DW
