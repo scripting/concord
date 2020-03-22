@@ -22,7 +22,7 @@ if (!Array.prototype.indexOf) {
 		}
 	}
 var concord = {
-	version: "3.0.4",
+	version: "3.0.5",
 	mobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),
 	ready: false,
 	handleEvents: true,
@@ -2485,8 +2485,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 			});
 		return text;
 		};
-	
-	this.saveCursor = function () { //8/5/14 by DW
+	this.saveCursor = function () { //8/5/14 by DW -- so we can save the location of the cursor in an OPML file
 		var cursor = this.getCursor (), prev, ct = 0;
 		while (true) {
 			var prev = this._walk_up (cursor);
@@ -2500,7 +2499,23 @@ function ConcordOp(root, concordInstance, _cursor) {
 			}
 		return (ct);
 		}
-	
+	this.sort = function () { //3/7/20 by DW -- sort the list containing the bar cursor headline
+		this.saveState ();
+		var mycursor = this.getCursor ();
+		var parentnode = $(mycursor).parent ();
+		var items = $(parentnode).children ();
+		items.sort (function (a, b) {
+			var keyA = $(a).text ().toLowerCase ();
+			var keyB = $(b).text ().toLowerCase ();
+			if (keyA < keyB) return -1;
+			if (keyA > keyB) return 1;
+			return 0;
+			});
+		$.each (items, function (i, li) {
+			parentnode.append (li); //removes it from the old spot and moves it
+			});
+		this.markChanged ();
+		}
 	this.outlineToXml = function(ownerName, ownerEmail, ownerId) {
 		var head = this.getHeaders();
 		if(ownerName) {

@@ -43,7 +43,7 @@
 			<outline text="}"></outline>
 			</outline>
 		<outline text="var concord = {">
-			<outline text="version: &quot;3.0.4&quot;,"></outline>
+			<outline text="version: &quot;3.0.5&quot;,"></outline>
 			<outline text="mobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),"></outline>
 			<outline text="ready: false,"></outline>
 			<outline text="handleEvents: true,"></outline>
@@ -3287,8 +3287,7 @@
 				<outline text="return text;"></outline>
 				<outline text="};"></outline>
 				</outline>
-			<outline text=""></outline>
-			<outline text="this.saveCursor = function () { //8/5/14 by DW">
+			<outline text="this.saveCursor = function () { //8/5/14 by DW -- so we can save the location of the cursor in an OPML file">
 				<outline text="var cursor = this.getCursor (), prev, ct = 0;"></outline>
 				<outline text="while (true) {">
 					<outline text="var prev = this._walk_up (cursor);"></outline>
@@ -3306,7 +3305,26 @@
 				<outline text="return (ct);"></outline>
 				<outline text="}"></outline>
 				</outline>
-			<outline text=""></outline>
+			<outline text="this.sort = function () { //3/7/20 by DW -- sort the list containing the bar cursor headline">
+				<outline text="this.saveState ();"></outline>
+				<outline text="var mycursor = this.getCursor ();"></outline>
+				<outline text="var parentnode = $(mycursor).parent ();"></outline>
+				<outline text="var items = $(parentnode).children ();"></outline>
+				<outline text="items.sort (function (a, b) {">
+					<outline text="var keyA = $(a).text ().toLowerCase ();"></outline>
+					<outline text="var keyB = $(b).text ().toLowerCase ();"></outline>
+					<outline text="if (keyA &lt; keyB) return -1;"></outline>
+					<outline text="if (keyA &gt; keyB) return 1;"></outline>
+					<outline text="return 0;"></outline>
+					<outline text="});"></outline>
+					</outline>
+				<outline text="$.each (items, function (i, li) {">
+					<outline text="parentnode.append (li); //removes it from the old spot and moves it"></outline>
+					<outline text="});"></outline>
+					</outline>
+				<outline text="this.markChanged ();"></outline>
+				<outline text="}"></outline>
+				</outline>
 			<outline text="this.outlineToXml = function(ownerName, ownerEmail, ownerId) {">
 				<outline text="var head = this.getHeaders();"></outline>
 				<outline text="if(ownerName) {">
