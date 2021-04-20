@@ -1,4 +1,4 @@
-// Copyright 2020, Dave Winer
+// Copyright 2020-2021, Dave Winer
 // Copyright 2013, Small Picture, Inc.
 
 $(function () {
@@ -278,6 +278,13 @@ var ConcordUtil = {
 			if ((ch >= 65) && (ch <= 90)) { //meta-A through meta-Z
 				if (flmeta) {
 					return ("meta-" + String.fromCharCode (ch));
+					}
+				}
+			else {
+				if ((ch >= 48) && (ch <= 57)) { //meta-0 through meta-9 -- 4/20/21 by DW
+					if (flmeta) {
+						return ("meta-" + String.fromCharCode (ch));
+						}
 					}
 				}
 			var s = checkspecials (ch);
@@ -833,7 +840,7 @@ function ConcordEditor(root, concordInstance) {
 			}
 		root.find(".selection-toolbar").remove();
 		};
-	this.build = function(outline,collapsed, level) {
+	this.build = function(outline,collapsed, level, flInsertRawHtml) { //9/18/20 by DW -- new optional param, flInsertRawHtml
 		if(!level){
 			level = 1;
 			}
@@ -871,7 +878,17 @@ function ConcordEditor(root, concordInstance) {
 			}
 		var text = $("<div class='concord-text' contenteditable='true'></div>");
 		text.addClass("concord-level-"+level+"-text");
-		text.html(this.escape(outline.attr('text')));
+		
+		//9/18/20 by DW -- option to insert without escaping
+			var textToInsert;
+			if (flInsertRawHtml) {
+				textToInsert = outline.attr ('text'); 
+				}
+			else {
+				textToInsert = this.escape (outline.attr ('text')); 
+				}
+			text.html (textToInsert);
+		
 		if(attributes["cssTextClass"]!==undefined){
 			var cssClasses = attributes["cssTextClass"].split(/\s+/);
 			for(var c in cssClasses){
@@ -882,7 +899,7 @@ function ConcordEditor(root, concordInstance) {
 		var children = $("<ol></ol>");
 		var editor = this;
 		outline.children("outline").each(function() {
-			var child = editor.build($(this), collapsed, level+1);
+			var child = editor.build($(this), collapsed, level+1, flInsertRawHtml);
 			child.appendTo(children);
 			});
 		if(collapsed){
@@ -1932,7 +1949,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 		this.markChanged();
 		return ableToMoveInDirection;
 		};
-	this.insert = function(insertText, insertDirection) {
+	this.insert = function(insertText, insertDirection, flInsertRawHtml) { //9/16/20 by DW -- new optional param -- flInsertRawHtml
 		this.saveState();
 		var level = this.getCursor().parents(".concord-node").length+1;
 		var node = $("<li></li>");
@@ -1958,7 +1975,12 @@ function ConcordOp(root, concordInstance, _cursor) {
 		wrapper.appendTo(node);
 		outline.appendTo(node);
 		if(insertText && (insertText!="")){
-			text.html(concordInstance.editor.escape(insertText));
+			if (flInsertRawHtml) { //9/16/20 by DW
+				text.html(insertText);
+				}
+			else {
+				text.html(concordInstance.editor.escape(insertText));
+				}
 			}
 		var cursor = this.getCursor();
 		if(!insertDirection) {
@@ -2664,7 +2686,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 		this.setCursor(node);
 		this.markChanged();
 		};
-	this.xmlToOutline = function(xmlText, flSetFocus) { //2/22/14 by DW -- new param, flSetFocus
+	this.xmlToOutline = function(xmlText, flSetFocus, flInsertRawHtml) { //2/22/14 by DW -- new param, flSetFocus. 9/18/20 by DW -- flInsertRawHtml
 		
 		if (flSetFocus == undefined) { //2/22/14 by DW
 			flSetFocus = true;
@@ -2688,7 +2710,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 			});
 		root.data("head", headers);
 		doc.find("body").children("outline").each(function() {
-			root.append(concordInstance.editor.build($(this), true));
+			root.append(concordInstance.editor.build($(this), true, undefined, flInsertRawHtml)); //9/18/20 by DW -- pass new flInsertRawHtml param
 			});
 		root.data("changed", false);
 		root.removeData("previousChange");
@@ -3329,9 +3351,11 @@ function Op(opmltext){
 							}
 					break;
 				case "run-selection":
-					keyCaptured=true;
-					event.preventDefault();
-					concordInstance.op.runSelection();
+					if (!keyCaptured) { //2/19/21 by DW
+						keyCaptured=true;
+						event.preventDefault();
+						concordInstance.op.runSelection();
+						}
 					break;
 				default:
 					keyCaptured = false;

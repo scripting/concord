@@ -11,7 +11,7 @@
 		<windowRight>1500</windowRight>
 		</head>
 	<body text="concord.js">
-		<outline text="// Copyright 2020, Dave Winer"></outline>
+		<outline text="// Copyright 2020-2021, Dave Winer"></outline>
 		<outline text="// Copyright 2013, Small Picture, Inc."></outline>
 		<outline text=""></outline>
 		<outline text="$(function () {">
@@ -463,6 +463,16 @@
 							<outline created="Tue, 17 Sep 2013 22:12:18 GMT" pgfnum="30351" text="}"></outline>
 							</outline>
 						<outline created="Tue, 17 Sep 2013 22:10:45 GMT" pgfnum="30349" text="}"></outline>
+						</outline>
+					<outline created="Tue, 20 Apr 2021 16:51:30 GMT" text="else {">
+						<outline created="Tue, 17 Sep 2013 22:10:20 GMT" pgfnum="30346" text="if ((ch &gt;= 48) &amp;&amp; (ch &lt;= 57)) { //meta-0 through meta-9 -- 4/20/21 by DW">
+							<outline created="Tue, 17 Sep 2013 22:12:11 GMT" pgfnum="30350" text="if (flmeta) {">
+								<outline created="Tue, 17 Sep 2013 22:12:22 GMT" pgfnum="30352" text="return (&quot;meta-&quot; + String.fromCharCode (ch));"></outline>
+								<outline created="Tue, 17 Sep 2013 22:12:18 GMT" pgfnum="30351" text="}"></outline>
+								</outline>
+							<outline created="Tue, 17 Sep 2013 22:10:45 GMT" pgfnum="30349" text="}"></outline>
+							</outline>
+						<outline created="Tue, 20 Apr 2021 16:51:32 GMT" text="}"></outline>
 						</outline>
 					<outline text="var s = checkspecials (ch);"></outline>
 					<outline text="if (flmeta) {">
@@ -1162,7 +1172,7 @@
 				<outline text="root.find(&quot;.selection-toolbar&quot;).remove();"></outline>
 				<outline text="};"></outline>
 				</outline>
-			<outline text="this.build = function(outline,collapsed, level) {">
+			<outline text="this.build = function(outline,collapsed, level, flInsertRawHtml) { //9/18/20 by DW -- new optional param, flInsertRawHtml">
 				<outline text="if(!level){">
 					<outline text="level = 1;"></outline>
 					<outline text="}"></outline>
@@ -1210,7 +1220,20 @@
 					</outline>
 				<outline text="var text = $(&quot;&lt;div class='concord-text' contenteditable='true'&gt;&lt;/div&gt;&quot;);"></outline>
 				<outline text="text.addClass(&quot;concord-level-&quot;+level+&quot;-text&quot;);"></outline>
-				<outline text="text.html(this.escape(outline.attr('text')));"></outline>
+				<outline text=""></outline>
+				<outline text="//9/18/20 by DW -- option to insert without escaping">
+					<outline text="var textToInsert;"></outline>
+					<outline text="if (flInsertRawHtml) {">
+						<outline text="textToInsert = outline.attr ('text'); "></outline>
+						<outline text="}"></outline>
+						</outline>
+					<outline text="else {">
+						<outline text="textToInsert = this.escape (outline.attr ('text')); "></outline>
+						<outline text="}"></outline>
+						</outline>
+					<outline text="text.html (textToInsert);"></outline>
+					</outline>
+				<outline text=""></outline>
 				<outline text="if(attributes[&quot;cssTextClass&quot;]!==undefined){">
 					<outline text="var cssClasses = attributes[&quot;cssTextClass&quot;].split(/\s+/);"></outline>
 					<outline text="for(var c in cssClasses){">
@@ -1223,7 +1246,7 @@
 				<outline text="var children = $(&quot;&lt;ol&gt;&lt;/ol&gt;&quot;);"></outline>
 				<outline text="var editor = this;"></outline>
 				<outline text="outline.children(&quot;outline&quot;).each(function() {">
-					<outline text="var child = editor.build($(this), collapsed, level+1);"></outline>
+					<outline text="var child = editor.build($(this), collapsed, level+1, flInsertRawHtml);"></outline>
 					<outline text="child.appendTo(children);"></outline>
 					<outline text="});"></outline>
 					</outline>
@@ -2591,7 +2614,7 @@
 				<outline text="return ableToMoveInDirection;"></outline>
 				<outline text="};"></outline>
 				</outline>
-			<outline text="this.insert = function(insertText, insertDirection) {">
+			<outline text="this.insert = function(insertText, insertDirection, flInsertRawHtml) { //9/16/20 by DW -- new optional param -- flInsertRawHtml">
 				<outline text="this.saveState();"></outline>
 				<outline text="var level = this.getCursor().parents(&quot;.concord-node&quot;).length+1;"></outline>
 				<outline text="var node = $(&quot;&lt;li&gt;&lt;/li&gt;&quot;);"></outline>
@@ -2621,7 +2644,14 @@
 				<outline text="wrapper.appendTo(node);"></outline>
 				<outline text="outline.appendTo(node);"></outline>
 				<outline text="if(insertText &amp;&amp; (insertText!=&quot;&quot;)){">
-					<outline text="text.html(concordInstance.editor.escape(insertText));"></outline>
+					<outline text="if (flInsertRawHtml) { //9/16/20 by DW">
+						<outline text="text.html(insertText);"></outline>
+						<outline text="}"></outline>
+						</outline>
+					<outline text="else {">
+						<outline text="text.html(concordInstance.editor.escape(insertText));"></outline>
+						<outline text="}"></outline>
+						</outline>
 					<outline text="}"></outline>
 					</outline>
 				<outline text="var cursor = this.getCursor();"></outline>
@@ -3508,7 +3538,7 @@
 				<outline text="this.markChanged();"></outline>
 				<outline text="};"></outline>
 				</outline>
-			<outline text="this.xmlToOutline = function(xmlText, flSetFocus) { //2/22/14 by DW -- new param, flSetFocus">
+			<outline text="this.xmlToOutline = function(xmlText, flSetFocus, flInsertRawHtml) { //2/22/14 by DW -- new param, flSetFocus. 9/18/20 by DW -- flInsertRawHtml">
 				<outline text=""></outline>
 				<outline text="if (flSetFocus == undefined) { //2/22/14 by DW">
 					<outline text="flSetFocus = true;"></outline>
@@ -3537,7 +3567,7 @@
 					</outline>
 				<outline text="root.data(&quot;head&quot;, headers);"></outline>
 				<outline text="doc.find(&quot;body&quot;).children(&quot;outline&quot;).each(function() {">
-					<outline text="root.append(concordInstance.editor.build($(this), true));"></outline>
+					<outline text="root.append(concordInstance.editor.build($(this), true, undefined, flInsertRawHtml)); //9/18/20 by DW -- pass new flInsertRawHtml param"></outline>
 					<outline text="});"></outline>
 					</outline>
 				<outline text="root.data(&quot;changed&quot;, false);"></outline>
@@ -4360,9 +4390,12 @@
 							<outline text="break;"></outline>
 							</outline>
 						<outline text="case &quot;run-selection&quot;:">
-							<outline text="keyCaptured=true;"></outline>
-							<outline text="event.preventDefault();"></outline>
-							<outline text="concordInstance.op.runSelection();"></outline>
+							<outline created="Fri, 19 Feb 2021 15:41:36 GMT" text="if (!keyCaptured) { //2/19/21 by DW">
+								<outline text="keyCaptured=true;"></outline>
+								<outline text="event.preventDefault();"></outline>
+								<outline text="concordInstance.op.runSelection();"></outline>
+								<outline created="Fri, 19 Feb 2021 15:41:39 GMT" text="}"></outline>
+								</outline>
 							<outline text="break;"></outline>
 							</outline>
 						<outline text="default:">
