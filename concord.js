@@ -2384,6 +2384,8 @@ function ConcordOp(root, concordInstance, _cursor) {
 				this.setCursor(this.getCursor());
 				}
 			this.markChanged();
+			var node = this.getCursor (); //5/9/21 by DW
+			concordInstance.fireCallback ("opReorg", this.setCursorContext (node)); //5/9/21 by DW
 			}
 		return ableToMoveInDirection;
 		};

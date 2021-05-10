@@ -3160,6 +3160,8 @@
 						<outline text="}"></outline>
 						</outline>
 					<outline text="this.markChanged();"></outline>
+					<outline text="var node = this.getCursor (); //5/9/21 by DW"></outline>
+					<outline text="concordInstance.fireCallback (&quot;opReorg&quot;, this.setCursorContext (node)); //5/9/21 by DW"></outline>
 					<outline text="}"></outline>
 					</outline>
 				<outline text="return ableToMoveInDirection;"></outline>
