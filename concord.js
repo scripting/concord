@@ -195,6 +195,9 @@ var ConcordUtil = {
 		if (iconName == "twitter") {
 			faClass = "fab";
 			}
+		if (iconName == "markdown") {
+			faClass = "fab";
+			}
 		return ("<i class=\"node-icon " + faClass + " fa-"+ iconName +"\"></i>");
 		},
 	getKeystroke: function (event) { //2/12/20 by DW
