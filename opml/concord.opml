@@ -269,6 +269,10 @@
 					<outline text="faClass = &quot;fab&quot;;"></outline>
 					<outline text="}"></outline>
 					</outline>
+				<outline text="if (iconName == &quot;rss&quot;) { //3/11/22 by DW">
+					<outline text="faClass = &quot;fas&quot;;"></outline>
+					<outline text="}"></outline>
+					</outline>
 				<outline text="return (&quot;&lt;i class=\&quot;node-icon &quot; + faClass + &quot; fa-&quot;+ iconName +&quot;\&quot;&gt;&lt;/i&gt;&quot;);"></outline>
 				<outline isComment="true" text="return (&quot;&lt;i class=\&quot;node-icon far fa-&quot;+ iconName +&quot;\&quot;&gt;&lt;/i&gt;&quot;);"></outline>
 				<outline text="},"></outline>

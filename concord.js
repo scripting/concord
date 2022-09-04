@@ -198,6 +198,9 @@ var ConcordUtil = {
 		if (iconName == "markdown") {
 			faClass = "fab";
 			}
+		if (iconName == "rss") { //3/11/22 by DW
+			faClass = "fas";
+			}
 		return ("<i class=\"node-icon " + faClass + " fa-"+ iconName +"\"></i>");
 		},
 	getKeystroke: function (event) { //2/12/20 by DW
