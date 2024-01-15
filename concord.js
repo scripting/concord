@@ -2763,6 +2763,9 @@ function ConcordOp(root, concordInstance, _cursor) {
 					var cursor = this.getCursor (), flCursorMoved = false;
 					for (var i = 1; i <= ix; i++) {
 						var next = null;
+						if (!cursor) { //1/15/24 by DW
+							return;
+							}
 						if (!cursor.hasClass ("collapsed")) {
 							var outline = cursor.children ("ol");
 							if (outline.length == 1) {

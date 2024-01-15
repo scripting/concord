@@ -2,7 +2,7 @@
 <opml version="2.0">
 	<head>
 		<title>concord.js</title>
-		<dateModified>&lt;%dateModified%></dateModified>
+		<dateModified>Mon, 15 Jan 2024 15:26:23 GMT</dateModified>
 		<expansionState></expansionState>
 		<vertScrollState>1</vertScrollState>
 		<windowTop>300</windowTop>
@@ -3633,6 +3633,10 @@
 							<outline text="var cursor = this.getCursor (), flCursorMoved = false;"></outline>
 							<outline text="for (var i = 1; i &lt;= ix; i++) {">
 								<outline text="var next = null;"></outline>
+								<outline created="Mon, 15 Jan 2024 15:15:26 GMT" text="if (!cursor) { //1/15/24 by DW">
+									<outline created="Mon, 15 Jan 2024 15:22:53 GMT" text="return;"></outline>
+									<outline created="Mon, 15 Jan 2024 15:15:26 GMT" text="}"></outline>
+									</outline>
 								<outline text="if (!cursor.hasClass (&quot;collapsed&quot;)) {">
 									<outline text="var outline = cursor.children (&quot;ol&quot;);"></outline>
 									<outline text="if (outline.length == 1) {">
