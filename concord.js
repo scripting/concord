@@ -128,9 +128,9 @@ jQuery.fn.reverse = [].reverse;
 	var flatdown = "flatdown";
 	var nodirection = "nodirection";
 var XML_CHAR_MAP = {
-	'<': '<',
-	'>': '>',
-	'&': '&',
+	'<': '&lt;',
+	'>': '&gt;',
+	'&': '&amp;',
 	'"': '&'+'quot;'
 	};
 var ConcordUtil = {
@@ -1016,20 +1016,20 @@ function ConcordEditor(root, concordInstance) {
 			for(var tagIndex in allowedTags){
 				var tag = allowedTags[tagIndex];
 				if (tag == "img"){
-					h = h.replace(new RegExp("<"+tag+"((?!>).+)(/)?>","gi"),"<"+tag+"$1"+"/>");
+					h = h.replace(new RegExp("&lt;"+tag+"((?!&gt;).+)(/)?&gt;","gi"),"<"+tag+"$1"+"/>");
 					}
 				else if (tag=="a"){
-					h = h.replace(new RegExp("<"+tag+"((?!>).*?)>((?!</"+tag+">).+?)</"+tag+">","gi"),"<"+tag+"$1"+">$2"+"<"+"/"+tag+">");
+					h = h.replace(new RegExp("&lt;"+tag+"((?!&gt;).*?)&gt;((?!&lt;/"+tag+"&gt;).+?)&lt;/"+tag+"&gt;","gi"),"<"+tag+"$1"+">$2"+"<"+"/"+tag+">");
 					}
 				else {
-					h = h.replace(new RegExp("<"+tag+">((?!</"+tag+">).+?)</"+tag+">","gi"),"<"+tag+">$1"+"<"+"/"+tag+">");
+					h = h.replace(new RegExp("&lt;"+tag+"&gt;((?!&lt;/"+tag+"&gt;).+?)&lt;/"+tag+"&gt;","gi"),"<"+tag+">$1"+"<"+"/"+tag+">");
 					}
 				}
 			}
 		return h;
 		};
 	this.unescape = function(s){
-		var h = s.replace(/</g,"<").replace(/>/g,">");
+		var h = s.replace(/</g,"&lt;").replace(/>/g,"&gt;");
 		h = $("<div/>").html(h).text();
 		return h;
 		};

@@ -2,7 +2,7 @@
 <opml version="2.0">
 	<head>
 		<title>concord.js</title>
-		<dateModified>Tue, 29 Sep 2026 15:46:29 GMT</dateModified>
+		<dateModified>Tue, 29 Sep 2026 16:19:43 GMT</dateModified>
 		<expansionState></expansionState>
 		<vertScrollState>1</vertScrollState>
 		<windowTop>300</windowTop>
@@ -109,7 +109,7 @@
 					<outline text="}" />
 				</outline>
 				<outline text="if(this.focusRoot==null){">
-					<outline text="if($(&quot;.concord-root:visible&quot;).length>0){">
+					<outline text="if($(&quot;.concord-root:visible&quot;).length&gt;0){">
 						<outline text="return this.setFocusRoot($(&quot;.concord-root:visible:first&quot;));" />
 						<outline text="}else{">
 							<outline text="return null;" />
@@ -180,7 +180,7 @@
 		<outline text="var XML_CHAR_MAP = {">
 			<outline text="'&lt;': '&amp;lt;'," />
 			<outline text="'\'': '&amp;apos;', //8/11/21 by DW" isComment="true" />
-			<outline text="'>': '&amp;gt;'," />
+			<outline text="'&gt;': '&amp;gt;'," />
 			<outline text="'&amp;': '&amp;amp;'," />
 			<outline text="'&quot;': '&amp;'+'quot;'" />
 			<outline text="};" />
@@ -189,7 +189,7 @@
 			<outline text="escapeXml: function(s) {">
 				<outline text="s = s.toString();" />
 				<outline text="s = s.replace(/\u00A0/g, &quot; &quot;);" />
-				<outline text="var escaped = s.replace(/[&lt;>&amp;&quot;]/g, function(ch) {">
+				<outline text="var escaped = s.replace(/[&lt;&gt;&amp;&quot;]/g, function(ch) {">
 					<outline text="return XML_CHAR_MAP[ch];" />
 					<outline text="});" />
 				</outline>
@@ -223,7 +223,7 @@
 					<outline text="}" />
 				</outline>
 				<outline text="if (flUnicase) {">
-					<outline text="for (var i = possibleEnding.length - 1; i >= 0; i--) {">
+					<outline text="for (var i = possibleEnding.length - 1; i &gt;= 0; i--) {">
 						<outline text="if (stringLower (s [ixstring--]) != stringLower (possibleEnding [i])) {">
 							<outline text="return (false);" />
 							<outline text="}" />
@@ -233,7 +233,7 @@
 					<outline text="}" />
 				</outline>
 				<outline text="else {">
-					<outline text="for (var i = possibleEnding.length - 1; i >= 0; i--) {">
+					<outline text="for (var i = possibleEnding.length - 1; i &gt;= 0; i--) {">
 						<outline text="if (s [ixstring--] != possibleEnding [i]) {">
 							<outline text="return (false);" />
 							<outline text="}" />
@@ -274,8 +274,8 @@
 					<outline text="faClass = &quot;fas&quot;;" />
 					<outline text="}" />
 				</outline>
-				<outline text="return (&quot;&lt;i class=\&quot;node-icon &quot; + faClass + &quot; fa-&quot;+ iconName +&quot;\&quot;>&lt;/i>&quot;);" />
-				<outline text="return (&quot;&lt;i class=\&quot;node-icon far fa-&quot;+ iconName +&quot;\&quot;>&lt;/i>&quot;);" isComment="true" />
+				<outline text="return (&quot;&lt;i class=\&quot;node-icon &quot; + faClass + &quot; fa-&quot;+ iconName +&quot;\&quot;&gt;&lt;/i&gt;&quot;);" />
+				<outline text="return (&quot;&lt;i class=\&quot;node-icon far fa-&quot;+ iconName +&quot;\&quot;&gt;&lt;/i&gt;&quot;);" isComment="true" />
 				<outline text="}," />
 			</outline>
 			<outline text="getKeystroke: function (event) { //2/12/20 by DW">
@@ -467,7 +467,7 @@
 						<outline text="}" />
 					</outline>
 					<outline text="var ch = event.which;" />
-					<outline text="if ((ch >= 65) &amp;&amp; (ch &lt;= 90)) { //meta-A through meta-Z">
+					<outline text="if ((ch &gt;= 65) &amp;&amp; (ch &lt;= 90)) { //meta-A through meta-Z">
 						<outline text="if (flmeta) {">
 							<outline text="return (&quot;meta-&quot; + String.fromCharCode (ch));" />
 							<outline text="}" />
@@ -475,7 +475,7 @@
 						<outline text="}" />
 					</outline>
 					<outline text="else {">
-						<outline text="if ((ch >= 48) &amp;&amp; (ch &lt;= 57)) { //meta-0 through meta-9 -- 4/20/21 by DW">
+						<outline text="if ((ch &gt;= 48) &amp;&amp; (ch &lt;= 57)) { //meta-0 through meta-9 -- 4/20/21 by DW">
 							<outline text="if (flmeta) {">
 								<outline text="return (&quot;meta-&quot; + String.fromCharCode (ch));" />
 								<outline text="}" />
@@ -498,7 +498,7 @@
 				<outline text="var s = concordMetaizeKeystroke (event);" />
 				<outline text="if (concordKeystrokes [s] !== undefined) {">
 					<outline text="var val = concordKeystrokes [s];" />
-					<outline text="if (val.length > 0) { //2/23/14 by DW">
+					<outline text="if (val.length &gt; 0) { //2/23/14 by DW">
 						<outline text="return (val);" />
 						<outline text="}" />
 					</outline>
@@ -614,7 +614,7 @@
 						<outline text="}" />
 					</outline>
 					<outline text="this.root.parent().find(&quot;style.prefsStyle&quot;).remove();" />
-					<outline text="var css = '&lt;style type=&quot;text/css&quot; class=&quot;prefsStyle&quot;>\n';" />
+					<outline text="var css = '&lt;style type=&quot;text/css&quot; class=&quot;prefsStyle&quot;&gt;\n';" />
 					<outline text="var cssId=&quot;&quot;;" />
 					<outline text="if(this.root.parent().attr(&quot;id&quot;)){">
 						<outline text="cssId=&quot;#&quot;+this.root.parent().attr(&quot;id&quot;);" />
@@ -649,7 +649,7 @@
 						<outline text="css += &quot;}\n&quot;;" />
 						<outline text="}" />
 					</outline>
-					<outline text="css += '&lt;/style>\n';" />
+					<outline text="css += '&lt;/style&gt;\n';" />
 					<outline text="this.root.before(css);" />
 					<outline text="if(newprefs.css){">
 						<outline text="this.op.setStyle(newprefs.css);" />
@@ -691,18 +691,18 @@
 				<outline text="};" />
 			</outline>
 			<outline text="this.init = function() {">
-				<outline text="if($(container).find(&quot;.concord-root:first&quot;).length > 0) {">
+				<outline text="if($(container).find(&quot;.concord-root:first&quot;).length &gt; 0) {">
 					<outline text="this.root = $(container).find(&quot;.concord-root:first&quot;);" />
 					<outline text="this.pasteBin = $(container).find(&quot;.pasteBin:first&quot;);" />
 					<outline text="this.afterInit();" />
 					<outline text="return;" />
 					<outline text="}" />
 				</outline>
-				<outline text="var root = $(&quot;&lt;ol>&lt;/ol>&quot;);" />
+				<outline text="var root = $(&quot;&lt;ol&gt;&lt;/ol&gt;&quot;);" />
 				<outline text="root.addClass(&quot;concord concord-root&quot;);" />
 				<outline text="root.appendTo(container);" />
 				<outline text="this.root = root;" />
-				<outline text="var pasteBin = $('&lt;div class=&quot;pasteBin&quot; contenteditable=&quot;true&quot; style=&quot;position: absolute; height: 1px; width:1px; outline:none; overflow:hidden;&quot;>&lt;/div>');" />
+				<outline text="var pasteBin = $('&lt;div class=&quot;pasteBin&quot; contenteditable=&quot;true&quot; style=&quot;position: absolute; height: 1px; width:1px; outline:none; overflow:hidden;&quot;&gt;&lt;/div&gt;');" />
 				<outline text="pasteBin.appendTo(container);" />
 				<outline text="this.pasteBin = pasteBin;" />
 				<outline text="this.afterInit();" />
@@ -855,15 +855,15 @@
 		</outline>
 		<outline text="function ConcordEditor(root, concordInstance) {">
 			<outline text="this.makeNode = function(){">
-				<outline text="var node = $(&quot;&lt;li>&lt;/li>&quot;);" />
+				<outline text="var node = $(&quot;&lt;li&gt;&lt;/li&gt;&quot;);" />
 				<outline text="node.addClass(&quot;concord-node&quot;);" />
-				<outline text="var wrapper = $(&quot;&lt;div class='concord-wrapper'>&lt;/div>&quot;);" />
+				<outline text="var wrapper = $(&quot;&lt;div class='concord-wrapper'&gt;&lt;/div&gt;&quot;);" />
 				<outline text="var iconName=&quot;caret-right&quot;;" />
 				<outline text="var icon = ConcordUtil.getIconHtml (iconName);" />
 				<outline text="wrapper.append(icon);" />
 				<outline text="wrapper.addClass(&quot;type-icon&quot;);" />
-				<outline text="var text = $(&quot;&lt;div class='concord-text' contenteditable='true'>&lt;/div>&quot;);" />
-				<outline text="var outline = $(&quot;&lt;ol>&lt;/ol>&quot;);" />
+				<outline text="var text = $(&quot;&lt;div class='concord-text' contenteditable='true'&gt;&lt;/div&gt;&quot;);" />
+				<outline text="var outline = $(&quot;&lt;ol&gt;&lt;/ol&gt;&quot;);" />
 				<outline text="text.appendTo(wrapper);" />
 				<outline text="wrapper.appendTo(node);" />
 				<outline text="outline.appendTo(node);" />
@@ -920,7 +920,7 @@
 				</outline>
 				<outline text="text.addClass(&quot;editing&quot;);" />
 				<outline text="if(!empty){">
-					<outline text="if(root.find(&quot;.concord-node.dirty&quot;).length>0){">
+					<outline text="if(root.find(&quot;.concord-node.dirty&quot;).length&gt;0){">
 						<outline text="concordInstance.op.markChanged();" />
 						<outline text="}" />
 					</outline>
@@ -974,12 +974,12 @@
 					</outline>
 					<outline text="}" />
 				</outline>
-				<outline text="var opml = '&lt;?xml version=&quot;1.0&quot;?>\n';" />
-				<outline text="opml += '&lt;opml version=&quot;2.0&quot;>\n';" />
-				<outline text="opml += '&lt;head>\n';" />
-				<outline text="opml += '&lt;title>' + ConcordUtil.escapeXml(title) + '&lt;/title>\n';" />
-				<outline text="opml += '&lt;/head>\n';" />
-				<outline text="opml += '&lt;body>\n';" />
+				<outline text="var opml = '&lt;?xml version=&quot;1.0&quot;?&gt;\n';" />
+				<outline text="opml += '&lt;opml version=&quot;2.0&quot;&gt;\n';" />
+				<outline text="opml += '&lt;head&gt;\n';" />
+				<outline text="opml += '&lt;title&gt;' + ConcordUtil.escapeXml(title) + '&lt;/title&gt;\n';" />
+				<outline text="opml += '&lt;/head&gt;\n';" />
+				<outline text="opml += '&lt;body&gt;\n';" />
 				<outline text="if(root.hasClass(&quot;concord-cursor&quot;)) {">
 					<outline text="opml += this.opmlLine(root, 0, flsubsonly);" />
 					<outline text="} else {">
@@ -991,8 +991,8 @@
 						<outline text="}" />
 					</outline>
 				</outline>
-				<outline text="opml += '&lt;/body>\n';" />
-				<outline text="opml += '&lt;/opml>\n';" />
+				<outline text="opml += '&lt;/body&gt;\n';" />
+				<outline text="opml += '&lt;/opml&gt;\n';" />
 				<outline text="return opml;" />
 				<outline text="};" />
 			</outline>
@@ -1008,7 +1008,7 @@
 				</outline>
 				<outline text="" />
 				<outline text="var text = this.unescape(node.children(&quot;.concord-wrapper:first&quot;).children(&quot;.concord-text:first&quot;).html());" />
-				<outline text="var textMatches = text.match(/^(.+)&lt;br>\s*$/);" />
+				<outline text="var textMatches = text.match(/^(.+)&lt;br&gt;\s*$/);" />
 				<outline text="if(textMatches){">
 					<outline text="text = textMatches[1];" />
 					<outline text="}" />
@@ -1039,11 +1039,11 @@
 					</outline>
 					<outline text="subheads = node.children(&quot;ol&quot;).children(&quot;.concord-node&quot;);" />
 					<outline text="if(subheads.length==0){">
-						<outline text="opml+=&quot;/>\n&quot;;" />
+						<outline text="opml+=&quot;/&gt;\n&quot;;" />
 						<outline text="return opml;" />
 						<outline text="}" />
 					</outline>
-					<outline text="opml += &quot;>\n&quot;;" />
+					<outline text="opml += &quot;&gt;\n&quot;;" />
 					<outline text="}" />
 				</outline>
 				<outline text="else {">
@@ -1063,7 +1063,7 @@
 						<outline text="opml += '\t';" />
 						<outline text="}" />
 					</outline>
-					<outline text="opml += '&lt;/outline>\n';" />
+					<outline text="opml += '&lt;/outline&gt;\n';" />
 					<outline text="}" />
 				</outline>
 				<outline text="" />
@@ -1108,7 +1108,7 @@
 					</outline>
 					<outline text="if(multiple &amp;&amp; multipleRange) {">
 						<outline text="var prevNodes = node.prevAll(&quot;.selected&quot;);" />
-						<outline text="if(prevNodes.length > 0) {">
+						<outline text="if(prevNodes.length &gt; 0) {">
 							<outline text="var stamp = false;" />
 							<outline text="node.prevAll().reverse().each(function() {">
 								<outline text="if($(this).hasClass(&quot;selected&quot;)) {">
@@ -1122,7 +1122,7 @@
 							</outline>
 							<outline text="} else {">
 								<outline text="var nextNodes = node.nextAll(&quot;.selected&quot;);" />
-								<outline text="if(nextNodes.length > 0) {">
+								<outline text="if(nextNodes.length &gt; 0) {">
 									<outline text="var stamp = true;" />
 									<outline text="node.nextAll().each(function() {">
 										<outline text="if($(this).hasClass(&quot;selected&quot;)) {">
@@ -1148,14 +1148,14 @@
 					</outline>
 					<outline text="//text.blur();" />
 					<outline text="node.addClass(&quot;selected&quot;);" />
-					<outline text="if(text.text().length>0){">
+					<outline text="if(text.text().length&gt;0){">
 						<outline text="//root.data(&quot;currentChange&quot;, root.children().clone());" />
 						<outline text="}" />
 					</outline>
 					<outline text="this.dragModeExit();" />
 					<outline text="}" />
 				</outline>
-				<outline text="if(root.find(&quot;.concord-node.dirty&quot;).length>0){">
+				<outline text="if(root.find(&quot;.concord-node.dirty&quot;).length&gt;0){">
 					<outline text="concordInstance.op.markChanged();" />
 					<outline text="}" />
 				</outline>
@@ -1187,7 +1187,7 @@
 					<outline text="level = 1;" />
 					<outline text="}" />
 				</outline>
-				<outline text="var node = $(&quot;&lt;li>&lt;/li>&quot;);" />
+				<outline text="var node = $(&quot;&lt;li&gt;&lt;/li&gt;&quot;);" />
 				<outline text="node.addClass(&quot;concord-node&quot;);" />
 				<outline text="node.addClass(&quot;concord-level-&quot;+level);" />
 				<outline text="var attributes = {};" />
@@ -1203,7 +1203,7 @@
 					<outline text="});" />
 				</outline>
 				<outline text="node.data(&quot;attributes&quot;, attributes);" />
-				<outline text="var wrapper = $(&quot;&lt;div class='concord-wrapper'>&lt;/div>&quot;);" />
+				<outline text="var wrapper = $(&quot;&lt;div class='concord-wrapper'&gt;&lt;/div&gt;&quot;);" />
 				<outline text="var nodeIcon = attributes[&quot;icon&quot;];" />
 				<outline text="if(!nodeIcon){">
 					<outline text="nodeIcon = attributes[&quot;type&quot;];" />
@@ -1221,14 +1221,14 @@
 					<outline text="}" />
 				</outline>
 				<outline text="var icon = ConcordUtil.getIconHtml (iconName);" />
-				<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-&quot;+ iconName +&quot;\&quot;>&lt;&quot;+&quot;/i>&quot;;" isComment="true" />
+				<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-&quot;+ iconName +&quot;\&quot;&gt;&lt;&quot;+&quot;/i&gt;&quot;;" isComment="true" />
 				<outline text="wrapper.append(icon);" />
 				<outline text="wrapper.addClass(&quot;type-icon&quot;);" />
 				<outline text="if(attributes[&quot;isComment&quot;]==&quot;true&quot;){">
 					<outline text="node.addClass(&quot;concord-comment&quot;);" />
 					<outline text="}" />
 				</outline>
-				<outline text="var text = $(&quot;&lt;div class='concord-text' contenteditable='true'>&lt;/div>&quot;);" />
+				<outline text="var text = $(&quot;&lt;div class='concord-text' contenteditable='true'&gt;&lt;/div&gt;&quot;);" />
 				<outline text="text.addClass(&quot;concord-level-&quot;+level+&quot;-text&quot;);" />
 				<outline text="" />
 				<outline text="//9/18/20 by DW -- option to insert without escaping">
@@ -1253,7 +1253,7 @@
 					</outline>
 					<outline text="}" />
 				</outline>
-				<outline text="var children = $(&quot;&lt;ol>&lt;/ol>&quot;);" />
+				<outline text="var children = $(&quot;&lt;ol&gt;&lt;/ol&gt;&quot;);" />
 				<outline text="var editor = this;" />
 				<outline text="outline.children(&quot;outline&quot;).each(function() {">
 					<outline text="var child = editor.build($(this), collapsed, level+1, flInsertRawHtml);" />
@@ -1261,7 +1261,7 @@
 					<outline text="});" />
 				</outline>
 				<outline text="if(collapsed){">
-					<outline text="if(outline.children(&quot;outline&quot;).size()>0){">
+					<outline text="if(outline.children(&quot;outline&quot;).size()&gt;0){">
 						<outline text="node.addClass(&quot;collapsed&quot;);" />
 						<outline text="}" />
 					</outline>
@@ -1306,8 +1306,8 @@
 						<outline text="}" />
 					</outline>
 					<outline text="var h = concordInstance.pasteBin.html();" />
-					<outline text="h = h.replace(new RegExp(&quot;&lt;(div|p|blockquote|pre|li|br|dd|dt|code|h\\d)[^>]*(/)?>&quot;,&quot;gi&quot;),&quot;\n&quot;);" />
-					<outline text="h = $(&quot;&lt;div/>&quot;).html(h).text();" />
+					<outline text="h = h.replace(new RegExp(&quot;&lt;(div|p|blockquote|pre|li|br|dd|dt|code|h\\d)[^&gt;]*(/)?&gt;&quot;,&quot;gi&quot;),&quot;\n&quot;);" />
+					<outline text="h = $(&quot;&lt;div/&gt;&quot;).html(h).text();" />
 					<outline text="var clipboardMatch = false;" />
 					<outline text="if(concordClipboard !== undefined){">
 						<outline text="var trimmedClipboardText = concordClipboard.text.replace(/^[\s\r\n]+|[\s\r\n]+$/g,'');" />
@@ -1317,7 +1317,7 @@
 							<outline text="if(clipboardNodes){">
 								<outline text="var collapseNode = function(node){">
 									<outline text="node.find(&quot;ol&quot;).each(function() {">
-										<outline text="if($(this).children().length > 0) {">
+										<outline text="if($(this).children().length &gt; 0) {">
 											<outline text="$(this).parent().addClass(&quot;collapsed&quot;);" />
 											<outline text="}" />
 										</outline>
@@ -1351,7 +1351,7 @@
 							</outline>
 							<outline text="}" />
 						</outline>
-						<outline text="if(!concordInstance.op.inTextMode() || (numberoflines > 1)){">
+						<outline text="if(!concordInstance.op.inTextMode() || (numberoflines &gt; 1)){">
 							<outline text="concordInstance.op.insertText(h);" />
 							<outline text="}else{">
 								<outline text="concordInstance.op.saveState();" />
@@ -1388,22 +1388,22 @@
 				<outline text="};" />
 			</outline>
 			<outline text="this.escape = function(s){">
-				<outline text="var h = $(&quot;&lt;div/>&quot;).text(s).html();" />
+				<outline text="var h = $(&quot;&lt;div/&gt;&quot;).text(s).html();" />
 				<outline text="h = h.replace(/\u00A0/g, &quot; &quot;);" />
 				<outline text="if(concordInstance.op.getRenderMode()){ // Render HTML if op.getRenderMode() returns true - 2/17/13 by KS">
 					<outline text="var allowedTags = [&quot;b&quot;,&quot;strong&quot;,&quot;i&quot;,&quot;em&quot;,&quot;a&quot;,&quot;img&quot;,&quot;strike&quot;,&quot;del&quot;];" />
 					<outline text="for(var tagIndex in allowedTags){">
 						<outline text="var tag = allowedTags[tagIndex];" />
 						<outline text="if (tag == &quot;img&quot;){">
-							<outline text="h = h.replace(new RegExp(&quot;&amp;lt;&quot;+tag+&quot;((?!&amp;gt;).+)(/)?&amp;gt;&quot;,&quot;gi&quot;),&quot;&lt;&quot;+tag+&quot;$1&quot;+&quot;/>&quot;);" />
+							<outline text="h = h.replace(new RegExp(&quot;&amp;lt;&quot;+tag+&quot;((?!&amp;gt;).+)(/)?&amp;gt;&quot;,&quot;gi&quot;),&quot;&lt;&quot;+tag+&quot;$1&quot;+&quot;/&gt;&quot;);" />
 							<outline text="}" />
 						</outline>
 						<outline text="else if (tag==&quot;a&quot;){">
-							<outline text="h = h.replace(new RegExp(&quot;&amp;lt;&quot;+tag+&quot;((?!&amp;gt;).*?)&amp;gt;((?!&amp;lt;/&quot;+tag+&quot;&amp;gt;).+?)&amp;lt;/&quot;+tag+&quot;&amp;gt;&quot;,&quot;gi&quot;),&quot;&lt;&quot;+tag+&quot;$1&quot;+&quot;>$2&quot;+&quot;&lt;&quot;+&quot;/&quot;+tag+&quot;>&quot;);" />
+							<outline text="h = h.replace(new RegExp(&quot;&amp;lt;&quot;+tag+&quot;((?!&amp;gt;).*?)&amp;gt;((?!&amp;lt;/&quot;+tag+&quot;&amp;gt;).+?)&amp;lt;/&quot;+tag+&quot;&amp;gt;&quot;,&quot;gi&quot;),&quot;&lt;&quot;+tag+&quot;$1&quot;+&quot;&gt;$2&quot;+&quot;&lt;&quot;+&quot;/&quot;+tag+&quot;&gt;&quot;);" />
 							<outline text="}" />
 						</outline>
 						<outline text="else {">
-							<outline text="h = h.replace(new RegExp(&quot;&amp;lt;&quot;+tag+&quot;&amp;gt;((?!&amp;lt;/&quot;+tag+&quot;&amp;gt;).+?)&amp;lt;/&quot;+tag+&quot;&amp;gt;&quot;,&quot;gi&quot;),&quot;&lt;&quot;+tag+&quot;>$1&quot;+&quot;&lt;&quot;+&quot;/&quot;+tag+&quot;>&quot;);" />
+							<outline text="h = h.replace(new RegExp(&quot;&amp;lt;&quot;+tag+&quot;&amp;gt;((?!&amp;lt;/&quot;+tag+&quot;&amp;gt;).+?)&amp;lt;/&quot;+tag+&quot;&amp;gt;&quot;,&quot;gi&quot;),&quot;&lt;&quot;+tag+&quot;&gt;$1&quot;+&quot;&lt;&quot;+&quot;/&quot;+tag+&quot;&gt;&quot;);" />
 							<outline text="}" />
 						</outline>
 						<outline text="}" />
@@ -1414,8 +1414,8 @@
 				<outline text="};" />
 			</outline>
 			<outline text="this.unescape = function(s){">
-				<outline text="var h = s.replace(/&lt;/g,&quot;&amp;lt;&quot;).replace(/>/g,&quot;&amp;gt;&quot;);" />
-				<outline text="h = $(&quot;&lt;div/>&quot;).html(h).text();" />
+				<outline text="var h = s.replace(/&lt;/g,&quot;&amp;lt;&quot;).replace(/&gt;/g,&quot;&amp;gt;&quot;);" />
+				<outline text="h = $(&quot;&lt;div/&gt;&quot;).html(h).text();" />
 				<outline text="return h;" />
 				<outline text="};" />
 			</outline>
@@ -1561,7 +1561,7 @@
 					</outline>
 					<outline text="if(node.length==1) {">
 						<outline text="event.stopPropagation();" />
-						<outline text="if(event.shiftKey &amp;&amp; (node.parents(&quot;.concord-node.selected&quot;).length>0)){">
+						<outline text="if(event.shiftKey &amp;&amp; (node.parents(&quot;.concord-node.selected&quot;).length&gt;0)){">
 							<outline text="return;" />
 							<outline text="}" />
 						</outline>
@@ -1630,7 +1630,7 @@
 					</outline>
 					<outline text="if(wrapper.hasClass(&quot;concord-wrapper&quot;)) {">
 						<outline text="var node = wrapper.parents(&quot;.concord-node:first&quot;);" />
-						<outline text="if(event.shiftKey &amp;&amp; (node.parents(&quot;.concord-node.selected&quot;).length>0)){">
+						<outline text="if(event.shiftKey &amp;&amp; (node.parents(&quot;.concord-node.selected&quot;).length&gt;0)){">
 							<outline text="return;" />
 							<outline text="}" />
 						</outline>
@@ -1712,7 +1712,7 @@
 					<outline text="return;" />
 					<outline text="}" />
 				</outline>
-				<outline text="if($(this).html().match(/^\s*&lt;br>\s*$/)){">
+				<outline text="if($(this).html().match(/^\s*&lt;br&gt;\s*$/)){">
 					<outline text="$(this).html(&quot;&quot;);" />
 					<outline text="}" />
 				</outline>
@@ -1756,7 +1756,7 @@
 				</outline>
 				<outline text="if((copyText!=&quot;&quot;) &amp;&amp; (copyText!=&quot;\n&quot;)){">
 					<outline text="concordClipboard = {text: copyText, data: root.find(&quot;.selected&quot;).clone(true, true)};" />
-					<outline text="concordInstance.pasteBin.html(&quot;&lt;pre>&quot;+$(&quot;&lt;div/>&quot;).text(copyText).html()+&quot;&lt;/pre>&quot;);" />
+					<outline text="concordInstance.pasteBin.html(&quot;&lt;pre&gt;&quot;+$(&quot;&lt;div/&gt;&quot;).text(copyText).html()+&quot;&lt;/pre&gt;&quot;);" />
 					<outline text="concordInstance.pasteBin.focus();" />
 					<outline text="document.execCommand(&quot;selectAll&quot;);" />
 					<outline text="}" />
@@ -1794,7 +1794,7 @@
 				</outline>
 				<outline text="if((copyText!=&quot;&quot;) &amp;&amp; (copyText!=&quot;\n&quot;)){">
 					<outline text="concordClipboard = {text: copyText, data: root.find(&quot;.selected&quot;).clone(true, true)};" />
-					<outline text="concordInstance.pasteBin.html(&quot;&lt;pre>&quot;+$(&quot;&lt;div/>&quot;).text(copyText).html()+&quot;&lt;/pre>&quot;);" />
+					<outline text="concordInstance.pasteBin.html(&quot;&lt;pre&gt;&quot;+$(&quot;&lt;div/&gt;&quot;).text(copyText).html()+&quot;&lt;/pre&gt;&quot;);" />
 					<outline text="concordInstance.pasteBinFocus();" />
 					<outline text="}" />
 				</outline>
@@ -1926,7 +1926,7 @@
 						<outline text="var target = $(event.target);" />
 						<outline text="var node = target.parents(&quot;.concord-node:first&quot;);" />
 						<outline text="var draggable = root.find(&quot;.selected&quot;);" />
-						<outline text="if((node.length == 1) &amp;&amp; (draggable.length >= 1)) {">
+						<outline text="if((node.length == 1) &amp;&amp; (draggable.length &gt;= 1)) {">
 							<outline text="var isDraggableTarget = false;" />
 							<outline text="draggable.each(function(){">
 								<outline text="if(this==node[0]){">
@@ -2004,7 +2004,7 @@
 					<outline text="var target = $(event.target);" />
 					<outline text="var node = target.parents(&quot;.concord-node:first&quot;);" />
 					<outline text="var draggable = root.find(&quot;.selected&quot;);" />
-					<outline text="if((node.length == 1) &amp;&amp; (draggable.length>=1)) {">
+					<outline text="if((node.length == 1) &amp;&amp; (draggable.length&gt;=1)) {">
 						<outline text="var isDraggableTarget = false;" />
 						<outline text="draggable.each(function(){">
 							<outline text="if(this==node[0]){">
@@ -2169,7 +2169,7 @@
 					</outline>
 					<outline text="node.addClass(&quot;collapsed&quot;);" />
 					<outline text="node.find(&quot;ol&quot;).each(function() {">
-						<outline text="if($(this).children().length > 0) {">
+						<outline text="if($(this).children().length &gt; 0) {">
 							<outline text="$(this).parent().addClass(&quot;collapsed&quot;);" />
 							<outline text="}" />
 						</outline>
@@ -2265,7 +2265,7 @@
 									<outline text="}" />
 								</outline>
 							</outline>
-							<outline text="} else if(selected.length > 1) {">
+							<outline text="} else if(selected.length &gt; 1) {">
 								<outline text="var first = root.find(&quot;.selected:first&quot;);" />
 								<outline text="var p = first.prev();" />
 								<outline text="if(p.length==0){">
@@ -2306,7 +2306,7 @@
 			<outline text="this.deleteSubs = function() {">
 				<outline text="var node = this.getCursor();" />
 				<outline text="if(node.length == 1) {">
-					<outline text="if(node.children(&quot;ol&quot;).children().length > 0){">
+					<outline text="if(node.children(&quot;ol&quot;).children().length &gt; 0){">
 						<outline text="this.saveState();" />
 						<outline text="node.children(&quot;ol&quot;).empty();" />
 						<outline text="}" />
@@ -2319,7 +2319,7 @@
 			<outline text="this.demote = function() {">
 				<outline text="var node = this.getCursor();" />
 				<outline text="var movedSiblings = false;" />
-				<outline text="if(node.nextAll().length>0){">
+				<outline text="if(node.nextAll().length&gt;0){">
 					<outline text="this.saveState();" />
 					<outline text="node.nextAll().each(function() {">
 						<outline text="var sibling = $(this).clone(true, true);" />
@@ -2357,19 +2357,19 @@
 					<outline text="var lineHeight = parseInt(node.children(&quot;.concord-wrapper&quot;).children(&quot;.concord-text&quot;).css(&quot;line-height&quot;)) + 6;" />
 					<outline text="" />
 					<outline text="if (flConcordScrollEnabled) { //6/24/14 by DW -- provide a way to disable automatic scrolling">
-						<outline text="if (cursorHeight > windowHeight) { //6/24/14 by DW">
+						<outline text="if (cursorHeight &gt; windowHeight) { //6/24/14 by DW">
 							<outline text="var ctscroll = cursorPosition - ctPixelsAboveOutlineArea - lineHeight;" />
-							<outline text="if (ctscroll > 0) {">
+							<outline text="if (ctscroll &gt; 0) {">
 								<outline text="$(window).scrollTop (ctscroll);" />
 								<outline text="}" />
 							</outline>
 							<outline text="}" />
 						</outline>
 						<outline text="else {">
-							<outline text="if (( cursorPosition &lt; windowPosition ) || ( (cursorPosition+cursorHeight) > (windowPosition+windowHeight) ) ){">
+							<outline text="if (( cursorPosition &lt; windowPosition ) || ( (cursorPosition+cursorHeight) &gt; (windowPosition+windowHeight) ) ){">
 								<outline text="if(cursorPosition &lt; windowPosition){">
 									<outline text="$(window).scrollTop(cursorPosition);" />
-									<outline text="}else if ((cursorPosition+cursorHeight) > (windowPosition+windowHeight)){">
+									<outline text="}else if ((cursorPosition+cursorHeight) &gt; (windowPosition+windowHeight)){">
 										<outline text="if((cursorHeight+lineHeight) &lt; windowHeight){">
 											<outline text="$(window).scrollTop(cursorPosition - (windowHeight-cursorHeight)+lineHeight);" />
 											<outline text="}else{">
@@ -2412,7 +2412,7 @@
 			</outline>
 			<outline text="this.fullCollapse = function() {">
 				<outline text="root.find(&quot;.concord-node&quot;).each(function() {">
-					<outline text="if($(this).children(&quot;ol&quot;).children().size() > 0) {">
+					<outline text="if($(this).children(&quot;ol&quot;).children().size() &gt; 0) {">
 						<outline text="$(this).addClass(&quot;collapsed&quot;);" />
 						<outline text="}" />
 					</outline>
@@ -2456,7 +2456,7 @@
 				<outline text="var node = this.getCursor();" />
 				<outline text="if(node.length == 1) {">
 					<outline text="var text = node.children(&quot;.concord-wrapper:first&quot;).children(&quot;.concord-text:first&quot;).html();" />
-					<outline text="var textMatches = text.match(/^(.+)&lt;br>\s*$/);" />
+					<outline text="var textMatches = text.match(/^(.+)&lt;br&gt;\s*$/);" />
 					<outline text="if(textMatches){">
 						<outline text="text = textMatches[1];" />
 						<outline text="}" />
@@ -2565,7 +2565,7 @@
 						<outline text="while(cursor &amp;&amp; (nodeCount &lt; count)) {">
 							<outline text="var cursor = this._walk_up(cursor);" />
 							<outline text="if(cursor) {">
-								<outline text="if(!cursor.hasClass(&quot;collapsed&quot;) &amp;&amp; (cursor.children(&quot;ol&quot;).children().size() > 0)) {">
+								<outline text="if(!cursor.hasClass(&quot;collapsed&quot;) &amp;&amp; (cursor.children(&quot;ol&quot;).children().size() &gt; 0)) {">
 									<outline text="nodeCount++;" />
 									<outline text="ableToMoveInDirection = true;" />
 									<outline text="if(nodeCount == count) {">
@@ -2603,7 +2603,7 @@
 							</outline>
 							<outline text="cursor = next;" />
 							<outline text="if(cursor) {">
-								<outline text="if(!cursor.hasClass(&quot;collapsed&quot;) &amp;&amp; (cursor.children(&quot;ol&quot;).children().size() > 0)) {">
+								<outline text="if(!cursor.hasClass(&quot;collapsed&quot;) &amp;&amp; (cursor.children(&quot;ol&quot;).children().size() &gt; 0)) {">
 									<outline text="nodeCount++;" />
 									<outline text="ableToMoveInDirection = true;" />
 									<outline text="if(nodeCount == count) {">
@@ -2627,7 +2627,7 @@
 			<outline text="this.insert = function(insertText, insertDirection, flInsertRawHtml) { //9/16/20 by DW -- new optional param -- flInsertRawHtml">
 				<outline text="this.saveState();" />
 				<outline text="var level = this.getCursor().parents(&quot;.concord-node&quot;).length+1;" />
-				<outline text="var node = $(&quot;&lt;li>&lt;/li>&quot;);" />
+				<outline text="var node = $(&quot;&lt;li&gt;&lt;/li&gt;&quot;);" />
 				<outline text="node.addClass(&quot;concord-node&quot;);" />
 				<outline text="switch(insertDirection){">
 					<outline text="case right:">
@@ -2641,15 +2641,15 @@
 					<outline text="}" />
 				</outline>
 				<outline text="node.addClass(&quot;concord-level-&quot;+level);" />
-				<outline text="var wrapper = $(&quot;&lt;div class='concord-wrapper'>&lt;/div>&quot;);" />
+				<outline text="var wrapper = $(&quot;&lt;div class='concord-wrapper'&gt;&lt;/div&gt;&quot;);" />
 				<outline text="var iconName=&quot;caret-right&quot;;" />
 				<outline text="var icon = ConcordUtil.getIconHtml (iconName);" />
-				<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-&quot;+ iconName +&quot;\&quot;>&lt;&quot;+&quot;/i>&quot;;" isComment="true" />
+				<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-&quot;+ iconName +&quot;\&quot;&gt;&lt;&quot;+&quot;/i&gt;&quot;;" isComment="true" />
 				<outline text="wrapper.append(icon);" />
 				<outline text="wrapper.addClass(&quot;type-icon&quot;);" />
-				<outline text="var text = $(&quot;&lt;div class='concord-text' contenteditable='true'>&lt;/div>&quot;);" />
+				<outline text="var text = $(&quot;&lt;div class='concord-text' contenteditable='true'&gt;&lt;/div&gt;&quot;);" />
 				<outline text="text.addClass(&quot;concord-level-&quot;+level+&quot;-text&quot;);" />
-				<outline text="var outline = $(&quot;&lt;ol>&lt;/ol>&quot;);" />
+				<outline text="var outline = $(&quot;&lt;ol&gt;&lt;/ol&gt;&quot;);" />
 				<outline text="text.appendTo(wrapper);" />
 				<outline text="wrapper.appendTo(node);" />
 				<outline text="outline.appendTo(node);" />
@@ -2703,14 +2703,14 @@
 				<outline text="if(this.inTextMode()){">
 					<outline text="document.execCommand(&quot;insertImage&quot;, null, url);" />
 					<outline text="}else{">
-						<outline text="this.insert('&lt;img src=&quot;'+url+'&quot;>', down);" />
+						<outline text="this.insert('&lt;img src=&quot;'+url+'&quot;&gt;', down);" />
 						<outline text="}" />
 					</outline>
 				</outline>
 				<outline text="};" />
 			</outline>
 			<outline text="this.insertText = function(text){">
-				<outline text="var nodes = $(&quot;&lt;ol>&lt;/ol>&quot;);" />
+				<outline text="var nodes = $(&quot;&lt;ol&gt;&lt;/ol&gt;&quot;);" />
 				<outline text="var lastLevel = 0;" />
 				<outline text="var startingline = 0;" />
 				<outline text="var startinglevel = 0;" />
@@ -2730,7 +2730,7 @@
 					</outline>
 					<outline text="}" />
 				</outline>
-				<outline text="if(lines.length>(firstlinewithcontent+2)){">
+				<outline text="if(lines.length&gt;(firstlinewithcontent+2)){">
 					<outline text="if((lines[firstlinewithcontent].match(/^([\t\s]*)\-.*$/)==null) &amp;&amp; lines[firstlinewithcontent].match(/^.+$/) &amp;&amp; (lines[firstlinewithcontent+1]==&quot;&quot;)){">
 						<outline text="startingline = firstlinewithcontent+2;" />
 						<outline text="var workflowyParent = concordInstance.editor.makeNode();" />
@@ -2778,17 +2778,17 @@
 								<outline text="level = matches[1].length + startinglevel;" />
 								<outline text="}" />
 							</outline>
-							<outline text="if(level>lastLevel){">
+							<outline text="if(level&gt;lastLevel){">
 								<outline text="parents[lastLevel]=lastNode;" />
 								<outline text="parent = lastNode;" />
-								<outline text="}else if ((level>0) &amp;&amp; (level &lt; lastLevel)){">
+								<outline text="}else if ((level&gt;0) &amp;&amp; (level &lt; lastLevel)){">
 									<outline text="parent = parents[level-1];" />
 									<outline text="}" />
 								</outline>
 							</outline>
 							<outline text="}" />
 						</outline>
-						<outline text="if(parent &amp;&amp; (level > 0)){">
+						<outline text="if(parent &amp;&amp; (level &gt; 0)){">
 							<outline text="parent.children(&quot;ol&quot;).append(node);" />
 							<outline text="parent.addClass(&quot;collapsed&quot;);" />
 							<outline text="}else{">
@@ -2804,17 +2804,17 @@
 					<outline text="}" />
 				</outline>
 				<outline text="if(workflowyParent){">
-					<outline text="if(nodes.children().length > 0){">
+					<outline text="if(nodes.children().length &gt; 0){">
 						<outline text="workflowyParent.addClass(&quot;collapsed&quot;);" />
 						<outline text="}" />
 					</outline>
 					<outline text="var clonedNodes = nodes.clone();" />
 					<outline text="clonedNodes.children().appendTo(workflowyParent.children(&quot;ol&quot;));" />
-					<outline text="nodes = $(&quot;&lt;ol>&lt;/ol>&quot;);" />
+					<outline text="nodes = $(&quot;&lt;ol&gt;&lt;/ol&gt;&quot;);" />
 					<outline text="nodes.append(workflowyParent);" />
 					<outline text="}" />
 				</outline>
-				<outline text="if(nodes.children().length>0){">
+				<outline text="if(nodes.children().length&gt;0){">
 					<outline text="this.saveState();" />
 					<outline text="this.setTextMode(false);" />
 					<outline text="var cursor = this.getCursor();" />
@@ -2830,7 +2830,7 @@
 			<outline text="this.insertXml = function(opmltext,dir){">
 				<outline text="this.saveState();" />
 				<outline text="var doc = null;" />
-				<outline text="var nodes = $(&quot;&lt;ol>&lt;/ol>&quot;);" />
+				<outline text="var nodes = $(&quot;&lt;ol&gt;&lt;/ol&gt;&quot;);" />
 				<outline text="var cursor = this.getCursor();" />
 				<outline text="var level = cursor.parents(&quot;.concord-node&quot;).length+1;" />
 				<outline text="if(!dir){">
@@ -2864,7 +2864,7 @@
 					<outline text="var expansionStates = expansionState.text().split(&quot;,&quot;);" />
 					<outline text="var nodeId=1;" />
 					<outline text="nodes.find(&quot;.concord-node&quot;).each(function(){">
-						<outline text="if(expansionStates.indexOf(&quot;&quot;+nodeId) >= 0){">
+						<outline text="if(expansionStates.indexOf(&quot;&quot;+nodeId) &gt;= 0){">
 							<outline text="$(this).removeClass(&quot;collapsed&quot;);" />
 							<outline text="}" />
 						</outline>
@@ -2965,11 +2965,11 @@
 				<outline text="if(!this.inTextMode()){">
 					<outline text="if(root.data(&quot;clipboard&quot;)!=null){">
 						<outline text="var pasteNodes = root.data(&quot;clipboard&quot;).clone(true,true);" />
-						<outline text="if(pasteNodes.length>0){">
+						<outline text="if(pasteNodes.length&gt;0){">
 							<outline text="this.saveState();" />
 							<outline text="root.find(&quot;.selected&quot;).removeClass(&quot;selected&quot;);" />
 							<outline text="pasteNodes.insertAfter(this.getCursor());" />
-							<outline text="this.setCursor($(pasteNodes[0]), (pasteNodes.length>1));" />
+							<outline text="this.setCursor($(pasteNodes[0]), (pasteNodes.length&gt;1));" />
 							<outline text="this.markChanged();" />
 							<outline text="}" />
 						</outline>
@@ -2981,7 +2981,7 @@
 			</outline>
 			<outline text="this.promote = function() {">
 				<outline text="var node = this.getCursor();" />
-				<outline text="if(node.children(&quot;ol&quot;).children().length > 0){">
+				<outline text="if(node.children(&quot;ol&quot;).children().length &gt; 0){">
 					<outline text="this.saveState();" />
 					<outline text="node.children(&quot;ol&quot;).children().reverse().each(function() {">
 						<outline text="var child = $(this).clone(true, true);" />
@@ -3037,7 +3037,7 @@
 				<outline text="var toMove = this.getCursor();" />
 				<outline text="var selected = root.find(&quot;.selected&quot;);" />
 				<outline text="var iteration = 1;" />
-				<outline text="if(selected.length>1){">
+				<outline text="if(selected.length&gt;1){">
 					<outline text="cursor = root.find(&quot;.selected:first&quot;);" />
 					<outline text="toMove = root.find(&quot;.selected&quot;);" />
 					<outline text="}" />
@@ -3148,7 +3148,7 @@
 							</outline>
 							<outline text="var prevOutline = prev.children(&quot;ol&quot;);" />
 							<outline text="if(prevOutline.length == 0) {">
-								<outline text="prevOutline = $(&quot;&lt;ol>&lt;/ol>&quot;);" />
+								<outline text="prevOutline = $(&quot;&lt;ol&gt;&lt;/ol&gt;&quot;);" />
 								<outline text="prevOutline.appendTo(prev);" />
 								<outline text="}" />
 							</outline>
@@ -3251,7 +3251,7 @@
 			</outline>
 			<outline text="this.setStyle = function(css){">
 				<outline text="root.parent().find(&quot;style.customStyle&quot;).remove();" />
-				<outline text="root.before('&lt;style type=&quot;text/css&quot; class=&quot;customStyle&quot;>'+ css + '&lt;/style>');" />
+				<outline text="root.before('&lt;style type=&quot;text/css&quot; class=&quot;customStyle&quot;&gt;'+ css + '&lt;/style&gt;');" />
 				<outline text="return true;" />
 				<outline text="};" />
 			</outline>
@@ -3308,7 +3308,7 @@
 			<outline text="this.subsExpanded = function() {">
 				<outline text="var node = this.getCursor();" />
 				<outline text="if(node.length == 1) {">
-					<outline text="if(!node.hasClass(&quot;collapsed&quot;) &amp;&amp; (node.children(&quot;ol&quot;).children().size() > 0)) {">
+					<outline text="if(!node.hasClass(&quot;collapsed&quot;) &amp;&amp; (node.children(&quot;ol&quot;).children().size() &gt; 0)) {">
 						<outline text="return true;" />
 						<outline text="} else {">
 							<outline text="return false;" />
@@ -3356,7 +3356,7 @@
 					<outline text="var keyA = $(a).text ().toLowerCase ();" />
 					<outline text="var keyB = $(b).text ().toLowerCase ();" />
 					<outline text="if (keyA &lt; keyB) return -1;" />
-					<outline text="if (keyA > keyB) return 1;" />
+					<outline text="if (keyA &gt; keyB) return 1;" />
 					<outline text="return 0;" />
 					<outline text="});" />
 				</outline>
@@ -3393,7 +3393,7 @@
 				<outline text="var cursor = root.find(&quot;.concord-node:first&quot;);" />
 				<outline text="do {">
 					<outline text="if(cursor) {">
-						<outline text="if(!cursor.hasClass(&quot;collapsed&quot;) &amp;&amp; (cursor.children(&quot;ol&quot;).children().size() > 0)) {">
+						<outline text="if(!cursor.hasClass(&quot;collapsed&quot;) &amp;&amp; (cursor.children(&quot;ol&quot;).children().size() &gt; 0)) {">
 							<outline text="expansionStates.push(nodeId);" />
 							<outline text="}" />
 						</outline>
@@ -3437,29 +3437,29 @@
 					</outline>
 					<outline text="};" />
 				</outline>
-				<outline text="add('&lt;?xml version=&quot;1.0&quot;?>');" />
-				<outline text="add('&lt;opml version=&quot;2.0&quot;>');" />
+				<outline text="add('&lt;?xml version=&quot;1.0&quot;?&gt;');" />
+				<outline text="add('&lt;opml version=&quot;2.0&quot;&gt;');" />
 				<outline text="indent++;" />
-				<outline text="add('&lt;head>');" />
+				<outline text="add('&lt;head&gt;');" />
 				<outline text="indent++;" />
 				<outline text="for(var headName in head){">
 					<outline text="if(head[headName]!==undefined){">
-						<outline text="add('&lt;'+headName+'>' + ConcordUtil.escapeXml(head[headName]) + '&lt;/' + headName + '>');" />
+						<outline text="add('&lt;'+headName+'&gt;' + ConcordUtil.escapeXml(head[headName]) + '&lt;/' + headName + '&gt;');" />
 						<outline text="}" />
 					</outline>
 					<outline text="}" />
 				</outline>
-				<outline text="add('&lt;/head>');" />
+				<outline text="add('&lt;/head&gt;');" />
 				<outline text="indent--;" />
-				<outline text="add('&lt;body>');" />
+				<outline text="add('&lt;body&gt;');" />
 				<outline text="indent++;" />
 				<outline text="root.children(&quot;.concord-node&quot;).each(function() {">
 					<outline text="opml += concordInstance.editor.opmlLine($(this), indent);" />
 					<outline text="});" />
 				</outline>
-				<outline text="add('&lt;/body>');" />
+				<outline text="add('&lt;/body&gt;');" />
 				<outline text="indent--;" />
-				<outline text="add('&lt;/opml>');" />
+				<outline text="add('&lt;/opml&gt;');" />
 				<outline text="return opml;" />
 				<outline text="};" />
 			</outline>
@@ -3538,7 +3538,7 @@
 				<outline text="}," />
 			</outline>
 			<outline text="this.wipe = function() {">
-				<outline text="if(root.find(&quot;.concord-node&quot;).length > 0){">
+				<outline text="if(root.find(&quot;.concord-node&quot;).length &gt; 0){">
 					<outline text="this.saveState();" />
 					<outline text="}" />
 				</outline>
@@ -3591,7 +3591,7 @@
 					<outline text="var cursor = root.find(&quot;.concord-node:first&quot;);" />
 					<outline text="do {">
 						<outline text="if(cursor) {">
-							<outline text="if(expansionStates.indexOf(&quot;&quot;+nodeId) >= 0){">
+							<outline text="if(expansionStates.indexOf(&quot;&quot;+nodeId) &gt;= 0){">
 								<outline text="cursor.removeClass(&quot;collapsed&quot;);" />
 								<outline text="}" />
 							</outline>
@@ -3736,7 +3736,7 @@
 						</outline>
 						<outline text="if(iconName){">
 							<outline text="var icon = ConcordUtil.getIconHtml (iconName);" />
-							<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-&quot;+ iconName +&quot;\&quot;>&lt;&quot;+&quot;/i>&quot;;" isComment="true" />
+							<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-&quot;+ iconName +&quot;\&quot;&gt;&lt;&quot;+&quot;/i&gt;&quot;;" isComment="true" />
 							<outline text="wrapper.children(&quot;.node-icon:first&quot;).replaceWith(icon);" />
 							<outline text="}" />
 						</outline>
@@ -3795,7 +3795,7 @@
 						</outline>
 						<outline text="if(iconName){">
 							<outline text="var icon = ConcordUtil.getIconHtml (iconName);" />
-							<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-&quot;+ iconName +&quot;\&quot;>&lt;&quot;+&quot;/i>&quot;;" isComment="true" />
+							<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-&quot;+ iconName +&quot;\&quot;&gt;&lt;&quot;+&quot;/i&gt;&quot;;" isComment="true" />
 							<outline text="wrapper.children(&quot;.node-icon:first&quot;).replaceWith(icon);" />
 							<outline text="}" />
 						</outline>
@@ -3831,7 +3831,7 @@
 					<outline text="}" />
 				</outline>
 				<outline text="cursor.removeData(&quot;attributes&quot;);" />
-				<outline text="var removedAnyAttributes = (numAttributes > 0);" />
+				<outline text="var removedAnyAttributes = (numAttributes &gt; 0);" />
 				<outline text="var attributes = {};" />
 				<outline text="$(cursor[0].attributes).each(function() {">
 					<outline text="var matches = this.name.match(/^opml-(.+)$/)" />
@@ -3872,7 +3872,7 @@
 					</outline>
 					<outline text="if(iconName){">
 						<outline text="var icon = ConcordUtil.getIconHtml (iconName);" />
-						<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-&quot;+ iconName +&quot;\&quot;>&lt;&quot;+&quot;/i>&quot;;" isComment="true" />
+						<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-&quot;+ iconName +&quot;\&quot;&gt;&lt;&quot;+&quot;/i&gt;&quot;;" isComment="true" />
 						<outline text="wrapper.children(&quot;.node-icon:first&quot;).replaceWith(icon);" />
 						<outline text="}" />
 					</outline>
@@ -3941,7 +3941,7 @@
 			<outline text="}" />
 		</outline>
 		<outline text="function Op(opmltext){">
-			<outline text="var fakeDom = $(&quot;&lt;div>&lt;/div>&quot;);" />
+			<outline text="var fakeDom = $(&quot;&lt;div&gt;&lt;/div&gt;&quot;);" />
 			<outline text="fakeDom.concord().op.xmlToOutline(opmltext);" />
 			<outline text="return fakeDom.concord().op;" />
 			<outline text="}" />
@@ -3975,7 +3975,7 @@
 				</outline>
 				<outline text="// Readonly exceptions for arrow keys and cmd-comma" />
 				<outline text="if(readonly){">
-					<outline text="if( (event.which>=37) &amp;&amp; (event.which &lt;=40) ){">
+					<outline text="if( (event.which&gt;=37) &amp;&amp; (event.which &lt;=40) ){">
 						<outline text="readonly = false;" />
 						<outline text="}" />
 					</outline>
@@ -3999,7 +3999,7 @@
 					<outline text="switch (keystrokeString) {">
 						<outline text="case &quot;backspace&quot;:">
 							<outline text="if (concord.mobile) {">
-								<outline text="if((concordInstance.op.getLineText()==&quot;&quot;) || (concordInstance.op.getLineText()==&quot;&lt;br>&quot;)){">
+								<outline text="if((concordInstance.op.getLineText()==&quot;&quot;) || (concordInstance.op.getLineText()==&quot;&lt;br&gt;&quot;)){">
 									<outline text="event.preventDefault();" />
 									<outline text="concordInstance.op.deleteLine();" />
 									<outline text="}" />
@@ -4027,7 +4027,7 @@
 						<outline text="case &quot;meta-backspace&quot;: //cmd-backspace -- 2/6/20 by DW">
 							<outline text="function cmdBackspace () {">
 								<outline text="var rightstring = concordInstance.op.getLineText ();" />
-								<outline text="if (concordInstance.op.countSubs () > 0) { //has subs">
+								<outline text="if (concordInstance.op.countSubs () &gt; 0) { //has subs">
 									<outline text="return (false);" />
 									<outline text="}" />
 								</outline>
@@ -4035,7 +4035,7 @@
 									<outline text="return (false);" />
 									<outline text="}" />
 								</outline>
-								<outline text="if (concordInstance.op.countSubs () > 0) { //has subs">
+								<outline text="if (concordInstance.op.countSubs () &gt; 0) { //has subs">
 									<outline text="concordInstance.op.go (down, 1);" />
 									<outline text="return (false);" />
 									<outline text="}" />
@@ -4129,7 +4129,7 @@
 								<outline text="cursor.removeClass(&quot;collapsed&quot;);" />
 								<outline text="concordInstance.op.setLineText(&quot;&quot;);" />
 								<outline text="var icon = ConcordUtil.getIconHtml (&quot;caret-right&quot;);" />
-								<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-caret-right\&quot;>&lt;&quot;+&quot;/i>&quot;;" isComment="true" />
+								<outline text="var icon = &quot;&lt;i&quot;+&quot; class=\&quot;node-icon fa fa-caret-right\&quot;&gt;&lt;&quot;+&quot;/i&gt;&quot;;" isComment="true" />
 								<outline text="cursor.children(&quot;.concord-wrapper&quot;).children(&quot;.node-icon&quot;).replaceWith(icon);" />
 								<outline text="clonedCursor.insertBefore(cursor);" />
 								<outline text="concordInstance.op.attributes.makeEmpty();" />
@@ -4201,7 +4201,7 @@
 						<outline text="case &quot;cursor-left&quot;:">
 							<outline text="var active = false;" />
 							<outline text="if($(event.target).hasClass(&quot;concord-text&quot;)) {">
-								<outline text="if(event.target.selectionStart > 0) {">
+								<outline text="if(event.target.selectionStart &gt; 0) {">
 									<outline text="active = false;" />
 									<outline text="}" />
 								</outline>
@@ -4423,7 +4423,7 @@
 						<outline text="}" />
 					</outline>
 					<outline text="if(!keyCaptured) {">
-						<outline text="if((event.which >= 32) &amp;&amp; ((event.which &lt; 112) || (event.which > 123)) &amp;&amp; (event.which &lt; 1000) &amp;&amp; !commandKey) {">
+						<outline text="if((event.which &gt;= 32) &amp;&amp; ((event.which &lt; 112) || (event.which &gt; 123)) &amp;&amp; (event.which &lt; 1000) &amp;&amp; !commandKey) {">
 							<outline text="var node = concordInstance.op.getCursor();" />
 							<outline text="if(concordInstance.op.inTextMode()) {">
 								<outline text="if(!node.hasClass(&quot;dirty&quot;)){">
@@ -4457,7 +4457,7 @@
 					<outline text="return;" />
 					<outline text="}" />
 				</outline>
-				<outline text="if( $(event.target).is(&quot;a&quot;) || $(event.target).is(&quot;input&quot;) || $(event.target).is(&quot;textarea&quot;) || ($(event.target).parents(&quot;a:first&quot;).length==1) || $(event.target).hasClass(&quot;dropdown-menu&quot;) || ($(event.target).parents(&quot;.dropdown-menu:first&quot;).length>0)){">
+				<outline text="if( $(event.target).is(&quot;a&quot;) || $(event.target).is(&quot;input&quot;) || $(event.target).is(&quot;textarea&quot;) || ($(event.target).parents(&quot;a:first&quot;).length==1) || $(event.target).hasClass(&quot;dropdown-menu&quot;) || ($(event.target).parents(&quot;.dropdown-menu:first&quot;).length&gt;0)){">
 					<outline text="return;" />
 					<outline text="}" />
 				</outline>

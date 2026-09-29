@@ -120,7 +120,7 @@ Markdown renderer
 
 As part of the build process for turning my OPML files into flat files for the GitHub repo, I have a script that does a simple rendering of an outline in Markdown. Previously it only understood one level hierarchies, but I was already using more levels without realizing the text was not showing up. 
 
-So I updated the renderer to handle multiple levels. It's a little tricky to get Markdown do indentation, but I ended up using with with &nbsp; characters, which works since you can include HTML in Markdown. :-)
+So I updated the renderer to handle multiple levels. It's a little tricky to get Markdown do indentation, but I ended up using with with &amp;nbsp; characters, which works since you can include HTML in Markdown. :-)
 
 #### 9/19/13 by DW
 

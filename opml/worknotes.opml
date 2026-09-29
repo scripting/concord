@@ -2,7 +2,7 @@
 <opml version="2.0">
 	<head>
 		<title>worknotes.md</title>
-		<dateModified>Tue, 29 Sep 2026 15:46:27 GMT</dateModified>
+		<dateModified>Tue, 29 Sep 2026 16:19:41 GMT</dateModified>
 		<expansionState></expansionState>
 		<vertScrollState>1</vertScrollState>
 		<windowTop>300</windowTop>
@@ -36,10 +36,10 @@
 			</outline>
 		</outline>
 		<outline text="#### 2/15/20; 11:22:30 AM by DW">
-			<outline text="&lt;a href=&quot;http://scripting.com/2020/02/15.html#a161619&quot;>Released&lt;/a> version 3.0.3. Lots of cleanup work remains, for sure. ;-)" />
+			<outline text="&lt;a href=&quot;http://scripting.com/2020/02/15.html#a161619&quot;&gt;Released&lt;/a&gt; version 3.0.3. Lots of cleanup work remains, for sure. ;-)" />
 		</outline>
 		<outline text="#### 2/13/20; 11:49:36 AM by DW">
-			<outline text="Saved a &lt;a href=&quot;https://s3.amazonaws.com/scripting.com/2020/02/13/concord-master.zip&quot;>snapshot&lt;/a> of the Concord repository before I made any changes. " />
+			<outline text="Saved a &lt;a href=&quot;https://s3.amazonaws.com/scripting.com/2020/02/13/concord-master.zip&quot;&gt;snapshot&lt;/a&gt; of the Concord repository before I made any changes. " />
 		</outline>
 		<outline text="#### 2/12/20; 11:53:59 AM by DW">
 			<outline text="Merged concordkeyboard.js with concord.js. New routine ConcordUtil.getKeystroke. One less file to deal with. Wasn't present in the 2013 version of Concord. No need to introduce it. " />
@@ -49,7 +49,7 @@
 		</outline>
 		<outline text="#### 1/29/20; 5:03:41 PM by DW">
 			<outline text="v3.0.1. Implemented cmd-backspace and cmd-return. Handles HTML text.">
-				<outline text="Here's the &lt;a href=&quot;http://scripting.com/2020/01/29.html#a182110&quot;>writeup&lt;/a> on Scripting. " />
+				<outline text="Here's the &lt;a href=&quot;http://scripting.com/2020/01/29.html#a182110&quot;&gt;writeup&lt;/a&gt; on Scripting. " />
 			</outline>
 		</outline>
 		<outline text="#### 1/25/20; 2:21:11 PM by DW">
@@ -89,7 +89,7 @@
 		</outline>
 		<outline text="#### 2/22/14 by DW">
 			<outline text="v2.49 -- xmlToOutline takes a new optional param, flSetFocus. Defaults true. If false, we don't set the focus in the outline. This is useful when using the outliner to display text in a web page. If the outline is two screens down, you don't want the page to scroll down to it on reload. " />
-			<outline text="Thanks to &lt;a href=&quot;http://k4shif.blogspot.com/&quot;>Kashif Khan&lt;/a> for finding this fix. ;-)" />
+			<outline text="Thanks to &lt;a href=&quot;http://k4shif.blogspot.com/&quot;&gt;Kashif Khan&lt;/a&gt; for finding this fix. ;-)" />
 		</outline>
 		<outline text="#### 9/20/13 by DW">
 			<outline text="Example1 -- Hello Outliner">
@@ -104,7 +104,7 @@
 		</outline>
 		<outline text="#### 9/19/13 by DW">
 			<outline text="Added worknotes section to readme.md." />
-			<outline text="Rendering worknotes as &lt;a href=&quot;https://github.com/scripting/concord/blob/master/worknotes.md&quot;>worknotes.md&lt;/a> at the top level of the repo." />
+			<outline text="Rendering worknotes as &lt;a href=&quot;https://github.com/scripting/concord/blob/master/worknotes.md&quot;&gt;worknotes.md&lt;/a&gt; at the top level of the repo." />
 		</outline>
 		<outline text="#### 9/18/13 by DW">
 			<outline text="Created the worknotes outline (this file). " />
@@ -115,7 +115,7 @@
 				<outline text="Anything Concord can display it can display, because it builds on Concord. ;-)" />
 			</outline>
 			<outline text="Added a call to console.log in opKeystrokeCallback in example1. " />
-			<outline text="Fixed opExpandCallback in Example 1, expanding &lt;i>include&lt;/i> nodes was broken." />
+			<outline text="Fixed opExpandCallback in Example 1, expanding &lt;i&gt;include&lt;/i&gt; nodes was broken." />
 			<outline text="Added commands in Hello Outliner/Source menu to open the Worknotes outline and the source for Example 2." />
 		</outline>
 	</body>
