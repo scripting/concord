@@ -1,3 +1,9 @@
+#### 9/29/26; 11:39:11 AM by DW
+
+Fix in attributes.setOne: copy the attributes table before changing it. A pasted line shared the table with the line it was copied from, so commenting the copy commented the original too.
+
+Changed version to 3.1.0.
+
 #### 1/15/24; 10:01:19 AM by DW
 
 Fix problem in xmlToOutline where it can fail in certain circumstances relative to cursor placement.
@@ -114,7 +120,7 @@ Markdown renderer
 
 As part of the build process for turning my OPML files into flat files for the GitHub repo, I have a script that does a simple rendering of an outline in Markdown. Previously it only understood one level hierarchies, but I was already using more levels without realizing the text was not showing up. 
 
-So I updated the renderer to handle multiple levels. It's a little tricky to get Markdown do indentation, but I ended up using with with &amp;nbsp; characters, which works since you can include HTML in Markdown. :-)
+So I updated the renderer to handle multiple levels. It's a little tricky to get Markdown do indentation, but I ended up using with with &nbsp; characters, which works since you can include HTML in Markdown. :-)
 
 #### 9/19/13 by DW
 

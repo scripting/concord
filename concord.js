@@ -1,4 +1,4 @@
-// Copyright 2020-2021, Dave Winer
+// Copyright 2020-2026, Dave Winer
 // Copyright 2013, Small Picture, Inc.
 
 $(function () {
@@ -22,7 +22,7 @@ if (!Array.prototype.indexOf) {
 		}
 	}
 var concord = {
-	version: "3.0.5",
+	version: "3.1.0", //9/29/26 by DW -- bumped version
 	mobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),
 	ready: false,
 	handleEvents: true,
@@ -128,9 +128,9 @@ jQuery.fn.reverse = [].reverse;
 	var flatdown = "flatdown";
 	var nodirection = "nodirection";
 var XML_CHAR_MAP = {
-	'<': '&lt;',
-	'>': '&gt;',
-	'&': '&amp;',
+	'<': '<',
+	'>': '>',
+	'&': '&',
 	'"': '&'+'quot;'
 	};
 var ConcordUtil = {
@@ -1016,20 +1016,20 @@ function ConcordEditor(root, concordInstance) {
 			for(var tagIndex in allowedTags){
 				var tag = allowedTags[tagIndex];
 				if (tag == "img"){
-					h = h.replace(new RegExp("&lt;"+tag+"((?!&gt;).+)(/)?&gt;","gi"),"<"+tag+"$1"+"/>");
+					h = h.replace(new RegExp("<"+tag+"((?!>).+)(/)?>","gi"),"<"+tag+"$1"+"/>");
 					}
 				else if (tag=="a"){
-					h = h.replace(new RegExp("&lt;"+tag+"((?!&gt;).*?)&gt;((?!&lt;/"+tag+"&gt;).+?)&lt;/"+tag+"&gt;","gi"),"<"+tag+"$1"+">$2"+"<"+"/"+tag+">");
+					h = h.replace(new RegExp("<"+tag+"((?!>).*?)>((?!</"+tag+">).+?)</"+tag+">","gi"),"<"+tag+"$1"+">$2"+"<"+"/"+tag+">");
 					}
 				else {
-					h = h.replace(new RegExp("&lt;"+tag+"&gt;((?!&lt;/"+tag+"&gt;).+?)&lt;/"+tag+"&gt;","gi"),"<"+tag+">$1"+"<"+"/"+tag+">");
+					h = h.replace(new RegExp("<"+tag+">((?!</"+tag+">).+?)</"+tag+">","gi"),"<"+tag+">$1"+"<"+"/"+tag+">");
 					}
 				}
 			}
 		return h;
 		};
 	this.unescape = function(s){
-		var h = s.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+		var h = s.replace(/</g,"<").replace(/>/g,">");
 		h = $("<div/>").html(h).text();
 		return h;
 		};
@@ -2930,7 +2930,9 @@ function ConcordOpAttributes(concordInstance, cursor) {
 		if(name==this._cssTextClassName){
 			this._cssTextClass(value);
 			}
-		var atts = this.getAll();
+		
+		var atts = $.extend({}, this.getAll()); //9/29/26 by DW -- copy first, so a pasted line doesn't share its attributes with the original
+		
 		atts[name]=value;
 		cursor.data("attributes", atts);
 		if((name=="type" )|| (name=="icon")){
